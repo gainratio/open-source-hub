@@ -46,3 +46,18 @@ python3 -m http.server 8765
 - No user counts, revenue, or performance numbers that are not measured.
 - The verification section describes properties the code enforces; keep it in
   sync with `edgeproc-browser` and `aml-filter` docs.
+
+## SEO health check
+
+`npm run health` verifies the production portfolio end to end:
+
+- robots.txt and sitemap status
+- every sitemap URL returns 200 HTML
+- canonical, title, single H1, valid JSON-LD
+- Hindi hreflang on AlmaMesh pages
+
+It runs weekly from `.github/workflows/seo-health.yml`.
+
+## Deployment
+
+`npm run build` generates `dist/`; deploy with Cloudflare Pages project `gainratio-open-source`.
