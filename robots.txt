@@ -1,0 +1,5 @@
+# Public portfolio page; everything here is meant to be indexed.
+User-agent: *
+Allow: /
+
+Sitemap: https://open-source.gainratio.com/sitemap.xml

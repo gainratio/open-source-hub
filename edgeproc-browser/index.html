@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@gainratio/browser — Verified Local-First Data Runtime</title>
+<meta name="description" content="Load signed, content-addressed data into a browser tab, verify it locally, and keep it usable offline. The browser runtime behind EdgeReco and AML-Filter.">
+<link rel="canonical" href="https://open-source.gainratio.com/edgeproc-browser/">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="@gainratio/browser — Verified Local-First Data Runtime">
+<meta property="og:description" content="Signed bundles, OPFS storage, SQLite search, and offline operation in the browser.">
+<meta property="og:url" content="https://open-source.gainratio.com/edgeproc-browser/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"@gainratio/browser","description":"Verified local-first data runtime for the browser.","codeRepository":"https://github.com/gainratio/edgeproc-browser","programmingLanguage":"TypeScript","license":"https://opensource.org/license/mit","url":"https://open-source.gainratio.com/edgeproc-browser/"}</script>
+<style>body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:#1a1a1a;background:#f6f8fb}h1{font:600 2.4rem/1.15 Georgia,serif;color:#1f3864;margin:0 0 1rem}h2{color:#1f3864;margin-top:2.2rem}a{color:#2e5496}code{background:#eef2f8;padding:.15rem .35rem;border-radius:4px}li{margin:.4rem 0}.cta{display:inline-block;margin-top:1.5rem;background:#1f3864;color:white;padding:.75rem 1.1rem;border-radius:8px;text-decoration:none}</style>
+</head>
+<body>
+<p><a href="/">← GainRatio open source</a></p>
+<h1>@gainratio/browser</h1>
+<p>The browser runtime for data that must be <strong>provably yours and unaltered</strong>. It syncs a signed, content-addressed bundle, verifies it locally, stores it in OPFS, and keeps it searchable offline.</p>
+<h2>What it provides</h2>
+<ul>
+<li>Signed bundle sync with Ed25519 verification and a rollback floor</li>
+<li>Content-defined chunking and only-changed-chunk downloads</li>
+<li>OPFS storage and SQLite with FTS5 and sqlite-vector search</li>
+<li>Offline operation after the first sync</li>
+<li>One Worker-owned SQLite connection with a bounded memory profile</li>
+</ul>
+<h2>Used by</h2>
+<p><a href="https://edge-reco.com/">EdgeReco</a> for on-device product search, and <a href="https://aml-filter.com/">AML-Filter</a> for in-browser sanctions screening.</p>
+<h2>Install</h2>
+<p><code>npm install @gainratio/browser</code></p>
+<a class="cta" href="https://github.com/gainratio/edgeproc-browser">Read the source on GitHub</a>
+</body>
+</html>

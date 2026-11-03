@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open source — GainRatio</title>
+<meta name="description" content="Local-first software and libraries that verify what they load: signed sanctions screening, on-device recommendations, and a browser runtime for provably yours data.">
+<link rel="canonical" href="https://open-source.gainratio.com/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"GainRatio","url":"https://gainratio.com/","sameAs":["https://github.com/gainratio"]},{"@type":"CollectionPage","name":"GainRatio Open Source","url":"https://open-source.gainratio.com/","hasPart":[{"@type":"SoftwareSourceCode","name":"AML-Filter","url":"https://open-source.gainratio.com/aml-filter/"},{"@type":"SoftwareSourceCode","name":"EdgeReco","url":"https://open-source.gainratio.com/edge-reco/"},{"@type":"SoftwareSourceCode","name":"AlmaMesh","url":"https://open-source.gainratio.com/almamesh/"},{"@type":"SoftwareSourceCode","name":"edgeproc-browser","url":"https://open-source.gainratio.com/edgeproc-browser/"},{"@type":"SoftwareSourceCode","name":"edge-proc","url":"https://open-source.gainratio.com/edge-proc/"},{"@type":"SoftwareSourceCode","name":"edgeproc-core","url":"https://open-source.gainratio.com/edgeproc-core/"},{"@type":"SoftwareSourceCode","name":"avow","url":"https://open-source.gainratio.com/avow/"},{"@type":"SoftwareSourceCode","name":"privacy-core","url":"https://open-source.gainratio.com/privacy-core/"},{"@type":"SoftwareSourceCode","name":"errors","url":"https://open-source.gainratio.com/errors/"},{"@type":"SoftwareSourceCode","name":"assay","url":"https://open-source.gainratio.com/assay/"},{"@type":"SoftwareSourceCode","name":"agentic-tab-context","url":"https://open-source.gainratio.com/agentic-tab-context/"},{"@type":"SoftwareSourceCode","name":"agentic-context-service","url":"https://open-source.gainratio.com/agentic-context-service/"},{"@type":"SoftwareSourceCode","name":"agentic-saga","url":"https://open-source.gainratio.com/agentic-saga/"},{"@type":"SoftwareSourceCode","name":"ci","url":"https://open-source.gainratio.com/ci/"}]}]}</script>
+<style>
+:root{
+  --navy:#1F3864; --deep:#152744; --ink:#1A1A1A; --muted:#4A4A4A;
+  --line:#BFC9DA; --accent:#2E5496; --paper:#F6F8FB; --pale:#EEF2F8; --wash:#DCE5F3;
+  --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--navy)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+header{border-bottom:1px solid var(--line);background:rgba(246,248,251,.92);position:sticky;top:0;z-index:5;backdrop-filter:blur(8px)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:68px}
+.brand{display:flex;align-items:center;gap:11px;color:var(--navy);font-weight:650;letter-spacing:-.01em;text-decoration:none}
+.brand svg{width:28px;height:28px}
+.nav-links{display:flex;align-items:center;gap:22px;font-size:14.5px}
+.nav-links a{color:var(--muted);text-decoration:none}
+.nav-links a:hover{color:var(--navy)}
+.nav-links .gh{border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--navy);background:#fff}
+.hero{padding:76px 0 60px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
+.eyebrow{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 14px}
+h1{font:600 clamp(38px,5.2vw,58px)/1.08 var(--serif);letter-spacing:-.02em;color:var(--navy);margin:0 0 20px}
+.lede{font-size:19px;color:var(--muted);max-width:58ch;margin:0 0 28px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:9px;padding:11px 17px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid transparent}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:var(--deep);color:#fff}
+.btn-secondary{background:#fff;color:var(--navy);border-color:var(--line)}
+.btn-secondary:hover{border-color:var(--accent);color:var(--navy)}
+.receipt{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 18px 40px rgba(21,39,68,.08)}
+.receipt h2{font:600 13px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+.receipt ol{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.receipt li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:14px;color:var(--muted);line-height:1.45}
+.receipt .n{width:22px;height:22px;border-radius:50%;background:var(--pale);color:var(--navy);display:grid;place-items:center;font-size:12px;font-weight:700}
+.receipt code{font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--navy);background:var(--pale);padding:1px 5px;border-radius:4px}
+section{padding:68px 0}
+section+section{border-top:1px solid var(--line)}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:28px}
+h2{font:600 clamp(26px,3.2vw,36px)/1.15 var(--serif);letter-spacing:-.01em;color:var(--navy);margin:0}
+.section-head p{margin:0;color:var(--muted);font-size:15.5px;max-width:46ch}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:22px;display:flex;flex-direction:column;min-height:230px}
+.card .tag{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.dot{width:7px;height:7px;border-radius:50%;background:#2E7D4F;display:inline-block}
+.card h3{font:600 20px/1.25 var(--serif);color:var(--navy);margin:0 0 8px}
+.card p{color:var(--muted);font-size:14.5px;margin:0 0 18px}
+.card .link{margin-top:auto;font-weight:600;font-size:14.5px;text-decoration:none}
+.libs{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;border-top:1px solid var(--line)}
+.lib{display:grid;grid-template-columns:190px 1fr;gap:18px;padding:17px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.lib a{font-weight:650;color:var(--navy);text-decoration:none;font-size:15px}
+.lib p{margin:0;color:var(--muted);font-size:14.3px}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.principle{border-left:2px solid var(--wash);padding-left:16px}
+.principle h3{font:600 17px/1.3 var(--serif);color:var(--navy);margin:0 0 6px}
+.principle p{margin:0;color:var(--muted);font-size:14.5px}
+.cta{background:var(--navy);color:#fff;border-radius:16px;padding:38px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.cta h2{color:#fff;margin:0 0 8px}
+.cta p{color:#DCE5F3;margin:0;max-width:56ch;font-size:15px}
+.cta .btn{background:#fff;color:var(--navy);border:none;white-space:nowrap}
+footer{border-top:1px solid var(--line);padding:30px 0 42px;color:var(--muted);font-size:13.5px}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.foot a{color:var(--muted)}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .cards,.principles{grid-template-columns:1fr}
+  .libs{grid-template-columns:1fr}
+  .lib{grid-template-columns:1fr;gap:4px}
+  .cta{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:620px){
+  .nav-links a:not(.gh){display:none}
+  .hero{padding:52px 0 44px}
+  section{padding:52px 0}
+  .section-head{flex-direction:column;align-items:flex-start;gap:8px}
+}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are these projects open source?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every project listed here is public on GitHub under the GainRatio organization."}},{"@type":"Question","name":"Can I use them commercially?","acceptedAnswer":{"@type":"Answer","text":"Most are MIT-licensed. Check each repository's license before redistribution."}},{"@type":"Question","name":"Where do I report a security issue?","acceptedAnswer":{"@type":"Answer","text":"Use the security policy in the relevant repository; do not open a public issue for an undisclosed vulnerability."}}]}</script>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="https://gainratio.com/" aria-label="GainRatio home">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="14" fill="#1F3864"/><path d="M 76.6 27.4 A 34.5 34.5 0 1 0 84.5 50 L 58 50" fill="none" stroke="#fff" stroke-width="8.5"/></svg>
+      GainRatio
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#applications">Applications</a>
+      <a href="#libraries">Libraries</a>
+      <a href="#verified">Verification</a>
+      <a class="gh" href="https://github.com/gainratio">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Open source by GainRatio</p>
+        <h1>Software that can show you it did what it claimed.</h1>
+        <p class="lede">Local-first applications and the libraries underneath them: signed data, content-addressed bundles, and caches that re-check signatures instead of trusting rows. No accounts, no analytics, no upload.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/gainratio/edgeproc-browser">Start with the browser runtime</a>
+          <a class="btn btn-secondary" href="https://github.com/gainratio">Browse the repositories ↗</a>
+        </div>
+      </div>
+      <aside class="receipt" aria-label="What a verified load checks">
+        <h2>What a verified load checks</h2>
+        <ol>
+          <li><span class="n">1</span><span><strong>Who signed it.</strong> An Ed25519 key from a pinned trust root, with revoked keys refused.</span></li>
+          <li><span class="n">2</span><span><strong>That it is current.</strong> A monotonic sequence blocks replayed or rolled-back releases.</span></li>
+          <li><span class="n">3</span><span><strong>That it arrived intact.</strong> Every chunk is addressed by <code>sha256</code> and decompressed only after it matches.</span></li>
+        </ol>
+      </aside>
+    </div>
+  </div>
+
+  <section id="applications">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Applications</h2>
+        <p>Three working products, each built on the same verified-data path. They run in your browser and keep the sensitive part on your machine.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="tag"><span class="dot"></span>Live</span>
+          <h3>AML-Filter</h3>
+          <p>Checks customer names against government sanctions lists inside the browser. The watchlist is signed and fresh; names never leave the page.</p>
+          <a class="link" href="https://aml-filter.com">aml-filter.com →</a>
+        </article>
+        <article class="card">
+          <span class="tag"><span class="dot"></span>Live</span>
+          <h3>EdgeReco</h3>
+          <p>Search and product recommendations that run in the shopper's browser, from a signed catalog, instead of a per-query server round trip.</p>
+          <a class="link" href="https://edge-reco.com">edge-reco.com →</a>
+        </article>
+        <article class="card">
+          <span class="tag"><span class="dot"></span>Live</span>
+          <h3>AlmaMesh</h3>
+          <p>A Vedic astrology chart computed entirely in your browser. No account, no birth-data upload, no tracking.</p>
+          <a class="link" href="https://almamesh.com">almamesh.com →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="libraries">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Libraries</h2>
+        <p>The reusable pieces, in the open. Start where your problem is; each repository documents its own failure modes.</p>
+      </div>
+      <div class="libs">
+        <div class="lib"><a href="/edgeproc-browser/">@gainratio/browser</a><p>Load data into a browser tab only if it is provably yours, then keep using it offline.</p></div>
+        <div class="lib"><a href="/edge-proc/">edge-proc</a><p>Ship signed data to devices from Python: verify it, download only changes, search offline.</p></div>
+        <div class="lib"><a href="/edgeproc-core/">edgeproc-core</a><p>Keep each customer's search results separate in a shared index, with stable error codes.</p></div>
+        <div class="lib"><a href="/avow/">avow</a><p>Seal a record into a signed receipt anyone can check offline, later.</p></div>
+        <div class="lib"><a href="/privacy-core/">privacy-core</a><p>Hide card numbers, emails and ID numbers from AI models, then put them back in the reply.</p></div>
+        <div class="lib"><a href="/errors/">errors</a><p>Turn any error into one stable code and one clear message.</p></div>
+        <div class="lib"><a href="/assay/">assay</a><p>Turn measurements on different scales into one score that shows its math.</p></div>
+        <div class="lib"><a href="/agentic-context-service/">agentic-context-service</a><p>Governed OpenSearch context and memory hub for agentic workflows.</p></div>
+        <div class="lib"><a href="/agentic-saga/">agentic-saga</a><p>Multi-step agent jobs with safe undo of finished steps.</p></div>
+        <div class="lib"><a href="/ci/">ci</a><p>Shared Dagger modules and fleet audit for the repositories.</p></div>
+        <div class="lib"><a href="/agentic-tab-context/">agentic-tab-context</a><p>Let a coding assistant use the browser tab you already have open, with your existing logins.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="verified">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What “verified” means here</h2>
+        <p>Not a badge. Three properties you can test in the repository, on the live site, or with the network disconnected.</p>
+      </div>
+      <div class="principles">
+        <div class="principle"><h3>Signed, not assumed</h3><p>The publisher signs a pointer; the client pins a public key and refuses a signer it does not trust or has revoked.</p></div>
+        <div class="principle"><h3>Addressed, not trusted</h3><p>Manifests and chunks are named by their SHA-256. A byte that changed is a load that fails, not a warning in a log.</p></div>
+        <div class="principle"><h3>Local, not harvested</h3><p>The browser products do the sensitive work on your machine. There is no account, no analytics script, and no upload of the names or birth data you enter.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cta">
+        <div>
+          <h2>Read the code before you trust the claim.</h2>
+          <p>Every repository is public and MIT-licensed, with tests, a security policy, and a documented threat model. If a claim here is wrong, the issue tracker is open.</p>
+        </div>
+        <a class="btn" href="https://github.com/gainratio">github.com/gainratio ↗</a>
+      </div>
+    </div>
+  </section>
+<div class="lib"><a href="/aml-filter/">AML-Filter</a><p>In-browser sanctions and watchlist screening for small compliance teams.</p></div><div class="lib"><a href="/edge-reco/">EdgeReco</a><p>Search and product recommendations that run in the shopper's browser.</p></div><div class="lib"><a href="/almamesh/">AlmaMesh</a><p>Free Vedic astrology computed locally in the browser.</p></div><section style="padding:48px 0"><div class="wrap"><h2>Frequently asked questions</h2><h3>Are these projects open source?</h3><p>Yes. Every project listed here is public on GitHub under the GainRatio organization.</p><h3>Can I use them commercially?</h3><p>Most are MIT-licensed. Check each repository's license before redistribution.</p><h3>Where do I report a security issue?</h3><p>Use the security policy in the relevant repository; do not open a public issue for an undisclosed vulnerability.</p></div></section></main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 GainRatio · <a href="https://gainratio.com/">gainratio.com</a></span>
+    <span><a href="https://github.com/gainratio">GitHub</a> · <a href="https://gainratio.com/#contact">Contact</a> · <a href="https://aml-filter.com/trust/">Trust</a></span>
+  </div>
+</footer>
+</body>
+</html>
