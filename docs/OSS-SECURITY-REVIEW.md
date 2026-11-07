@@ -56,6 +56,7 @@ Fix:
 
 - **ATC extension permissions**: the MV3 extension still requests broad host access and does not have a per-origin host-permission consent UI; the per-install IPC token and user-share gate are in place. See the ATC security status.
 - **Cloudflare Bot Fight Mode** is off on the GainRatio zone to preserve crawler/API access. The Cloudflare managed ruleset, WAF, proxy, TLS/HSTS, and rate protections remain the primary controls. Revisit with hostname-scoped rules rather than a global toggle.
+- **AlmaMesh loopback CSP**: the production CSP intentionally allows `connect-src http://localhost:*` and `http://127.0.0.1:*` so a user can point the app at a local OpenAI-compatible model. This is a documented product capability; it is the only broad CSP allowance beyond the declared remote providers.
 - **EdgeReco `deepmerge`**: one low advisory in a build-only Workbox/PWA dependency; no patched release. It is not shipped in the browser runtime.
 - **AlmaMesh Nightly E2E**: the original run timed out on an external OpenRouter call; the rerun completed **success**.
 - **AML Dependabot PR #255**: the dependency update is valid; a deterministic ordering fix for the concurrent install-key test is pushed. The previous Dagger runner hung and was canceled; a clean run is in progress.
