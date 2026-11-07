@@ -52,6 +52,15 @@ Fix:
 - private vulnerability reporting
 - MIT license and `SECURITY.md`
 
+## Residual risks
+
+- **ATC extension permissions**: the MV3 extension still requests broad host access and does not have a per-origin host-permission consent UI; the per-install IPC token and user-share gate are in place. See the ATC security status.
+- **Cloudflare Bot Fight Mode** is off on the GainRatio zone to preserve crawler/API access. The Cloudflare managed ruleset, WAF, proxy, TLS/HSTS, and rate protections remain the primary controls. Revisit with hostname-scoped rules rather than a global toggle.
+- **EdgeReco `deepmerge`**: one low advisory in a build-only Workbox/PWA dependency; no patched release. It is not shipped in the browser runtime.
+- **AlmaMesh Nightly E2E**: external OpenRouter test timed out on one night after passing on the same SHA the two prior nights. The job rerun is pending; this is a live-model test reliability issue, not a deterministic app failure.
+- **AML Dependabot PR**: the dependency update is valid; a pre-existing concurrent install-key test is being made deterministic before merge.
+- **ATC security residuals**: new-client approval and optional per-origin permissions remain open, as recorded in the ATC security status.
+
 ## Notes on remaining failures
 
 - **AlmaMesh Nightly E2E**: the dual-voice spec timed out waiting for `reading-section` after a live OpenRouter call. The same commit passed the two prior nights, so this is an external-model test flake, not a deterministic app regression. The rerun is in progress.
