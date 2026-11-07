@@ -16,5 +16,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Check project page contract
+        run: npm run check:pages
       - name: Check production SEO artifacts
         run: node scripts/seo-health.mjs
