@@ -28,7 +28,8 @@ Scope: all 14 canonical hub pages, the seven library GitHub homepages, and the f
 - Added valid `SoftwareSourceCode` / `SoftwareApplication` JSON-LD with current versions.
 - Updated Avow’s install pin from `0.5.1` to the supported `0.5.3`.
 - Pointed seven library GitHub homepages at their canonical hub pages; the three dedicated docs projects now point GitHub at their own sites.
-- Added a build gate: `npm run check:pages` fails on thin pages, missing metadata/JSON-LD/canonical, missing sitemap entries, duplicate titles/descriptions, or broken internal links.
+- Added a build gate: `npm run check:pages` fails on thin pages, missing metadata/JSON-LD/canonical, missing sitemap entries, duplicate titles/descriptions, duplicate ids, broken internal links, or missing anchors.
+- Avow docs gate now rejects missing in-page and cross-page anchors; the broken `#quickstart` CTA was found and fixed by this check.
 - Published three dedicated docs sites:
   - `https://avow.gainratio.com/` — docs, examples, security, changelog, and a browser-side receipt verifier.
   - `https://privacy.gainratio.com/` — docs, examples, security, limits; no fake demo.
