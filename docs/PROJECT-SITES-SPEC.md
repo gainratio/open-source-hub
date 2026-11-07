@@ -1,6 +1,6 @@
 # OSS Project Sites — Specification
 
-Status: proposal  
+Status: Phase 1 and the first three Phase 2 docs sites implemented (2026-11-07)  
 Date: 2026-11-05  
 Owner: GainRatio  
 Scope: public OSS projects under `github.com/gainratio`, the canonical hub at `open-source.gainratio.com`, optional dedicated project subdomains, and their relationship to the flagship product sites.
