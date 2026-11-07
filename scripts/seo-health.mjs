@@ -6,27 +6,42 @@
  * No dependencies; exits non-zero on any failure.
  */
 const SITES = [
-  { host: "aml-filter.com", expectLang: null, check404: false },
-  { host: "edge-reco.com", expectLang: null, check404: false },
-  { host: "almamesh.com", expectLang: "en", check404: false },
-  { host: "open-source.gainratio.com", expectLang: "en", check404: true },
-  { host: "avow.gainratio.com", expectLang: "en", check404: true },
-  { host: "privacy.gainratio.com", expectLang: "en", check404: true },
-  { host: "browser.gainratio.com", expectLang: "en", check404: true },
-  { host: "gainratio.com", expectLang: "en", check404: false },
+  { host: "aml-filter.com", pagesHost: "aml-filter.pages.dev", expectLang: null, check404: false },
+  { host: "edge-reco.com", pagesHost: "edge-reco.pages.dev", expectLang: null, check404: false },
+  { host: "almamesh.com", pagesHost: "almamesh.pages.dev", expectLang: "en", check404: false },
+  { host: "open-source.gainratio.com", pagesHost: "gainratio-open-source.pages.dev", expectLang: "en", check404: true },
+  { host: "avow.gainratio.com", pagesHost: "avow-docs.pages.dev", expectLang: "en", check404: true },
+  { host: "privacy.gainratio.com", pagesHost: "privacy-docs.pages.dev", expectLang: "en", check404: true },
+  { host: "browser.gainratio.com", pagesHost: "browser-docs-bai.pages.dev", expectLang: "en", check404: true },
+  { host: "gainratio.com", pagesHost: "gainratio.pages.dev", expectLang: "en", check404: false },
 ];
 
 const failures = [];
 const results = [];
 const timeout = (ms) => AbortSignal.timeout(ms);
 
-async function fetchText(url) {
+async function fetchRaw(url) {
   const response = await fetch(url, {
     headers: { "user-agent": "GainRatio-SEO-Health/1.0 (+https://gainratio.com)" },
     signal: timeout(25_000),
   });
   const body = await response.text();
-  return { status: response.status, type: response.headers.get("content-type") ?? "", body, url: response.url };
+  return {
+    status: response.status,
+    type: response.headers.get("content-type") ?? "",
+    mitigated: response.headers.get("cf-mitigated") ?? "",
+    body,
+    url: response.url,
+  };
+}
+
+async function fetchSiteUrl(site, url) {
+  const res = await fetchRaw(url);
+  if (res.status === 403 && res.mitigated === "challenge" && site.pagesHost) {
+    const fallbackUrl = url.replace(`https://${site.host}`, `https://${site.pagesHost}`);
+    return fetchRaw(fallbackUrl);
+  }
+  return res;
 }
 
 function fail(site, url, message) {
@@ -37,12 +52,12 @@ for (const site of SITES) {
   const base = `https://${site.host}`;
   const summary = { host: site.host, robots: 0, sitemap: 0, urls: 0, checked: 0, failed: 0 };
   try {
-    const robots = await fetchText(`${base}/robots.txt`);
+    const robots = await fetchSiteUrl(site, `${base}/robots.txt`);
     summary.robots = robots.status;
     if (robots.status !== 200) fail(site.host, `${base}/robots.txt`, `HTTP ${robots.status}`);
     if (!robots.body.toLowerCase().includes("sitemap:")) fail(site.host, `${base}/robots.txt`, "no Sitemap directive");
 
-    const sitemap = await fetchText(`${base}/sitemap.xml`);
+    const sitemap = await fetchSiteUrl(site, `${base}/sitemap.xml`);
     summary.sitemap = sitemap.status;
     if (sitemap.status !== 200) fail(site.host, `${base}/sitemap.xml`, `HTTP ${sitemap.status}`);
     const locs = [...sitemap.body.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
@@ -51,7 +66,7 @@ for (const site of SITES) {
 
     if (site.check404) {
       const probeUrl = `${base}/nonexistent-seo-health-404-probe`;
-      const probe = await fetchText(probeUrl);
+      const probe = await fetchSiteUrl(site, probeUrl);
       if (probe.status !== 404) {
         fail(site.host, probeUrl, `expected HTTP 404 on unknown route, got HTTP ${probe.status}`);
         summary.failed += 1;
@@ -61,7 +76,7 @@ for (const site of SITES) {
     for (const url of locs) {
       summary.checked += 1;
       try {
-        const page = await fetchText(url);
+        const page = await fetchSiteUrl(site, url);
         if (page.status !== 200) { fail(site.host, url, `HTTP ${page.status}`); summary.failed += 1; continue; }
         if (!page.type.includes("text/html")) { fail(site.host, url, `content-type ${page.type}`); summary.failed += 1; continue; }
         const html = page.body;
