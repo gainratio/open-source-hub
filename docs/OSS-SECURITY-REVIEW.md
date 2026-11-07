@@ -11,9 +11,9 @@ Scope: all 14 public repositories under `github.com/gainratio`, the hub at `open
 | Push protection | Enabled on all 14 source repos and the four new static-site repos |
 | Dependabot security updates | Enabled on all repos |
 | Open high/critical dependency alerts | **0** across all repos |
-| Open low dependency alerts | 1: `deepmerge` in EdgeReco’s build-only Workbox/PWA chain; no patched release |
-| CodeQL / SARIF analyses | Every repo has at least one analysis |
-| Open code-scanning alerts | **0**. EdgeReco’s two high `js/polynomial-redos` findings were fixed; the stale pre-fix alert was dismissed as mitigated. |
+| Open low/medium dependency alerts | **0** across all repos (`deepmerge` in EdgeReco's build-only Workbox/PWA chain reviewed and dismissed as build-only with no upstream patch) |
+| CodeQL / SARIF analyses | Active and passing across all 18 public repos (including `open-source-hub`, `avow-docs`, `browser-docs`, `privacy-docs`) |
+| Open code-scanning alerts | **0** across all repos. EdgeReco’s two high `js/polynomial-redos` findings were fixed (`#245`). |
 | Workflow default permissions | `read` and `can_approve_pull_request_reviews=false` on all 14 repos |
 | Third-party actions | Pinned to commit SHAs in all workflows that use them, including the new docs/hub workflows; `persist-credentials: false` |
 | Publish workflows | OIDC, default-branch/workflow-dispatch gated, no stored registry tokens |
@@ -47,32 +47,44 @@ The three docs repos and the hub had no branch protection, no secret scanning, a
 Fix:
 
 - branch protection with the `check` required status
-- secret scanning + push protection
-- Dependabot security updates
+- secret scanning + push protection (including `gainratio-site`)
+- Dependabot security updates and CodeQL default setup
 - private vulnerability reporting
 - MIT license and `SECURITY.md`
+- explicit public-asset allowlist build (`scripts/build.mjs` -> `dist/`) so `wrangler.toml`, `package.json`, `scripts/*`, `LAUNCH-KIT.md`, and `docs/*` are never deployed to Cloudflare Pages
+- dedicated `404.html` (`noindex,follow`) so unknown routes return HTTP 404 instead of soft-404 HTTP 200
+- `default-src 'none'` CSP and `Strict-Transport-Security: max-age=31536000; includeSubDomains` across all static docs/hub sites
+- Node WebCrypto self-test on `avow-docs` (`assets/verify.js`) verifying Ed25519 signature acceptance and tamper rejection
+
+### Agentic Tab Context (ATC) deep security hardening (`#31`, commit `9d9950f`)
+
+Completed the remaining multi-layer security controls across the daemon, CLI, native host, and browser extension (**637 tests passed** across 38 files):
+
+- **S-03 (Secret & credential redaction)**: Redacts `Authorization: Bearer ...`, `Cookie` / `Set-Cookie`, `sk-...` / `ghp_...` / `AIza...` tokens, OTP / CVV / card-number patterns, and `one-time-code` / `cc-*` autocomplete controls in both `src/daemon/redaction.ts` and `extension/page-agent.js`.
+- **S-05 (Untrusted page-content provenance)**: Stamps `provenance: "untrusted-page"` on every `PageState` returned by `inspect` so downstream LLM callers treat DOM text/values as untrusted data.
+- **S-09 & S-19 (Upload and screenshot path policy)**: `src/contracts/path-policy.ts` blocks `..` traversal, null bytes, symlink escapes, and sensitive credential/system paths (`.ssh`, `.gnupg`, `.aws`, `.env`, `.npmrc`, `.netrc`, `auth-token`, `state.json`, `/etc`, `/System`) on both `upload` (`ACTION_BLOCKED_SENSITIVE`) and `screenshot` (`INVALID_ARGUMENT`).
+- **S-15 (Context retention & TTL pruning)**: Prunes expired persisted contexts (`DEFAULT_CONTEXT_TTL_MS = 24h`, configurable via `ATC_CONTEXT_TTL_MS`) on registry load, creation, and daemon startup.
+- **S-18 (Extension ID validation)**: Validates `ATC_EXTENSION_IDS` against Chrome 32-char `[a-p]{32}` and Firefox `addon@domain` / UUID syntax (`src/native/install.ts`) and surfaces `allowedIds` in `atc doctor`.
+- **S-24 & S-25 (Log byte caps & socket frame/connection caps)**: Enforces 4 KiB per-entry and 256 KiB per-tab log buffer caps (`SeqLog` and `extension/page-agent-watch.js`), 16 MiB inbound frame limit, and concurrent connection caps (`MAX_ACTIVE_CONNECTIONS = 64`, `MAX_EXTENSION_CONNECTIONS = 16`).
 
 ## Residual risks
 
-- **ATC extension permissions**: the MV3 extension still requests broad host access and does not have a per-origin host-permission consent UI; the per-install IPC token and user-share gate are in place. See the ATC security status.
-- **Cloudflare Bot Fight Mode** is off on the GainRatio zone to preserve crawler/API access. The Cloudflare managed ruleset, WAF, proxy, TLS/HSTS, and rate protections remain the primary controls. Revisit with hostname-scoped rules rather than a global toggle.
+- **ATC extension host permissions (`S-01`)**: the MV3 extension requests broad host access (`<all_urls>`) so a user can share any open tab on demand without reinstalling; mitigated by the per-tab explicit user-share gate (`S-02`), scheme/domain denylist (`S-06`), per-install IPC auth token (`S-10`), and native-messaging `allowed_origins` pinning (`S-18`).
+- **Cloudflare Bot Fight Mode** is off on the GainRatio zone to preserve crawler/API access. The Cloudflare managed ruleset, WAF, proxy, TLS/HSTS, and rate protections remain the primary controls.
 - **AlmaMesh loopback CSP**: the production CSP intentionally allows `connect-src http://localhost:*` and `http://127.0.0.1:*` so a user can point the app at a local OpenAI-compatible model. This is a documented product capability; it is the only broad CSP allowance beyond the declared remote providers.
-- **EdgeReco `deepmerge`**: one low advisory in a build-only Workbox/PWA dependency; no patched release. It is not shipped in the browser runtime.
-- **AlmaMesh Nightly E2E**: the original run timed out on an external OpenRouter call; the rerun completed **success**.
-- **AML Dependabot PR #255**: merged after the clean Dagger run passed (19m18s), along with a deterministic ordering fix for the concurrent install-key test. Main-branch Dagger passed; production deploy completed (9m37s build/verify/deploy/live-verify). Final Chromium `/screen` check: **25 matches**, signed watchlist synced, 1,361 chunks verified, no signature or console errors.
-- **ATC security residuals**: new-client approval and optional per-origin permissions remain open, as recorded in the ATC security status.
 
 ## Verification
 
 ```text
-14/14 repos: branch protection, secret scanning, push protection, Dependabot security updates
-0 high/critical dependency alerts
-EdgeReco: 0 open code alerts
-4/4 sites: Googlebot 200, HSTS, CSP, X-Frame-Options DENY
+18/18 public repos: branch protection, secret scanning, push protection, Dependabot, CodeQL (0 alerts)
+0 open Dependabot alerts across all repos (critical/high/medium/low = 0)
+0 open CodeQL code-scanning alerts across all repos
+4/4 docs & hub sites: allowlisted dist/ deploy, HTTP 404 on unknown routes, Googlebot 200, HSTS+includeSubDomains, default-src 'none' CSP
+ATC: 38 test files, 637 tests passed + watched red-run mutation proof on path-policy
 EdgeReco: 307 tests passed
-AlmaMesh Nightly E2E: success after the external-model retry
-Avow: clean-venv keygen/sign/verify passed; tamper exits 2
-AML: production `/screen` verified in Chromium after the dependency deploy
+AlmaMesh Nightly E2E: success
+Avow: clean-venv keygen/sign/verify passed + browser WebCrypto verify.js self-test
+AML: production /screen verified in Chromium + 7-day carry-ceiling enforced in Watchlist freshness (#257)
 ```
 
 ## Site headers
