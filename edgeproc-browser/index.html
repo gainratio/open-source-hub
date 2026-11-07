@@ -3,33 +3,173 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>@gainratio/browser — Verified Local-First Data Runtime</title>
-<meta name="description" content="Load signed, content-addressed data into a browser tab, verify it locally, and keep it usable offline. The browser runtime behind EdgeReco and AML-Filter.">
+<title>@gainratio/browser — Verify signed data in the browser</title>
+<meta name="description" content="Verify an Ed25519-signed, content-addressed data bundle in a Web Worker, store it in SQLite on OPFS, and keep it usable offline. TypeScript and MIT-licensed.">
 <link rel="canonical" href="https://open-source.gainratio.com/edgeproc-browser/">
 <meta name="robots" content="index,follow">
-<meta property="og:type" content="article">
-<meta property="og:title" content="@gainratio/browser — Verified Local-First Data Runtime">
-<meta property="og:description" content="Signed bundles, OPFS storage, SQLite search, and offline operation in the browser.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="@gainratio/browser — Verify signed data in the browser">
+<meta property="og:description" content="Have the browser check that downloaded data was signed by you and never changed, then keep it for offline use.">
 <meta property="og:url" content="https://open-source.gainratio.com/edgeproc-browser/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"@gainratio/browser","description":"Verified local-first data runtime for the browser.","codeRepository":"https://github.com/gainratio/edgeproc-browser","programmingLanguage":"TypeScript","license":"https://opensource.org/license/mit","url":"https://open-source.gainratio.com/edgeproc-browser/"}</script>
-<style>body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:#1a1a1a;background:#f6f8fb}h1{font:600 2.4rem/1.15 Georgia,serif;color:#1f3864;margin:0 0 1rem}h2{color:#1f3864;margin-top:2.2rem}a{color:#2e5496}code{background:#eef2f8;padding:.15rem .35rem;border-radius:4px}li{margin:.4rem 0}.cta{display:inline-block;margin-top:1.5rem;background:#1f3864;color:white;padding:.75rem 1.1rem;border-radius:8px;text-decoration:none}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"@gainratio/browser","description":"Browser runtime that verifies Ed25519-signed, content-addressed data bundles in a Web Worker, stores them in SQLite on OPFS, and keeps them usable offline.","codeRepository":"https://github.com/gainratio/edgeproc-browser","programmingLanguage":"TypeScript","license":"https://opensource.org/license/mit","url":"https://open-source.gainratio.com/edgeproc-browser/","version":"0.4.4","sameAs":["https://www.npmjs.com/package/@gainratio/browser","https://github.com/gainratio/edgeproc-browser"]}</script>
+<style>
+:root{--navy:#1f3864;--deep:#152744;--ink:#1a1a1a;--muted:#4a4a4a;--line:#d8e0ec;--pale:#eef2f8;--paper:#f6f8fb;--accent:#2e5496;--serif:Georgia,"Iowan Old Style","Times New Roman",serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font:16px/1.65 var(--sans);max-width:780px;margin:4rem auto;padding:0 1.4rem;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+header{padding-bottom:2rem;border-bottom:1px solid var(--line);margin-bottom:.4rem}
+p{margin:.85rem 0}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--navy)}
+a:focus-visible,.btn:focus-visible{outline:3px solid #7a96c4;outline-offset:2px;border-radius:3px}
+.skip{position:absolute;left:-9999px;top:auto}
+.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem .8rem;z-index:10}
+.back{font-size:.9rem;margin:0 0 2.4rem}
+.back a{text-decoration:none}
+.eyebrow{font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 .7rem}
+h1{font:600 clamp(2.15rem,5vw,2.8rem)/1.15 var(--serif);letter-spacing:-.02em;color:var(--navy);margin:0 0 .8rem}
+.promise{font-size:1.18rem;line-height:1.55;color:#2b2b2b;max-width:60ch;margin:0 0 1rem}
+.meta{font-size:.9rem;color:var(--muted);margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.5rem}
+.btn{display:inline-flex;align-items:center;border-radius:8px;padding:.65rem 1rem;font-weight:600;font-size:.94rem;text-decoration:none;border:1px solid transparent}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:var(--deep);color:#fff}
+main{padding-top:.4rem}
+h2{font:600 1.5rem/1.25 var(--serif);color:var(--navy);letter-spacing:-.01em;margin:2.6rem 0 .5rem}
+h3{font:600 1.02rem/1.4 var(--sans);color:var(--navy);margin:1.4rem 0 .2rem}
+ul{margin:.7rem 0;padding-left:1.35rem}
+li{margin:.45rem 0}
+code{font:.88em/1.5 var(--mono);background:var(--pale);padding:.12rem .32rem;border-radius:4px;overflow-wrap:anywhere}
+pre{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:1rem 0;line-height:1.55}
+pre code{background:none;padding:0;font-size:.84rem;white-space:pre}
+footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.2rem;font-size:.85rem;color:var(--muted)}
+@media (max-width:620px){body{margin:2rem auto}h1{font-size:2.1rem}header{padding-bottom:1.6rem}.back{margin-bottom:1.8rem}h2{margin-top:2.2rem}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
-<p><a href="/">← GainRatio open source</a></p>
-<h1>@gainratio/browser</h1>
-<p>The browser runtime for data that must be <strong>provably yours and unaltered</strong>. It syncs a signed, content-addressed bundle, verifies it locally, stores it in OPFS, and keeps it searchable offline.</p>
-<h2>What it provides</h2>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <p class="back"><a href="/">← GainRatio open source</a></p>
+  <p class="eyebrow">Open source · TypeScript library</p>
+  <h1>@gainratio/browser</h1>
+  <p class="promise">Have the browser check that downloaded data was signed by you and never changed, then keep it for offline use.</p>
+  <p class="meta">v0.4.4 · MIT · <a href="https://www.npmjs.com/package/@gainratio/browser">npm</a> · <a href="https://github.com/gainratio/edgeproc-browser">GitHub</a></p>
+  <div class="actions">
+    <a class="btn btn-primary" href="#quickstart">Quickstart</a>
+  </div>
+</header>
+<main id="main">
+<section>
+<h2>The problem</h2>
+<p>Many web apps download data files and use them inside the page: a product catalog, search index, price list or model. The page trusts whatever the server or CDN sends back.</p>
+<p>If a mirror serves an old copy, or a file is changed or cut short on the way, the app uses it anyway. This package lets the page check it itself: you sign the data once at publish time, and the browser refuses anything that does not match.</p>
+</section>
+
+<section>
+<h2>What it does</h2>
+<p>The page gives a bundle URL and a public-key URL to a Web Worker, which checks the publisher's signature and downloads only the pieces it is missing.</p>
 <ul>
-<li>Signed bundle sync with Ed25519 verification and a rollback floor</li>
-<li>Content-defined chunking and only-changed-chunk downloads</li>
-<li>OPFS storage and SQLite with FTS5 and sqlite-vector search</li>
-<li>Offline operation after the first sync</li>
-<li>One Worker-owned SQLite connection with a bounded memory profile</li>
+<li>Verifies the signed pointer against the Ed25519 public key or keyring you configure, refusing older sequences and, with a keyring, revoked keys.</li>
+<li>Checks every chunk against its SHA-256 address. A new version replaces the old one only after every check passes; on failure, the last good version stays.</li>
+<li>Keeps the checked copy in one SQLite database on OPFS, the browser's origin-private file system, so later visits fetch only changes and the page works offline after the first sync.</li>
+<li>Opens a verified <code>.sqlite</code> file in OPFS with FTS5 full-text search, JSON1 and vector search; SQLite bundle updates fetch only the changed 64 KB pieces.</li>
+<li>Reports every network request the Worker made and returns typed errors with codes: <code>integrity</code>, <code>rollback</code>, <code>network</code>, <code>lock</code>, <code>storage</code>, <code>internal</code>.</li>
 </ul>
-<h2>Used by</h2>
-<p><a href="https://edge-reco.com/">EdgeReco</a> for on-device product search, and <a href="https://aml-filter.com/">AML-Filter</a> for in-browser sanctions screening.</p>
-<h2>Install</h2>
-<p><code>npm install @gainratio/browser</code></p>
-<a class="cta" href="https://github.com/gainratio/edgeproc-browser">Read the source on GitHub</a>
+</section>
+
+<section id="quickstart">
+<h2>Quickstart</h2>
+<p>Install the package and Vite; the example uses Vite's <code>?worker</code> import.</p>
+<pre><code>npm install @gainratio/browser
+npm install --save-dev vite</code></pre>
+<p>Keep the Worker entry in your source so the bundler owns its URL:</p>
+<pre><code>// src/edgeproc.worker.js
+import "@gainratio/browser/worker";</code></pre>
+<p>Then create a client, sync a signed bundle and read a checked file:</p>
+<pre><code>// src/main.js
+import { EngineClient } from "@gainratio/browser";
+import EdgeProcWorker from "./edgeproc.worker.js?worker";
+
+const client = new EngineClient(new EdgeProcWorker());
+try {
+  const result = await client.sync("/bundle", "/public.key");
+  const bytes = await client.readFile("prices.json");
+  console.log(`verified ${result.version}`);
+  console.log(new TextDecoder().decode(bytes));
+} catch (error) {
+  console.error(`refused (${error.code}): ${error.message}`);
+}</code></pre>
+<p>Load it from your page with <code>&lt;script type="module" src="/main.js"&gt;&lt;/script&gt;</code>.</p>
+<p>The publisher commands below create the bundle and <code>public.key</code>. The README's <a href="https://github.com/gainratio/edgeproc-browser#try-it">Try it walkthrough</a> starts from an empty folder.</p>
+</section>
+
+<section>
+<h2>A real example</h2>
+<p>This signs a one-file catalog and writes the bundle the client loads. It needs Node 22.13+ and <code>uv</code>:</p>
+<pre><code>mkdir data
+echo '{"sku": "A-100", "name": "Blue mug", "price": 12.5}' > data/prices.json
+uvx --from 'edge-proc[bundles]' edgeproc keygen --out keys
+uvx --from 'edge-proc[bundles]' edgeproc publish --src data --origin-dir public/bundle \
+  --key keys/private.key --bundle-id prices --version v1 --sequence 1
+cp keys/public.key public/public.key</code></pre>
+<p>It writes <code>latest</code>, a manifest and content-addressed chunks under <code>public/bundle/</code>. Keep <code>--sequence 1</code> and raise it on every publish: the browser refuses a pointer without a sequence and uses it to reject rollbacks. Run <code>npx vite</code> in the project root and open the page.</p>
+<p>To see a refusal, flip one byte in the first chunk and open the page in a private window, which does not reuse the checked copy:</p>
+<pre><code>node -e "const fs=require('fs'),d='public/bundle/chunk/',p=d+fs.readdirSync(d)[0],b=fs.readFileSync(p);b[9]^=1;fs.writeFileSync(p,b)"</code></pre>
+<p>Sync then fails with <code>refused (integrity)</code> and a message that the chunk failed its content-address check; run the command again to restore the byte.</p>
+</section>
+
+<section>
+<h2>Limits</h2>
+<ul>
+<li><strong>You need a publisher.</strong> The package checks bundles; it does not sign or publish them. Today that is the Python <code>edgeproc publish</code> command.</li>
+<li><strong>Data flows one way.</strong> It does not sync user edits back to a server.</li>
+<li><strong>It does not know what your data means.</strong> It hands your app checked bytes; the schema and interpretation are yours.</li>
+<li><strong>It cannot protect a compromised page.</strong> A malicious extension, or an attacker who controls the public-key URL, is out of reach. Serve the key over HTTPS from your own site, apart from the data mirror, and keep the private key off the web server.</li>
+<li><strong>Browser coverage is uneven.</strong> Chromium gets the full browser suite; Firefox and WebKit get one cross-browser test that, for Playwright's WebKit, covers the OPFS fallback. Real Safari is not tested.</li>
+<li><strong>It is pre-1.0;</strong> only the latest published version gets fixes.</li>
+</ul>
+<p>If you fully trust your server and CDNs, plain <code>fetch</code> is simpler. Use Subresource Integrity for a few build-time-known files, a service worker such as Workbox for an offline app shell, and a hosted database when edits must sync back.</p>
+</section>
+
+<section>
+<h2>Security and data handling</h2>
+<ul>
+<li><strong>The key URL is the trust root.</strong> The public key or <code>edgeproc.keyring/v1</code> file is fetched with <code>no-store</code>. Whoever controls it controls trust, so host it over HTTPS and separately from mutable bundle content.</li>
+<li><strong>Nothing is promoted until every check passes.</strong> The Worker verifies the signature, bounds compressed and expanded bytes, checks the manifest hash, every chunk hash and the reassembled file. Invalid bytes never become a degraded result.</li>
+<li><strong>The OPFS chunk store is untrusted at rest.</strong> Every chunk is re-hashed on read, a bad row is deleted, equal-sequence disagreement fails closed, and a trigger prevents lowering the rollback floor.</li>
+<li><strong>An OPFS fallback is reported.</strong> The default keeps an in-memory SQLite cache for the Worker's life, reports <code>cacheBackend: "sqlite-memory"</code>, and re-downloads it next session. Pass <code>cacheFallback: "none"</code> to refuse that and fail with <code>EngineStorageUnavailableError</code> without downloading.</li>
+<li><strong>Pinned local WASM.</strong> The chunk store and optional SQLite subpaths use local WASM assets and do not load code from a CDN.</li>
+</ul>
+<p>Read the <a href="https://github.com/gainratio/edgeproc-browser/blob/main/SECURITY.md">threat model and vulnerability policy</a>.</p>
+</section>
+
+<section>
+<h2>FAQ</h2>
+<h3>Is <code>@edgeproc/browser</code> the same package?</h3>
+<p>It is the old, deprecated name. Install <code>@gainratio/browser</code>; the README documents 0.4.4.</p>
+<h3>Do I need Vite?</h3>
+<p>The examples use Vite's <code>?worker</code> import. Without a bundler, use <code>spawnEngineClient()</code> from <code>@gainratio/browser/spawn</code>.</p>
+<h3>Do I need COOP/COEP headers?</h3>
+<p>Only the optional SQLite app-state store needs a cross-origin-isolated page. The rest of the package does not.</p>
+<h3>What happens when the origin is unreachable?</h3>
+<p>If a verified copy is already cached, sync serves it offline. When its signed <code>expires_at</code> has passed, the result is marked <code>expired: true</code>; treat that as a failure if the app must never show stale data.</p>
+<h3>Can I use it commercially?</h3>
+<p>Yes. The package is MIT-licensed; the <a href="https://github.com/gainratio/edgeproc-browser/blob/main/LICENSE">LICENSE</a> is in the repository.</p>
+</section>
+
+<section>
+<h2>Source and related projects</h2>
+<ul>
+<li><a href="https://github.com/gainratio/edgeproc-browser">GitHub repository</a> — source, issues and releases.</li>
+<li><a href="https://www.npmjs.com/package/@gainratio/browser">npm package</a> — <code>@gainratio/browser</code> 0.4.4.</li>
+<li><a href="https://github.com/gainratio/edgeproc-browser#readme">README and docs</a> — quickstart, API guide, SQLite and architecture.</li>
+</ul>
+<p>Related: <a href="/edge-proc/">edge-proc</a> signs and publishes bundles from Python; <a href="/edge-reco/">EdgeReco</a> is where this engine was extracted; <a href="/almamesh/">AlmaMesh</a> downloads its chart engine with it.</p>
+</section>
+</main>
+<footer>
+<p>© 2026 GainRatio · MIT · <a href="https://github.com/gainratio/edgeproc-browser">GitHub</a></p>
+</footer>
 </body>
 </html>

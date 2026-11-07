@@ -1,1 +1,125 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>errors — GainRatio Open Source</title><meta name="description" content="Turn any error into one stable code and one clear message."><link rel="canonical" href="https://open-source.gainratio.com/errors/"><meta name="robots" content="index,follow"><meta property="og:title" content="errors — GainRatio Open Source"><meta property="og:description" content="Turn any error into one stable code and one clear message."><meta property="og:url" content="https://open-source.gainratio.com/errors/"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"errors","description":"Turn any error into one stable code and one clear message.","codeRepository":"https://github.com/gainratio/errors","programmingLanguage":"TypeScript","url":"https://open-source.gainratio.com/errors/"}</script><style>body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:#1a1a1a;background:#f6f8fb}h1{font:600 2.4rem/1.15 Georgia,serif;color:#1f3864}h2{color:#1f3864;margin-top:2.2rem}a{color:#2e5496}.cta{display:inline-block;margin-top:1.5rem;background:#1f3864;color:white;padding:.75rem 1.1rem;border-radius:8px;text-decoration:none}</style></head><body><p><a href="/">← GainRatio open source</a></p><h1>errors</h1><p>Turn any error into one stable code and one clear message.</p><h2>Why it exists</h2><p>Built for teams that need their data and decisions to remain verifiable. The implementation, tests, and release notes are public.</p><h2>Source</h2><p><a href="https://github.com/gainratio/errors">github.com/gainratio/errors</a></p><a class="cta" href="https://github.com/gainratio/errors">Read the source</a></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>@gainratio/errors — one code and one message per error</title>
+<meta name="description" content="Give JavaScript and TypeScript apps one stable error code, one readable sentence, and an RFC 9457 JSON body. MIT, zero runtime dependencies, Node 22.13+.">
+<link rel="canonical" href="https://open-source.gainratio.com/errors/">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GainRatio Open Source">
+<meta property="og:title" content="@gainratio/errors — one code and one message per error">
+<meta property="og:description" content="Give JavaScript and TypeScript apps one stable error code, one readable sentence, and an RFC 9457 JSON body. MIT, zero runtime dependencies, Node 22.13+.">
+<meta property="og:url" content="https://open-source.gainratio.com/errors/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"@gainratio/errors","description":"Give every error in a JavaScript or TypeScript app one fixed code and one clear message, the same on every screen.","codeRepository":"https://github.com/gainratio/errors","programmingLanguage":"TypeScript","license":"https://opensource.org/license/mit","url":"https://open-source.gainratio.com/errors/","version":"0.4.0","sameAs":["https://github.com/gainratio/errors","https://www.npmjs.com/package/@gainratio/errors"]}</script>
+<style>body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:#1a1a1a;background:#f6f8fb}h1{font:600 2.4rem/1.15 Georgia,serif;color:#1f3864;margin-bottom:.4rem}h2{color:#1f3864;margin-top:2.4rem;line-height:1.25}h3{color:#1f3864;font-size:1.08rem;margin:1.6rem 0 .35rem}a{color:#2e5496}.lede{font-size:1.18rem;line-height:1.5;margin:.4rem 0 .6rem}.meta{color:#5a6b85;font-size:.9rem;margin:0 0 1.3rem}.crumb{font-size:.9rem;margin-bottom:2.4rem}pre{background:#fff;border:1px solid #dbe3ef;border-radius:8px;padding:1rem;overflow-x:auto;font:0.86rem/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#22314a}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em}pre code{font:inherit}p code,li code{background:#e9eff8;padding:.08em .3em;border-radius:4px}ul,ol{padding-left:1.35rem}li{margin:.35rem 0}.cta{display:inline-block;margin-top:.5rem;background:#1f3864;color:white;padding:.75rem 1.1rem;border-radius:8px;text-decoration:none}.cta:hover{background:#2e5496}.cta:focus-visible,a:focus-visible{outline:2px solid #2e5496;outline-offset:2px}.links{list-style:none;padding:0}.links li{margin:.5rem 0}.note{color:#4c5d75;font-size:.93rem}.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.5rem .7rem;border-radius:6px}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+<p class="crumb"><a href="/">← GainRatio open source</a></p>
+<h1>@gainratio/errors</h1>
+<p class="lede">Give every error in your JavaScript or TypeScript app one fixed code and one clear message, the same on every screen.</p>
+<p class="meta">v0.4.0 · MIT · Node 22.13+ · zero runtime dependencies</p>
+<p><a class="cta" href="#quickstart">Jump to the quickstart</a></p>
+</header>
+<main id="main">
+<section>
+<h2>The problem</h2>
+<p>Most apps write error text where the error is caught. A provider returns <code>402 Payment Required</code>, and one screen says “out of credits” while another says “check your model settings”. The logs use a third wording, and the API sends a fourth. Users get the wrong advice, and nobody can search the logs for one failure.</p>
+<p><code>@gainratio/errors</code> replaces that drift with one catalog of codes for the whole app. A status, a thrown error, or a dropped connection maps to one code, one sentence, and one standard JSON body. The code never changes with language or transport.</p>
+</section>
+<section>
+<h2>What it does</h2>
+<ul>
+<li><strong>One catalog.</strong> Register your codes with <code>defineErrorsWith</code>. Each entry has a category, an English sentence, and optional rules for an HTTP status, error name, or message text.</li>
+<li><strong>One code.</strong> <code>classify()</code> accepts fetch statuses, thrown errors, and network failures and returns one code from your catalog. There is no hidden global list.</li>
+<li><strong>Ready-made packs.</strong> <code>corePack</code> has 10 everyday codes, <code>aiPack</code> 9 for model providers, and <code>bundlePack</code> 5 for on-device files. <code>starterPack</code> (18) is frozen; new code should use the others.</li>
+<li><strong>Translated sentences.</strong> <code>describe()</code> returns the catalog's English or asks your i18next <code>t</code> for <code>errors.&lt;code&gt;</code>. Spanish and Brazilian Portuguese ship for all 24 built-in codes; untranslated keys fall back to English, never a raw key.</li>
+<li><strong>A standard API body.</strong> <code>toProblemDetails()</code> returns an RFC 9457 Problem Details object with <code>type</code>, <code>title</code>, and <code>status</code>.</li>
+<li><strong>Searchable logs.</strong> <code>create()</code> returns an <code>Error</code> whose <code>.message</code> is the code; <code>problemFor()</code> classifies a raw failure and keeps the observed status.</li>
+</ul>
+</section>
+<section id="quickstart">
+<h2>Quickstart</h2>
+<p>Install the package. It requires Node 22.13 or newer and has no dependencies:</p>
+<pre><code>npm install @gainratio/errors</code></pre>
+<p>Save this as <code>try.mjs</code>, a trimmed version of the repository's <code>examples/try.mjs</code>:</p>
+<pre><code>import { aiPack, corePack, defineErrorsWith } from "@gainratio/errors";
+
+const errors = defineErrorsWith({}, corePack, aiPack);
+
+const code = errors.classify({ status: 402 });
+
+console.log(code);                  // ai.provider.out_of_credits
+console.log(errors.describe(code)); // Your provider account is out of credits. Add credits and try again.</code></pre>
+<p>Run <code>node try.mjs</code>. The first line is the stable code; the second is the sentence from the catalog. <code>classify()</code> reads the status, name, and message of the raw failure. When two packs claim the same status, the one passed first wins.</p>
+</section>
+<section>
+<h2>A real example</h2>
+<h3>Return the same error from an API</h3>
+<p>Using the <code>errors</code> registry from the quickstart, <code>toProblemDetails()</code> gives you the body to send. This is the exact output for the out-of-credits code:</p>
+<pre><code>const body = errors.toProblemDetails("ai.provider.out_of_credits");
+console.log(JSON.stringify(body));
+
+// {"type":"ai.provider.out_of_credits","title":"Your provider account is out of credits. Add credits and try again.","status":402}</code></pre>
+<p><code>type</code> is the stable code, <code>title</code> is the sentence, and <code>status</code> comes from the entry's first <code>httpStatus</code>. Params become public fields in the body, and reserved or unsafe names are dropped.</p>
+<h3>Throw a coded error when you know the cause</h3>
+<p>If your code already knows what failed, skip classification. The error's <code>.message</code> is the code, so logs stay greppable:</p>
+<pre><code>const err = errors.create("config.missing", { field: "API_KEY" });
+console.log(err.message); // config.missing
+console.log(errors.describe(err.code, err.params));
+// A required setting is missing: API_KEY.</code></pre>
+</section>
+<section>
+<h2>When not to use it</h2>
+<ul>
+<li><strong>It is not an error handler.</strong> It does not log, retry, report, or send anything anywhere. It classifies and formats; your app still decides what to do. Pair it with your logger or an error tracker.</li>
+<li><strong>It cannot guess a cause only your app knows.</strong> Add a code with a rule for it.</li>
+<li><strong>Descriptions are not escaped for HTML.</strong> Escape at the render site, and never put a secret in a param.</li>
+<li><strong>Browser support is not tested in CI.</strong> There are no Node-only imports, so a bundler can ship it, but the tests run on Node only.</li>
+<li><strong>For one or two error screens,</strong> hand-written messages are simpler. If you only need HTTP status to text in one language, a small <code>switch</code> is smaller. For collection, alerts, and dashboards, use an error tracker.</li>
+</ul>
+</section>
+<section>
+<h2>Security and data handling</h2>
+<p><code>@gainratio/errors</code> is a pure library with zero runtime dependencies. It does no I/O: no network, filesystem, process, or environment access. It matches the values you pass against your catalog and returns strings and plain objects.</p>
+<p>Codes are meant to be public and safe to log or send. Params are not: they appear in the description and Problem Details body, so keep secrets out. The library does not HTML-escape descriptions; escape them where you render. The <a href="https://github.com/gainratio/errors/blob/main/SECURITY.md">security policy</a> covers private reporting.</p>
+</section>
+<section>
+<h2>FAQ</h2>
+<h3>Can I add codes for my own product?</h3>
+<p>Yes. Pass an object after the packs, or write every code yourself. An entry can set <code>category</code>, <code>en</code>, optional <code>params</code>, an <code>i18nKey</code>, and <code>match</code>/<code>priority</code> rules. The API guide shows a <code>shop.out_of_stock</code> code rendering “Sorry, MUG-12 is sold out.”</p>
+<h3>What happens when no rule matches?</h3>
+<p><code>classify()</code> returns <code>internal.unknown</code> by default. Set <code>fallbackCode</code> to another code in your catalog; an unregistered fallback throws at startup. <code>aiPack</code> alone has no catch-all, so <code>defineErrorsWith({}, aiPack)</code> throws until you add <code>corePack</code> or choose one of its codes as the fallback.</p>
+<h3>Do I have to use i18next?</h3>
+<p>No. <code>describe()</code> accepts any function shaped like <code>t(key, params)</code>. The package never imports i18next and never picks a language. The shipped Spanish and Portuguese JSON files are optional; your own translation function works the same way.</p>
+<h3>Which code wins when two packs claim the same status?</h3>
+<p>The pack passed first wins. <code>defineErrorsWith({}, corePack, aiPack)</code> sends 429 to <code>http.rate_limited</code>; putting <code>aiPack</code> first sends it to <code>ai.provider.rate_limited</code>. If two lists define the same code, startup throws <code>DuplicateCodeError</code> instead of choosing silently.</p>
+</section>
+<section>
+<h2>License and status</h2>
+<p>MIT licensed. Pre-1.0: code names are treated as a stable contract, but the API can still change between minor versions, and only the latest published version gets fixes. The <a href="https://github.com/gainratio/errors/blob/main/CHANGELOG.md">changelog</a> has the release notes.</p>
+</section>
+<section>
+<h2>Source and related projects</h2>
+<ul class="links">
+<li><a href="https://github.com/gainratio/errors">GitHub repository</a> — source, issues, and releases.</li>
+<li><a href="https://www.npmjs.com/package/@gainratio/errors">@gainratio/errors on npm</a> — install command and published version.</li>
+<li><a href="https://github.com/gainratio/errors/blob/main/docs/API.md">API guide</a> and <a href="https://github.com/gainratio/errors/blob/main/docs/ARCHITECTURE.md">architecture notes</a>.</li>
+</ul>
+<h3>Related GainRatio projects</h3>
+<ul>
+<li><a href="/edgeproc-core/">edgeproc-core</a> — keep each customer's search results separate in a shared index, with stable error codes.</li>
+<li><a href="/privacy-core/">privacy-core</a> — hide card numbers, emails, and ID numbers from AI models, then put them back in the reply.</li>
+<li><a href="/avow/">avow</a> — seal a record into a signed receipt anyone can check offline, later.</li>
+</ul>
+<p><a class="cta" href="https://github.com/gainratio/errors">Read the source</a></p>
+</section>
+</main>
+<footer>
+<p class="note"><a href="/">GainRatio open source</a> · MIT · v0.4.0</p>
+</footer>
+</body>
+</html>

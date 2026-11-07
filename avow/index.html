@@ -1,1 +1,188 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>avow — GainRatio Open Source</title><meta name="description" content="Seal a record into a signed receipt anyone can check offline."><link rel="canonical" href="https://open-source.gainratio.com/avow/"><meta name="robots" content="index,follow"><meta property="og:title" content="avow — GainRatio Open Source"><meta property="og:description" content="Seal a record into a signed receipt anyone can check offline."><meta property="og:url" content="https://open-source.gainratio.com/avow/"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"avow","description":"Seal a record into a signed receipt anyone can check offline.","codeRepository":"https://github.com/gainratio/avow","programmingLanguage":"Python","url":"https://open-source.gainratio.com/avow/"}</script><style>body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:#1a1a1a;background:#f6f8fb}h1{font:600 2.4rem/1.15 Georgia,serif;color:#1f3864}h2{color:#1f3864;margin-top:2.2rem}a{color:#2e5496}.cta{display:inline-block;margin-top:1.5rem;background:#1f3864;color:white;padding:.75rem 1.1rem;border-radius:8px;text-decoration:none}</style></head><body><p><a href="/">← GainRatio open source</a></p><h1>avow</h1><p>Seal a record into a signed receipt anyone can check offline.</p><h2>Why it exists</h2><p>Built for teams that need their data and decisions to remain verifiable. The implementation, tests, and release notes are public.</p><h2>Source</h2><p><a href="https://github.com/gainratio/avow">github.com/gainratio/avow</a></p><a class="cta" href="https://github.com/gainratio/avow">Read the source</a></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Avow — signed JSON receipts that verify offline | GainRatio</title>
+<meta name="description" content="Avow turns a JSON record into a signed receipt that anyone can verify offline against a public key you pin. Python and TypeScript, MIT licensed.">
+<link rel="canonical" href="https://open-source.gainratio.com/avow/">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Avow — signed JSON receipts that verify offline">
+<meta property="og:description" content="Avow turns a JSON record into a signed receipt that anyone can verify offline against a public key you pin. Python and TypeScript, MIT licensed.">
+<meta property="og:url" content="https://open-source.gainratio.com/avow/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Avow","description":"Avow signs a JSON record into a receipt that anyone can verify offline against a caller-pinned Ed25519 public key.","codeRepository":"https://github.com/gainratio/avow","programmingLanguage":["Python","TypeScript"],"license":"https://spdx.org/licenses/MIT.html","url":"https://open-source.gainratio.com/avow/"}</script>
+<style>
+:root{--navy:#1f3864;--deep:#152744;--ink:#1a1a1a;--muted:#454545;--line:#d5deeb;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{max-width:820px;margin:0 auto;padding:2.5rem 1.4rem 3rem;background:var(--paper);color:var(--ink);font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--navy)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:3.2rem;font-size:.9rem}
+.brand{color:var(--navy);font-weight:650;text-decoration:none}
+.top nav{display:flex;gap:1.1rem}
+.top nav a{color:var(--muted);text-decoration:none}
+.top nav a:hover{color:var(--navy)}
+.eyebrow{margin:0 0 .55rem;color:var(--accent);font-size:.76rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+h1{font:600 3.1rem/1.05 Georgia,"Times New Roman",serif;letter-spacing:-.02em;color:var(--navy);margin:0 0 .8rem}
+.promise{font-size:1.24rem;line-height:1.55;color:#2c2c2c;max-width:60ch;margin:0}
+.actions{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin-top:1.5rem}
+.cta{display:inline-block;background:var(--navy);color:#fff;padding:.72rem 1.05rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
+.cta:hover{background:var(--deep);color:#fff}
+h2{font:600 1.55rem/1.2 Georgia,"Times New Roman",serif;color:var(--navy);margin:2.8rem 0 .7rem;padding-top:1.8rem;border-top:1px solid var(--line)}
+h3{font:650 1rem/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--navy);margin:1.45rem 0 .2rem}
+p{margin:0 0 1rem}
+ul{padding-left:1.2rem;margin:.3rem 0 1rem}
+li{margin:.45rem 0}
+li::marker{color:var(--accent)}
+pre{background:var(--deep);color:#eef2f8;border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:.8rem 0 1.1rem;font:0.84rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre code{background:none;color:inherit;padding:0;font:inherit}
+code{background:var(--pale);color:var(--navy);padding:.12em .35em;border-radius:4px;font:0.9em/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.faq h3{font-size:1.02rem}
+.faq p{margin-bottom:.4rem}
+.links{list-style:none;padding:0;margin:.4rem 0 1.2rem}
+.links li{padding:.6rem 0;border-bottom:1px solid var(--line);margin:0}
+.links li:last-child{border-bottom:0}
+.links a{font-weight:650}
+footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color:var(--muted);font-size:.84rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (max-width:600px){body{padding-top:1.6rem}h1{font-size:2.4rem}.top{margin-bottom:2.2rem}h2{padding-top:1.4rem;margin-top:2.2rem}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <a class="brand" href="/">← GainRatio open source</a>
+    <nav aria-label="Project links">
+      <a href="#quickstart">Quickstart</a>
+      <a href="https://github.com/gainratio/avow">GitHub ↗</a>
+    </nav>
+  </div>
+  <p class="eyebrow">Open source · Python and TypeScript</p>
+  <h1>Avow</h1>
+  <p class="promise">Sign a JSON record into a receipt anyone can check offline — unchanged, and signed by the key you pinned.</p>
+  <div class="actions">
+    <a class="cta" href="#quickstart">Install and sign a record</a>
+  </div>
+</header>
+
+<main>
+  <section aria-labelledby="problem">
+    <h2 id="problem">The problem</h2>
+    <p>Teams often have to show later what they decided: that a release was approved, that its tests passed, that a setting was what they claim. That record usually sits in a database or log the team controls, so an auditor or customer must take their word that nobody edited it. A plain checksum does not settle it, because whoever edits the record can recompute the checksum.</p>
+    <p>Avow puts a signature on the record. You keep a private key and hand out the matching public key once, ahead of time. The receipt carries the record, its fingerprint, and a signature; a verifier holding that public key can check it on their own machine. If one word changed, verification refuses it.</p>
+  </section>
+
+  <section aria-labelledby="what-it-does">
+    <h2 id="what-it-does">What it does</h2>
+    <ul>
+      <li><strong>Canonicalizes before hashing.</strong> RFC 8785 gives JSON one fixed form — sorted keys, no extra whitespace, one number spelling — so the same data always yields the same bytes. Avow takes a SHA-256 fingerprint of those bytes and signs the canonical bytes with Ed25519.</li>
+      <li><strong>Produces a self-contained receipt.</strong> The <code>avow.receipt/v1</code> envelope holds the plain-text payload, its fingerprint, the signer's public key, and the signature.</li>
+      <li><strong>Pins the signer.</strong> Verification recomputes the fingerprint and requires the signer to equal the public key the caller supplies, never the <code>public_key</code> stored in the receipt.</li>
+      <li><strong>Refuses with stable codes.</strong> An altered payload returns <code>avow.payload_hash_mismatch</code>; a different signer returns <code>avow.signer_mismatch</code>. Commands exit 2, or 3 when a ledger needs recovery.</li>
+      <li><strong>Ships two implementations.</strong> Python provides the library, command, and ledger; <code>@gainratio/avow</code> reads and writes the same receipts from TypeScript, held together by shared test vectors.</li>
+      <li><strong>Can chain receipts.</strong> The Python ledger verifies each receipt, their order and links, and a final head. With the head pinned out of band, deleted, inserted, reordered, or truncated entries are caught.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="quickstart">
+    <h2 id="quickstart">Quickstart</h2>
+    <p>Requires Python 3.12 or newer. Install the library and the command:</p>
+    <pre><code>pip install "avow[cli]&gt;=0.5.3"</code></pre>
+    <p>Generate a key, sign a decision record, and verify it:</p>
+    <pre><code>avow keygen --out signing.key
+echo '{"release": "checkout-api 2.4.1", "approved_by": "dana", "tests_passed": true}' \
+  &gt; decision.json
+avow sign --payload decision.json --key signing.key --out receipt.json
+avow verify --receipt receipt.json --public-key signing.key.pub</code></pre>
+    <p>It prints:</p>
+    <pre><code>avow.keygen.ok
+avow.sign.ok
+avow.verify.ok</code></pre>
+    <p><code>signing.key</code> is private; keep it. <code>signing.key.pub</code> is the key to give verifiers through a channel they already trust. <code>pip install avow</code> is the library alone; <code>npm install @gainratio/avow</code> (Node.js 22.13 or newer) is the TypeScript package. Current release: 0.5.3.</p>
+  </section>
+
+  <section aria-labelledby="real-example">
+    <h2 id="real-example">A real example</h2>
+    <p>The repository's evidence loop signs a deployment decision, not a toy string. This trimmed version signs it, verifies it, then changes the outcome in a copy:</p>
+    <pre><code>from avow import generate_signing_key, public_key_hex, sign_payload, verify_receipt
+from avow.errors import AvowError
+
+decision = {
+    "schema": "deployment-decision/v1",
+    "service": "checkout-api",
+    "environment": "production",
+    "artifact": {"source_commit": "9f37c2a"},
+    "decision": {
+        "outcome": "approved",
+        "policy": "release-policy/v3",
+        "checks": ["unit-and-integration-tests", "dependency-audit", "staging-smoke-test"],
+    },
+}
+
+signing_key = generate_signing_key()
+verifier_key = public_key_hex(signing_key)
+receipt = sign_payload(decision, signing_key)
+verify_receipt(receipt, expected_public_key=verifier_key)
+
+altered_payload = {**decision, "decision": {**decision["decision"], "outcome": "rejected"}}
+altered = receipt.model_copy(update={"payload": altered_payload})
+try:
+    verify_receipt(altered, expected_public_key=verifier_key)
+except AvowError as error:
+    print("refused:", error.code)</code></pre>
+    <p>The first check passes; the second prints <code>refused: avow.payload_hash_mismatch</code>. The edited payload no longer matches its stored fingerprint, so verification refuses before checking the signature.</p>
+  </section>
+
+  <section aria-labelledby="limits">
+    <h2 id="limits">Limits</h2>
+    <ul>
+      <li><strong>Not proof of truth, freshness, or time.</strong> A receipt proves integrity and that the expected key signed it, not that the record is correct, complete, current, or timestamped.</li>
+      <li><strong>Not replay protection.</strong> A valid receipt verifies every time it is presented. If reuse matters, put a nonce, audience, and expiry inside the signed payload and check them after verification.</li>
+      <li><strong>Keys are files, not a service.</strong> The private key is an unencrypted Ed25519 seed protected only by file permissions; there is no passphrase, KMS, or HSM support. Anyone who copies it can sign as you.</li>
+      <li><strong>The ledger needs an outside pin.</strong> A head file beside the ledger is convenient, not authoritative. If an attacker can rewrite both, truncation is not caught; store the head elsewhere.</li>
+    </ul>
+    <p><strong>Use something else when</strong> you only need to catch accidental corruption (a checksum), you sign files for people who already use GPG, minisign, or <code>ssh-keygen -Y sign</code>, you need public time-stamped release signing (Sigstore or a transparency log), or you need login or API tokens (a JWT/JWS library).</p>
+  </section>
+
+  <section aria-labelledby="security">
+    <h2 id="security">Security and data handling</h2>
+    <p>Avow's runtime opens no socket and calls no remote service. Signing, verification, and ledger work are local file and cryptographic operations; there is no telemetry, upload, timestamp server, key server, or background process. Installing dependencies may use your package manager's network, which is outside Avow's runtime boundary.</p>
+    <p>Receipts carry their payload in cleartext, and ledgers are local JSONL; keep secrets out. Access controls, backups, retention, deletion, and export are the integrating application's job. Distribute the public key out of band.</p>
+    <p>On POSIX, key generation writes an owner-only <code>0600</code> file, and signing refuses a key that group or others can read with <code>avow.key_permissions_insecure</code>. The TypeScript package never reads key files, so the application stores the seed. Releases carry PyPI and npm provenance; check the attestation for the version you installed, or build from a reviewed commit.</p>
+  </section>
+
+  <section class="faq" aria-labelledby="faq">
+    <h2 id="faq">FAQ</h2>
+    <h3>Does verification need a server or a network connection?</h3>
+    <p>No. The receipt and a public key obtained separately are enough; the check is local math.</p>
+    <h3>What happens if someone edits the payload or presents a receipt signed by another key?</h3>
+    <p>An edited payload fails the fingerprint check with <code>avow.payload_hash_mismatch</code>. A receipt signed by a different key fails the signer pin with <code>avow.signer_mismatch</code>. Both are stable codes, not warnings.</p>
+    <h3>Can TypeScript verify a receipt produced by Python?</h3>
+    <p>Yes. Both packages read and write the same receipt format and are checked against shared test vectors. The ledger and key-file loading are Python-only; TypeScript takes a caller-held seed instead.</p>
+    <h3>Does Avow prevent replay or provide a trusted timestamp?</h3>
+    <p>No. Avow keeps no nonce, audience, expiry, or clock state, so a valid receipt verifies identically every time. Callers that need freshness sign those claims into the payload and enforce them after verification.</p>
+  </section>
+
+  <section aria-labelledby="links">
+    <h2 id="links">Source and related</h2>
+    <ul class="links">
+      <li><a href="https://github.com/gainratio/avow">GitHub: gainratio/avow</a> — source, issues, security policy, and changelog.</li>
+      <li><a href="https://pypi.org/project/avow/">PyPI: avow</a> — Python package and release history.</li>
+      <li><a href="https://www.npmjs.com/package/@gainratio/avow">npm: @gainratio/avow</a> — TypeScript package.</li>
+    </ul>
+    <p>Related hub pages:</p>
+    <ul class="links">
+      <li><a href="/edge-proc/">edge-proc</a> — ship signed data to devices from Python, verify it, download only changes, search offline.</li>
+      <li><a href="/privacy-core/">privacy-core</a> — hide identifiers from AI models, with optional signed receipts of what was allowed or refused.</li>
+      <li><a href="/edgeproc-browser/">@gainratio/browser</a> — load data into a browser tab only if it is provably yours, then keep using it offline.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <span>Avow is MIT licensed. © 2026 GainRatio.</span>
+  <span><a href="https://gainratio.com/">gainratio.com</a> · <a href="https://github.com/gainratio">GitHub</a></span>
+</footer>
+</body>
+</html>

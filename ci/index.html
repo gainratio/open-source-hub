@@ -1,1 +1,178 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ci — GainRatio Open Source</title><meta name="description" content="Shared Dagger modules and fleet audit for the GainRatio open-source repositories."><link rel="canonical" href="https://open-source.gainratio.com/ci/"><meta name="robots" content="index,follow"><meta property="og:title" content="ci — GainRatio Open Source"><meta property="og:description" content="Shared Dagger modules and fleet audit for the GainRatio open-source repositories."><meta property="og:url" content="https://open-source.gainratio.com/ci/"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"ci","description":"Shared Dagger modules and fleet audit for the GainRatio open-source repositories.","codeRepository":"https://github.com/gainratio/ci","programmingLanguage":"Python","url":"https://open-source.gainratio.com/ci/"}</script><style>body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:#1a1a1a;background:#f6f8fb}h1{font:600 2.4rem/1.15 Georgia,serif;color:#1f3864}h2{color:#1f3864;margin-top:2.2rem}a{color:#2e5496}.cta{display:inline-block;margin-top:1.5rem;background:#1f3864;color:white;padding:.75rem 1.1rem;border-radius:8px;text-decoration:none}</style></head><body><p><a href="/">← GainRatio open source</a></p><h1>ci</h1><p>Shared Dagger modules and fleet audit for the GainRatio open-source repositories.</p><h2>Use it when</h2><p>You need shared Dagger modules and fleet audit for the GainRatio open-source repositories. The source, tests, and release contracts are public and pinned.</p><h2>Source</h2><p><a href="https://github.com/gainratio/ci">github.com/gainratio/ci</a></p><a class="cta" href="https://github.com/gainratio/ci">Read the source</a></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ci — shared Dagger CI modules and fleet audit</title>
+<meta name="description" content="Three Dagger modules pinned by commit for source checks, Python package builds, and Cloudflare Pages deploys, plus a daily audit of the GainRatio fleet. MIT.">
+<link rel="canonical" href="https://open-source.gainratio.com/ci/">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="ci — shared Dagger CI modules and fleet audit">
+<meta property="og:description" content="Three Dagger modules pinned by commit for source checks, Python package builds, and Cloudflare Pages deploys, plus a daily audit of the GainRatio fleet. MIT.">
+<meta property="og:url" content="https://open-source.gainratio.com/ci/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GainRatio Open Source">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"ci","description":"Shared Dagger modules for source checks, Python package builds, and Cloudflare Pages deploys, plus a daily fleet audit across the GainRatio repositories.","codeRepository":"https://github.com/gainratio/ci","programmingLanguage":"Python","license":"https://github.com/gainratio/ci/blob/main/LICENSE","url":"https://open-source.gainratio.com/ci/"}</script>
+<style>
+:root{--navy:#1f3864;--ink:#1a1a1a;--muted:#4b5565;--line:#d7dfec;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
+*{box-sizing:border-box}
+body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:var(--ink);background:var(--paper)}
+h1{font:600 2.4rem/1.15 Georgia,serif;color:var(--navy);margin:.15rem 0 .4rem}
+h2{color:var(--navy);margin-top:2.2rem;font-size:1.45rem;line-height:1.3}
+h3{color:var(--navy);margin:1.6rem 0 .35rem;font-size:1.05rem}
+p{margin:.75rem 0}
+a{color:var(--accent)}
+ul{padding-left:1.3rem}
+li{margin:.45rem 0}
+code{font:.88em/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--pale);padding:.08em .3em;border-radius:4px}
+pre{background:#fff;border:1px solid var(--line);border-radius:9px;padding:1rem 1.1rem;overflow-x:auto;margin:.9rem 0}
+pre code{background:none;padding:0;font-size:.86rem;line-height:1.55}
+pre.json{white-space:pre-wrap;overflow-wrap:anywhere}
+.crumbs{font-size:.9rem;margin:0 0 2rem}
+header{padding:0 0 1.7rem;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 .35rem}
+.promise{font-size:1.2rem;color:#283445;max-width:58ch;margin:.2rem 0 .8rem}
+.meta{font-size:.9rem;color:var(--muted);margin:.2rem 0 0}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
+.cta{display:inline-block;background:var(--navy);color:#fff;padding:.7rem 1.1rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
+.ghost{display:inline-block;border:1px solid var(--line);background:#fff;color:var(--navy);padding:.65rem 1.05rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
+footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (max-width:560px){body{margin:2rem auto}h1{font-size:2rem}}
+</style>
+</head>
+<body>
+<nav class="crumbs" aria-label="Breadcrumb">
+<a href="/">← GainRatio open source</a>
+</nav>
+<header>
+  <p class="eyebrow">Shared CI · Python · MIT</p>
+  <h1>ci</h1>
+  <p class="promise">One copy of the CI checks, builds, and deploys, pinned by commit and audited daily across the GainRatio repositories.</p>
+  <p class="meta">Dagger 0.21.8 · Python 3.13 · no PyPI or npm release</p>
+  <div class="actions">
+    <a class="cta" href="#quickstart">Quickstart</a>
+    <a class="ghost" href="https://github.com/gainratio/ci">GitHub ↗</a>
+  </div>
+</header>
+<main>
+
+<section aria-labelledby="problem">
+  <h2 id="problem">The problem</h2>
+  <p>Between them, the repositories in the fleet need the same few things: check that the source is safe, build a Python package, and deploy a static site to Cloudflare Pages. Copying that code into every repository creates copies that drift apart. A fix lands in one place but not the others, a workflow quietly gains a step outside Dagger, and branch protection changes without anyone noticing.</p>
+  <p><code>ci</code> keeps one copy as three Dagger modules, each installed at an exact commit. A daily check reads each repository&rsquo;s <code>main</code> branch from GitHub and fails when the agreed setup has moved.</p>
+</section>
+
+<section aria-labelledby="what">
+  <h2 id="what">What it does</h2>
+  <ul>
+    <li><strong><code>portfolio-foundation</code> pins a build to one exact commit.</strong> It runs secret and workflow scans over the full Git history and wraps the build output with a record of where it came from.</li>
+    <li><strong><code>cloudflare-pages</code> deploys a built site once.</strong> It then checks the live site is serving that exact deployment.</li>
+    <li><strong><code>python-package</code> prepares the release artifacts.</strong> It audits dependencies, builds the wheel and sdist, and checks the version matches the tag. It never uploads to PyPI.</li>
+    <li><strong>One thin ingress.</strong> Each workflow checks out the code and calls one Dagger function; tests, builds, scans, and deploys run inside Dagger, so the same steps run on a laptop and in GitHub Actions.</li>
+    <li><strong>A daily fleet audit.</strong> <code>fleet</code> fails if a repository runs a step outside Dagger, branch protection has drifted, a module pin is below the reviewed minimum, <code>main</code>&rsquo;s latest commit is not green, or a repository that installs a module is missing from the list.</li>
+    <li><strong>Exact pins.</strong> Consumers install at a full 40-character commit; the fleet policy rejects <code>main</code>, <code>latest</code>, tags, and short SHAs, and upgrading is a deliberate pull request.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="quickstart">
+  <h2 id="quickstart">Quickstart</h2>
+  <p>Prerequisites are Docker and exactly Dagger 0.21.8; the local gate also uses uv 0.8 or later, which fetches Python 3.13. There is no package to install from PyPI or npm: modules come from GitHub at a full commit SHA. Run this from an existing Dagger module in a consumer repository:</p>
+<pre><code>FOUNDATION_SHA="$(
+  git ls-remote https://github.com/gainratio/ci.git refs/heads/main | cut -f1
+)"
+dagger install \
+  "github.com/gainratio/ci/modules/portfolio-foundation@$FOUNDATION_SHA" \
+  --name foundation
+dagger develop</code></pre>
+  <p>Review the captured SHA before committing. <code>dagger install</code> writes both <code>source</code> and <code>pin</code> into <code>dagger.json</code>; they must match.</p>
+  <p>To run this repository&rsquo;s own gate from a clone:</p>
+<pre><code>git clone https://github.com/gainratio/ci
+cd ci
+dagger develop
+uv run --directory .dagger poe gate</code></pre>
+  <p>The full check is the same call CI makes:</p>
+<pre><code>export GITHUB_TOKEN="$(gh auth token)"
+dagger call ci --github-token=env:GITHUB_TOKEN \
+  --repository=gainratio/ci</code></pre>
+  <p>On a branch, commit and push first, then add <code>--commit-sha=$(git rev-parse HEAD)</code>.</p>
+</section>
+
+<section aria-labelledby="example">
+  <h2 id="example">A real example</h2>
+  <p>In aml-filter&rsquo;s <code>dagger.json</code>, both shared modules point at the same commit:</p>
+<pre class="json"><code>{
+  "dependencies": [
+    {
+      "name": "cloudflare-pages",
+      "source": "github.com/gainratio/ci/modules/cloudflare-pages@8420264d5560b0817579d9c5323ae3a69ce4558d",
+      "pin": "8420264d5560b0817579d9c5323ae3a69ce4558d"
+    },
+    {
+      "name": "foundation",
+      "source": "github.com/gainratio/ci/modules/portfolio-foundation@8420264d5560b0817579d9c5323ae3a69ce4558d",
+      "pin": "8420264d5560b0817579d9c5323ae3a69ce4558d"
+    }
+  ]
+}</code></pre>
+  <p>Before deploying, aml-filter asks whether <code>main</code> is green:</p>
+<pre><code>export GITHUB_TOKEN="$(gh auth token)"
+CENTRAL_SHA=8420264d5560b0817579d9c5323ae3a69ce4558d
+dagger -m "github.com/gainratio/ci/modules/portfolio-foundation@$CENTRAL_SHA" \
+  call green-main --github-token=env:GITHUB_TOKEN \
+  --repository=gainratio/aml-filter serialization</code></pre>
+  <p><code>green-main</code> returns typed evidence for <code>main</code>&rsquo;s exact HEAD, including the commit SHA and Dagger check, and fails when that check did not pass.</p>
+</section>
+
+<section aria-labelledby="limits">
+  <h2 id="limits">Limits</h2>
+  <ul>
+    <li><strong>Built for one maintainer&rsquo;s stack.</strong> The modules assume GitHub, Cloudflare Pages, PyPI, and Dagger 0.21.8. Read and borrow under MIT, but there is no support promise, and this is not a general-purpose template catalog.</li>
+    <li><strong>No reusable GitHub workflows or composite actions.</strong> The old ones were removed; they remain only in Git history and old tags.</li>
+    <li><strong>No package or release publishing.</strong> <code>python-package</code> builds a package; publishing is a separate consumer job. The only registry writes are the GHCR image mirror.</li>
+    <li><strong>No automatic upgrades.</strong> Consumers stay on their pinned commit until someone opens a pull request.</li>
+    <li><strong>The fleet audit needs broad read access.</strong> Its token needs Contents, Administration, Checks, and Pull requests read on every consumer; administration read is required for branch protection and CodeQL metadata. Most contributors never run it locally.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="security">
+  <h2 id="security">Security and data handling</h2>
+  <p><code>gainratio/ci</code> holds no application data, but it reads repository state with a GitHub token, builds artifacts, and pushes OCI images to GHCR. Workflows are read-only except the image-mirror job&rsquo;s <code>packages: write</code>. Credentials cross public Dagger functions as typed secrets; consumer candidate jobs get a read-only GitHub token, never a PyPI credential.</p>
+  <p>The source guard, full-history Gitleaks scan, and release-lineage checks are in scope for vulnerability reports. Report privately through the <a href="https://github.com/gainratio/ci/blob/main/SECURITY.md">security policy</a>; do not open a public issue.</p>
+</section>
+
+<section aria-labelledby="faq">
+  <h2 id="faq">FAQ</h2>
+  <h3>Can I use these modules in my own repository?</h3>
+  <p>The code is MIT-licensed, so you can read and borrow it. The modules assume GitHub, Cloudflare Pages, PyPI, and Dagger 0.21.8, and there is no support promise.</p>
+  <h3>How does a consumer upgrade?</h3>
+  <p>Open a pull request that changes the commit in both <code>source</code> and <code>pin</code> in <code>dagger.json</code>. Nothing changes for a consumer when this repository&rsquo;s <code>main</code> moves. The fleet policy also enforces a reviewed minimum pin for <code>portfolio-foundation</code>.</p>
+  <h3>Does <code>python-package</code> upload to PyPI?</h3>
+  <p>No. It audits dependencies, builds the wheel and sdist, and checks the version matches the tag. A separate consumer job publishes through PyPI&rsquo;s official action; this repository never publishes a package.</p>
+  <h3>What does the fleet check need?</h3>
+  <p>A GitHub token that can read contents, administration, checks, and pull requests for every consumer repository. Administration read covers effective branch protection and CodeQL metadata. An unreadable repository is a failure, not a skip.</p>
+  <h3>Why does <code>dagger call ci</code> fail on a branch?</h3>
+  <p>Without <code>--commit-sha</code>, the history scan compares the workspace with GitHub&rsquo;s <code>main</code>, so any change fails. Commit and push, make the tree clean, then add <code>--commit-sha=$(git rev-parse HEAD)</code>.</p>
+</section>
+
+<section aria-labelledby="links">
+  <h2 id="links">Links</h2>
+  <ul>
+    <li><a href="https://github.com/gainratio/ci">GitHub: gainratio/ci</a> — source, issues, and the security policy.</li>
+    <li>Technical docs: <a href="https://github.com/gainratio/ci/blob/main/docs/GETTING_STARTED.md">Getting started</a>, <a href="https://github.com/gainratio/ci/blob/main/docs/dagger-modules.md">Using the modules</a>, and <a href="https://github.com/gainratio/ci/blob/main/docs/ARCHITECTURE.md">Architecture</a>.</li>
+    <li>There is no package registry release and no hosted product. Consumers install modules directly from GitHub at a commit.</li>
+  </ul>
+  <p>Related hub pages:</p>
+  <ul>
+    <li><a href="/aml-filter/">AML-Filter</a> — in-browser sanctions and watchlist screening.</li>
+    <li><a href="/edge-reco/">EdgeReco</a> — search and product recommendations in the shopper&rsquo;s browser.</li>
+    <li><a href="/assay/">Assay</a> — explained scoring for Python and TypeScript.</li>
+  </ul>
+</section>
+
+</main>
+<footer>
+  <p><code>ci</code> is <a href="https://github.com/gainratio/ci/blob/main/LICENSE">MIT-licensed</a>. © 2026 GainRatio · <a href="https://gainratio.com/">gainratio.com</a> · <a href="https://github.com/gainratio">GitHub</a></p>
+</footer>
+</body>
+</html>

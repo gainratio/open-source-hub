@@ -1,1 +1,204 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>agentic-context-service — GainRatio Open Source</title><meta name="description" content="Governed OpenSearch context and memory hub for agentic workflows."><link rel="canonical" href="https://open-source.gainratio.com/agentic-context-service/"><meta name="robots" content="index,follow"><meta property="og:title" content="agentic-context-service — GainRatio Open Source"><meta property="og:description" content="Governed OpenSearch context and memory hub for agentic workflows."><meta property="og:url" content="https://open-source.gainratio.com/agentic-context-service/"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"agentic-context-service","description":"Governed OpenSearch context and memory hub for agentic workflows.","codeRepository":"https://github.com/gainratio/agentic-context-service","programmingLanguage":"Python","url":"https://open-source.gainratio.com/agentic-context-service/"}</script><style>body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:#1a1a1a;background:#f6f8fb}h1{font:600 2.4rem/1.15 Georgia,serif;color:#1f3864}h2{color:#1f3864;margin-top:2.2rem}a{color:#2e5496}.cta{display:inline-block;margin-top:1.5rem;background:#1f3864;color:white;padding:.75rem 1.1rem;border-radius:8px;text-decoration:none}</style></head><body><p><a href="/">← GainRatio open source</a></p><h1>agentic-context-service</h1><p>Governed OpenSearch context and memory hub for agentic workflows.</p><h2>Use it when</h2><p>You need governed OpenSearch context and memory hub for agentic workflows. The source, tests, and release contracts are public and pinned.</p><h2>Source</h2><p><a href="https://github.com/gainratio/agentic-context-service">github.com/gainratio/agentic-context-service</a></p><a class="cta" href="https://github.com/gainratio/agentic-context-service">Read the source</a></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agentic Context Service — permissioned, cited context for AI assistants</title>
+<meta name="description" content="One HTTP lookup for your company's AI assistants: each gets only the facts its job allows, with the source, version, and age of every passage. Self-hosted, MIT.">
+<link rel="canonical" href="https://open-source.gainratio.com/agentic-context-service/">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Agentic Context Service — permissioned, cited context for AI assistants">
+<meta property="og:description" content="One HTTP lookup for your company's AI assistants: each gets only the facts its job allows, with the source, version, and age of every passage. Self-hosted, MIT.">
+<meta property="og:url" content="https://open-source.gainratio.com/agentic-context-service/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GainRatio Open Source">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Agentic Context Service","description":"An HTTP lookup service that gives each AI assistant only the facts its job allows, with the source, version, and age of every passage.","codeRepository":"https://github.com/gainratio/agentic-context-service","programmingLanguage":"Python","license":"https://spdx.org/licenses/MIT.html","url":"https://open-source.gainratio.com/agentic-context-service/"}</script>
+<style>
+:root{--navy:#1f3864;--deep:#152744;--ink:#1a1a1a;--muted:#4b5565;--line:#d7dfec;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:var(--ink);background:var(--paper)}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--navy)}
+.crumbs{font-size:.9rem;margin:0 0 2rem}
+header{padding:0 0 1.7rem;border-bottom:1px solid var(--line)}
+.eyebrow{margin:0 0 .4rem;color:var(--accent);font-size:.75rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+h1{font:600 2.4rem/1.15 Georgia,serif;color:var(--navy);margin:0 0 .5rem}
+.promise{font-size:1.2rem;line-height:1.55;color:#283445;max-width:60ch;margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
+.cta,.ghost{display:inline-block;padding:.7rem 1.05rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
+.cta{background:var(--navy);color:#fff}
+.cta:hover{background:var(--deep);color:#fff}
+.ghost{border:1px solid var(--line);background:#fff;color:var(--navy)}
+.ghost:hover{border-color:var(--accent);color:var(--navy)}
+h2{color:var(--navy);margin:2.8rem 0 .7rem;padding-top:1.7rem;border-top:1px solid var(--line);font:600 1.5rem/1.25 Georgia,serif}
+h3{color:var(--navy);margin:1.5rem 0 .3rem;font-size:1.03rem;line-height:1.4}
+p{margin:.75rem 0}
+ul{padding-left:1.25rem;margin:.5rem 0 1rem}
+li{margin:.45rem 0}
+li::marker{color:var(--accent)}
+code{font:.88em/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--pale);padding:.1em .32em;border-radius:4px}
+pre{background:#fff;border:1px solid var(--line);border-radius:9px;padding:1rem 1.1rem;overflow-x:auto;margin:.9rem 0}
+pre code{background:none;padding:0;font-size:.85rem;line-height:1.55}
+.note{border-left:3px solid var(--navy);background:var(--pale);padding:.85rem 1rem;border-radius:0 6px 6px 0;font-size:.94rem}
+.links{list-style:none;padding:0}
+.links li{padding:.55rem 0;border-bottom:1px solid var(--line)}
+.links li:last-child{border-bottom:0}
+.faq p{margin-bottom:.5rem}
+footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (max-width:560px){body{margin:2rem auto}h1{font-size:2rem}h2{padding-top:1.4rem;margin-top:2.3rem}}
+</style>
+</head>
+<body>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">← GainRatio open source</a></nav>
+<header>
+  <p class="eyebrow">Open source · Python 3.13+ · MIT · Beta 0.1.0</p>
+  <h1>Agentic Context Service</h1>
+  <p class="promise">One lookup service your AI assistants call, so each gets only the facts its job allows — with the source, version, and age of every passage.</p>
+  <div class="actions">
+    <a class="cta" href="#quickstart">Run the demo</a>
+    <a class="ghost" href="https://github.com/gainratio/agentic-context-service">GitHub ↗</a>
+  </div>
+</header>
+
+<main>
+<section aria-labelledby="problem">
+  <h2 id="problem">The problem</h2>
+  <p>A company with several AI assistants usually connects each one to its databases separately. Every connection re-implements who may see what. When an assistant quotes a price or a policy, nobody can tell which record it came from or how old it was.</p>
+  <p>Agentic Context Service is one HTTP service the assistants ask instead. Your databases send it each change once. For each question it removes everything that assistant may not see, searches what is left, and returns short passages. Each passage names its source record, version, and age.</p>
+</section>
+
+<section aria-labelledby="what-it-does">
+  <h2 id="what-it-does">What it does</h2>
+  <ul>
+    <li><strong>Checks access before search.</strong> The bearer token identifies the assistant and <code>purpose</code> names the job. Open Policy Agent turns that into filters; a caller's filters can narrow it but never widen it.</li>
+    <li><strong>Returns evidence with every passage.</strong> Each result carries a <code>citation</code> with the source system, record, and version, a <code>freshness</code> age, and a <code>trust_class</code>.</li>
+    <li><strong>Keeps the index current and versioned.</strong> PostgreSQL changes flow through Debezium and Redpanda to an indexer, which writes them to OpenSearch. A late or replayed change cannot overwrite a newer record, and a deleted record stays deleted.</li>
+    <li><strong>Searches words and meaning.</strong> OpenSearch ranks exact terms and embeddings. Requests set <code>candidate_limit</code>, <code>result_limit</code>, and <code>max_context_tokens</code>.</li>
+    <li><strong>Refuses with stable codes.</strong> Error bodies carry a code, message, <code>request_id</code>, and <code>retryable</code> flag. A policy refusal is <code>403 POLICY_DENIED</code>; a stale match under <code>stale_behavior: "fail"</code> is <code>409 CONTEXT_STALE</code>.</li>
+    <li><strong>Stores assistant memory.</strong> <code>/v1/memories</code> keeps memory separate from source-derived context.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="quickstart">
+  <h2 id="quickstart">Quickstart</h2>
+  <p>You need <code>git</code>, <code>make</code>, and <a href="https://docs.astral.sh/uv/">uv</a>. uv installs Python 3.13 if needed; its installer needs <code>curl</code>. On a bare Linux image, install <code>ca-certificates</code> first. The demo needs no API key and no Docker.</p>
+  <pre><code>git clone https://github.com/gainratio/agentic-context-service.git
+cd agentic-context-service
+make demo</code></pre>
+  <p>The first run downloads Python and about 110 packages (roughly 200 MB). The demo serves <code>http://127.0.0.1:8090/demo/</code> and opens the page; on a headless machine it prints the address. Stop it with Ctrl+C.</p>
+  <p>The terminal quickstart needs no browser or server:</p>
+  <pre><code>uv run python examples/quickstart/governed_retrieval.py</code></pre>
+  <p>It prints:</p>
+  <pre><code>published 3 records: a pricing rule, a finance-only note, another company's rule
+pricing-analysis asks "What is the discount limit for NS-100?" -&gt; 1 result(s)
+  NS-100 may be discounted at most 20% without pricing-lead approval.
+  source: postgres://catalog/NS-100 v7, 90s old, trust: verified
+customer-support asks "What is the discount limit for NS-100?" -&gt; 0 result(s)</code></pre>
+  <p class="note">The demo is offline: the HTTP API, signature check, and access rules are the real service code, but records live in memory, matching is lexical, and a small built-in stand-in applies the OPA policies. Search by meaning needs the full local stack.</p>
+</section>
+
+<section aria-labelledby="real-example">
+  <h2 id="real-example">A real example</h2>
+  <p>With <code>make demo</code> running, save this client as <code>ask.py</code> and run <code>uv run python ask.py</code>. It prints the cited passages.</p>
+  <pre><code>import time, uuid
+import httpx
+from agentic_context_service.api.request_context import RequestContextSigner
+
+KEY = b"offline-demo-signing-key-not-for-production"  # demo only
+
+h = {
+    "Authorization": "Bearer pricing-assistant-token",
+    "X-Team-ID": "pricing", "X-App-ID": "pricing-assistant",
+    "X-Workflow-ID": "price-check", "X-Workflow-Revision": "v1",
+    "X-Agent-ID": "pricing-assistant", "X-Environment": "development",
+    "X-Cost-Center": "retail", "X-Request-ID": str(uuid.uuid4()),
+    "X-Trace-ID": uuid.uuid4().hex, "X-ACS-Timestamp": str(int(time.time())),
+}
+h["X-ACS-Signature"] = RequestContextSigner(KEY).sign(h)
+
+r = httpx.post(
+    "http://127.0.0.1:8090/v1/context:retrieve",
+    headers=h,
+    json={
+        "query": "What is the discount limit for NS-100?",
+        "purpose": "pricing-analysis",
+        "corpora": ["pricing", "product", "approved-decisions"],
+        "filters": {},
+        "retrieval": {"mode": "lexical", "candidate_limit": 20,
+                      "result_limit": 3, "max_context_tokens": 2000},
+    },
+)
+r.raise_for_status()
+for result in r.json()["results"]:
+    citation = result["citation"]
+    print(result["text"])
+    print(f"  from {citation['source_uri']} version {citation['source_version']}")</code></pre>
+  <p>It prints:</p>
+  <pre><code>NS-100 discount limit: at most 20% off list price without pricing-lead approval.
+  from postgres://catalog/pricing_rules/NS-100 version 7
+NS-100 is a waterproof trail running shoe, sizes 6 to 13, list price $120.
+  from postgres://catalog/products/NS-100-product version 3
+Approved promotion: NS-100 is 15% off until October 31. Support may quote this price.
+  from postgres://decisions/promotions/PROMO-88 version 1</code></pre>
+  <p>In production the API gateway holds the key and signs the request, so assistants never see it. The repository's <a href="https://github.com/gainratio/agentic-context-service/blob/main/examples/client/ask_the_service.py"><code>examples/client/ask_the_service.py</code></a> is the fully commented client.</p>
+</section>
+
+<section aria-labelledby="limits">
+  <h2 id="limits">Limits</h2>
+  <ul>
+    <li><strong>Beta.</strong> Version 0.1.0 has no tagged release and is not on PyPI; install it from the repository.</li>
+    <li><strong>Not a chat app or a framework for building assistants.</strong> It is the lookup your assistant calls.</li>
+    <li><strong>One assistant out of the box.</strong> The stock entry point accepts one token, <code>ACS_DEMO_TOKEN</code>. To give each assistant its own identity, implement <code>BearerAuthenticator</code> and pass it to <code>create_app</code> from your own entry point.</li>
+    <li><strong>Not the source of truth.</strong> Your databases are. The index updates a moment after a database change, not in the same transaction.</li>
+    <li><strong>The local stack is for trying it, not production.</strong> It turns off TLS, private networking, and OpenSearch's per-document security. There is no high availability, backup and restore, or load testing yet.</li>
+    <li><strong>It cannot protect a compromised server or operator</strong>, or control what an AI provider does with data you send it.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="security">
+  <h2 id="security">Security and data handling</h2>
+  <p>The service runs on your machines. Source-derived content and memory stay there; nothing leaves unless you turn on the optional live AI mode (<code>ACS_SHOWCASE_AGENT_MODE=deep</code>) in the full-stack dashboard.</p>
+  <p>Requests are signed: a bearer token identifies the assistant, <code>purpose</code> names the job, and 11 headers are canonicalized and signed with HMAC-SHA256. Signatures older than five minutes or more than 30 seconds ahead are refused; the key must be at least 32 bytes. The gateway holds it in production.</p>
+  <p>Policy fails closed. OPA constraints are applied before search, caller filters intersect them, and an OPA outage or malformed answer makes readiness false.</p>
+  <p>The <a href="https://github.com/gainratio/agentic-context-service/blob/main/docs/threat-model/README.md">threat model</a> records what is protected and what is not: raw tokens stay out of OPA and audit logs, and queries are hashed. Compose disables OpenSearch security and uses visible synthetic credentials; it is local-only, not a deployment template.</p>
+</section>
+
+<section class="faq" aria-labelledby="faq">
+  <h2 id="faq">FAQ</h2>
+  <h3>Do our assistants have to be written in Python?</h3>
+  <p>No. They send one <code>POST /v1/context:retrieve</code>. The Python package ships the server and a local signer; other languages compute the same HMAC-SHA256 over the 11 canonical headers.</p>
+  <h3>How does the service decide what an assistant can see?</h3>
+  <p>The bearer token identifies the assistant, and <code>purpose</code> names the job. OPA turns that pair into constraints applied before ranking; caller filters can narrow but never widen them, and a request outside the job's scope returns <code>403 POLICY_DENIED</code>.</p>
+  <h3>Is the search index the system of record?</h3>
+  <p>No. Your databases are. Changes reach OpenSearch a moment after the database commit; the index is derived, not authoritative.</p>
+  <h3>Can we search by meaning, or store assistant memory?</h3>
+  <p>Both are in the full service: OpenSearch handles semantic retrieval and <code>/v1/memories</code> stores memory. Neither is available in the offline demo; the terminal quickstart is lexical only.</p>
+  <h3>Is it production-ready?</h3>
+  <p>Not yet. It is Beta 0.1.0. Compose is local-only with no high availability, backup and restore, or load testing.</p>
+</section>
+
+<section aria-labelledby="links">
+  <h2 id="links">Source and related</h2>
+  <ul class="links">
+    <li><a href="https://github.com/gainratio/agentic-context-service">GitHub repository</a> — source, issues, changelog, and security policy.</li>
+    <li><a href="https://github.com/gainratio/agentic-context-service/blob/main/docs/ARCHITECTURE.md">Architecture</a> — data path, API shape, security model, and configuration.</li>
+    <li><a href="https://github.com/gainratio/agentic-context-service/blob/main/packages/contracts/openapi.yaml">API contract</a> — the OpenAPI definition for every route and field.</li>
+    <li><a href="https://github.com/gainratio/agentic-context-service/blob/main/docs/threat-model/README.md">Threat model</a> — assets, trust boundaries, and local-only exceptions.</li>
+  </ul>
+  <p>Related hub pages:</p>
+  <ul class="links">
+    <li><a href="/privacy-core/">privacy-core</a> — hide card numbers, emails, and ID numbers from AI models, then restore them in the reply.</li>
+    <li><a href="/agentic-saga/">agentic-saga</a> — run multi-step agent jobs and safely undo finished steps if one fails.</li>
+    <li><a href="/agentic-tab-context/">agentic-tab-context</a> — let a coding assistant use the browser tab you already have open, with your existing logins.</li>
+  </ul>
+</section>
+</main>
+
+<footer>
+  <p>Agentic Context Service is MIT licensed. © 2026 GainRatio. <a href="https://gainratio.com/">gainratio.com</a></p>
+</footer>
+</body>
+</html>

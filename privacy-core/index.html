@@ -1,1 +1,183 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>privacy-core — GainRatio Open Source</title><meta name="description" content="Hide card numbers, emails, and ID numbers from AI models, then restore them in the reply."><link rel="canonical" href="https://open-source.gainratio.com/privacy-core/"><meta name="robots" content="index,follow"><meta property="og:title" content="privacy-core — GainRatio Open Source"><meta property="og:description" content="Hide card numbers, emails, and ID numbers from AI models, then restore them in the reply."><meta property="og:url" content="https://open-source.gainratio.com/privacy-core/"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"privacy-core","description":"Hide card numbers, emails, and ID numbers from AI models, then restore them in the reply.","codeRepository":"https://github.com/gainratio/privacy-core","programmingLanguage":"TypeScript","url":"https://open-source.gainratio.com/privacy-core/"}</script><style>body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:#1a1a1a;background:#f6f8fb}h1{font:600 2.4rem/1.15 Georgia,serif;color:#1f3864}h2{color:#1f3864;margin-top:2.2rem}a{color:#2e5496}.cta{display:inline-block;margin-top:1.5rem;background:#1f3864;color:white;padding:.75rem 1.1rem;border-radius:8px;text-decoration:none}</style></head><body><p><a href="/">← GainRatio open source</a></p><h1>privacy-core</h1><p>Hide card numbers, emails, and ID numbers from AI models, then restore them in the reply.</p><h2>Why it exists</h2><p>Built for teams that need their data and decisions to remain verifiable. The implementation, tests, and release notes are public.</p><h2>Source</h2><p><a href="https://github.com/gainratio/privacy-core">github.com/gainratio/privacy-core</a></p><a class="cta" href="https://github.com/gainratio/privacy-core">Read the source</a></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>privacy-core — On-device PII redaction for LLM prompts</title>
+<meta name="description" content="TypeScript library that swaps card numbers, emails and IDs for labels on-device, gates sending behind approval, then restores the real values in the AI reply.">
+<link rel="canonical" href="https://open-source.gainratio.com/privacy-core/">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="privacy-core — On-device PII redaction for LLM prompts">
+<meta property="og:description" content="Redact structured identifiers on the device, approve exactly what leaves, and restore the real values in the reply.">
+<meta property="og:url" content="https://open-source.gainratio.com/privacy-core/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"@gainratio/privacy-core","description":"A TypeScript library that swaps card numbers, emails and ID numbers for typed labels on the user's device, sends approved placeholder text to an LLM, and restores the real values in the reply locally.","codeRepository":"https://github.com/gainratio/privacy-core","programmingLanguage":"TypeScript","license":"https://opensource.org/license/mit","url":"https://open-source.gainratio.com/privacy-core/"}</script>
+<style>
+:root{--navy:#1f3864;--ink:#1a1a1a;--muted:#4a4a4a;--line:#bfc9da;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
+*{box-sizing:border-box}
+body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:0 auto;padding:3.2rem 1.4rem 5rem;color:var(--ink);background:var(--paper)}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--navy)}
+header{border-bottom:1px solid var(--line);padding-bottom:1.6rem}
+.back{font-size:.9rem;margin:0 0 2rem}
+.eyebrow{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+h1{font:600 2.4rem/1.15 Georgia,serif;color:var(--navy);margin:0 0 .7rem;letter-spacing:-.01em}
+.promise{font-size:1.15rem;line-height:1.5;margin:0 0 .9rem;max-width:62ch}
+.meta{font-size:.88rem;color:var(--muted);margin:0}
+h2{font:600 1.5rem/1.25 Georgia,serif;color:var(--navy);margin:2.4rem 0 .7rem}
+h3{font:600 1.02rem/1.35 Georgia,serif;color:var(--navy);margin:1.6rem 0 .3rem}
+p{margin:.6rem 0}
+ul{padding-left:1.2rem;margin:.6rem 0}
+li{margin:.45rem 0}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--pale);padding:.12rem .32rem;border-radius:4px}
+pre{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1rem;overflow-x:auto;margin:1rem 0}
+pre code{background:none;padding:0;font-size:.82rem;line-height:1.55}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.5rem}
+.cta{display:inline-block;background:var(--navy);color:#fff;padding:.7rem 1rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.93rem}
+.cta:hover{background:#152744;color:#fff}
+.cta.secondary{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.cta.secondary:hover{border-color:var(--accent);color:var(--navy);background:#fff}
+footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.2rem;color:var(--muted);font-size:.88rem}
+@media(max-width:520px){body{padding:2rem 1.1rem 3rem}h1{font-size:2rem}pre{font-size:.82rem}}
+</style>
+</head>
+<body>
+<header>
+<p class="back"><a href="/">← GainRatio open source</a></p>
+<p class="eyebrow">TypeScript library · on-device</p>
+<h1>privacy-core</h1>
+<p class="promise">Hide card numbers, emails and ID numbers from AI models, then restore them in the reply — on the device.</p>
+<p class="meta">Node 22.13+ and browsers (tested in Chromium) · MIT · v0.3.2</p>
+</header>
+
+<main>
+<section>
+<h2>The problem</h2>
+<p>A banking or support app's “ask the AI about this” button starts with whatever the user pastes in. That text often holds card numbers, account numbers and email addresses, and sending it as-is puts every value in front of the AI provider. Most teams drop the feature or hope nobody pastes anything sensitive.</p>
+<p>privacy-core moves the boundary into the client: detection runs on the device, and the user approves the exact text that leaves.</p>
+</section>
+
+<section>
+<h2>What it does</h2>
+<ul>
+<li><strong>Finds structured identifiers locally</strong> with a fixed ruleset and validators: Luhn for cards, mod-97 for IBANs, SSA rules for unseparated SSNs. No AI model is used.</li>
+<li><strong>Replaces each value with a stable typed label</strong> such as <code>[CARD_1]</code>; the real value stays in an in-memory <code>Vault</code>.</li>
+<li><strong>Makes approval a type:</strong> <code>redactForEgress()</code> returns a proposal, <code>approve()</code> turns it into the sendable payload, and a raw string is a compile error.</li>
+<li><strong>Restores the reply locally</strong> with <code>rehydrate()</code> using the same vault; a mismatched or unresolvable placeholder fails closed.</li>
+<li><strong>Signs opt-in allow/deny receipts</strong> through <code>@gainratio/avow</code>; a receipt carries a SHA-256 hash of the redacted text, not the text.</li>
+<li><strong>Runs offline with <code>NoLLMProvider</code></strong>, or calls any OpenAI-compatible endpoint with <code>OpenRouterProvider</code>.</li>
+</ul>
+</section>
+
+<section>
+<h2>Quickstart</h2>
+<p>You need Node 22.13 or newer; the package is ESM-only. After install, the offline example needs no account, API key or network call.</p>
+<pre><code>mkdir try-privacy-core &amp;&amp; cd try-privacy-core &amp;&amp; npm init -y &amp;&amp; npm install @gainratio/privacy-core</code></pre>
+<p>Save this as <code>example.mjs</code>, then run <code>node example.mjs</code>:</p>
+<pre><code>import { approve, guardedProvider, NoLLMProvider, redactForEgress, rehydrate, Vault } from "@gainratio/privacy-core";
+
+const text = "Maria Lopez asked: refund $482.10 to card 4242 4242 4242 4242 and email maria@example.com.";
+const vault = new Vault();
+const log = (entry) =&gt; console.log("[log]", entry.kind, entry.placeholders.join(" "));
+
+const pending = await redactForEgress(text, vault, log);
+console.log("will send:", pending.redactedText);
+
+const payload = approve(pending, log);
+const reply = await guardedProvider(new NoLLMProvider()).complete(payload);
+const answer = reply.redactedText.split("\n")[1];
+
+console.log("AI saw:", answer);
+console.log("you see:", rehydrate(answer, vault, payload.vaultRef));</code></pre>
+<p><code>NoLLMProvider</code> echoes the labels back, so the loop runs offline and prints the outgoing text, the reply, and the restored answer.</p>
+</section>
+
+<section>
+<h2>A real example</h2>
+<p>Two cases beyond the minimal loop: a raw send the compiler refuses, and a reviewed call to a real model.</p>
+
+<h3>1. The send that will not compile</h3>
+<pre><code>import { NoLLMProvider } from "@gainratio/privacy-core";
+
+await new NoLLMProvider().complete("my card is 4242 4242 4242 4242");</code></pre>
+<p><code>tsc</code> stops with:</p>
+<pre><code>error TS2345: Argument of type 'string' is not assignable to parameter of type 'RedactedPayload'.</code></pre>
+<h3>2. A reviewed send to a real model</h3>
+<pre><code>import {
+  approve, guardedProvider, makeProvider, redactForEgress, rehydrate, Vault,
+} from "@gainratio/privacy-core";
+
+// Host-supplied: makeProvider throws MissingApiKeyError if this is unset.
+const { provider } = makeProvider({ apiKey: process.env.OPENROUTER_API_KEY });
+const guarded = guardedProvider(provider);
+
+const vault = new Vault();
+const pending = await redactForEgress(
+  "Grace Hopper, card 4242 4242 4242 4242, was charged $482.10 at Whole Foods on 01/14/2026.",
+  vault,
+);
+const payload = approve(pending, (entry) =&gt; console.log("[audit]", entry.kind));
+const reply = await guarded.complete(payload);
+console.log(rehydrate(reply.redactedText, vault, payload.vaultRef));</code></pre>
+<p>The library reads no environment variables; the host passes the key in server-side.</p>
+</section>
+
+<section>
+<h2>Limits and when not to use it</h2>
+<ul>
+<li><strong>Only the recognized formats are found.</strong> Cards, emails, US/NANP phones, SSNs, IBANs, labeled account and routing numbers, dollar amounts, US dates, three demo names and five demo merchants. General names, addresses and free text are not detected; the review step is the backstop.</li>
+<li><strong>Redaction is not anonymization.</strong> Surrounding words can still identify someone: “$482.10, insurance, early January”.</li>
+<li><strong>The vault does not persist.</strong> It lives in process or tab memory and clears on reload; an encrypted IndexedDB vault is planned, not shipped.</li>
+<li><strong>A compromised device is out of scope.</strong> A malicious extension, XSS bug or bad dependency can read the vault and a browser-held signing key. Browser key custody is same-origin, not hardware-backed.</li>
+<li><strong>The provider's handling is out of scope.</strong> The library controls what leaves, not what the AI company does with the labeled text.</li>
+<li><strong>Budgets are bounded.</strong> Redaction accepts at most 512 KiB per call; the OpenRouter adapter defaults to a 30-second deadline and a 1 MiB response cap.</li>
+</ul>
+<p>Need wider coverage? Microsoft Presidio fits a Python service that needs names and places; LLM Guard's <code>Anonymize</code> fits a Python gateway; a hosted DLP API fits when broad detection matters more than keeping raw text local.</p>
+</section>
+
+<section>
+<h2>Security and data handling</h2>
+<p>Redaction, the vault and rehydration run on the device with no network call. Only the provider adapter sends; on the normal path it sends approved placeholder text.</p>
+<p>Real values sit in process or tab memory and are gone on reload. Providers accept only an approved payload: <code>assertApproved()</code> rejects a hand-built copy by object identity with <code>UnapprovedPayloadError</code>, and the only raw-text escape hatch, <code>unsafeBypass</code>, always emits an <code>AuditEntry</code>.</p>
+<p>Receipts are opt-in: <code>guardedProvider</code> signs each allow and deny with Ed25519 through <code>@gainratio/avow</code>, carrying a SHA-256 digest of the redacted text, never the text. They are tamper-evident after signing, not proof that a compromised host is trustworthy.</p>
+<p>The demo keeps <code>OPENROUTER_API_KEY</code> server-side in a same-origin proxy; it never reaches the browser bundle.</p>
+</section>
+
+<section>
+<h2>FAQ</h2>
+<h3>Does it run in Node and the browser?</h3>
+<p>Yes. It runs on Node 22.13+ or in a modern browser bundler; the browser path is tested in Chromium. The package ships ES modules only.</p>
+
+<h3>Can I use my own model or endpoint?</h3>
+<p>Yes. <code>OpenRouterProvider</code> takes any OpenAI-compatible <code>chat/completions</code> URL, and <code>makeProvider()</code> selects it when a non-empty API key is configured. Without a key, it throws <code>MissingApiKeyError</code> unless you opt into <code>allowOffline</code>.</p>
+
+<h3>Does it catch names and addresses?</h3>
+<p>No, not in general. The list has three demo names (Ada Lovelace, Grace Hopper, Alan Turing) and five demo merchants; general name and address detection is not shipped. That is why the approval screen shows the complete outgoing text.</p>
+
+<h3>Do I still need <code>approve()</code> when nothing is detected?</h3>
+<p>Yes. “Found nothing” is not “someone said yes”: the detector finding nothing still produces a proposal, and only <code>approve()</code> turns that proposal into a sendable payload.</p>
+
+<h3>What if I really need to send raw text?</h3>
+<p>Use <code>unsafeBypass</code>. It always emits an <code>AuditEntry</code>, so a silent bypass is treated as a security bug.</p>
+</section>
+
+<section>
+<h2>Source and related work</h2>
+<ul>
+<li><strong>GitHub:</strong> <a href="https://github.com/gainratio/privacy-core">gainratio/privacy-core</a> — source code.</li>
+<li><strong>npm:</strong> <a href="https://www.npmjs.com/package/@gainratio/privacy-core">@gainratio/privacy-core</a>.</li>
+<li><strong>Docs:</strong> <a href="https://github.com/gainratio/privacy-core/blob/main/docs/ARCHITECTURE.md">Architecture</a>, <a href="https://github.com/gainratio/privacy-core/blob/main/docs/DETECTION.md">what it recognizes</a>, and <a href="https://github.com/gainratio/privacy-core/blob/main/docs/API.md">API</a>.</li>
+<li><strong>Related hub pages:</strong> <a href="/avow/">avow</a> signs the optional receipts; <a href="/edgeproc-browser/">edgeproc-browser</a> is the local-first browser runtime; <a href="/aml-filter/">aml-filter</a> screens sanctions in the browser.</li>
+</ul>
+<div class="actions">
+<a class="cta" href="https://github.com/gainratio/privacy-core">Read the source on GitHub</a>
+<a class="cta secondary" href="https://www.npmjs.com/package/@gainratio/privacy-core">Install from npm</a>
+</div>
+</section>
+</main>
+
+<footer>
+<p>privacy-core is MIT licensed. <a href="/">All GainRatio open-source projects</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,1 +1,170 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>agentic-saga — GainRatio Open Source</title><meta name="description" content="Let an AI agent run multi-step jobs like checkout, and safely undo finished steps if one fails."><link rel="canonical" href="https://open-source.gainratio.com/agentic-saga/"><meta name="robots" content="index,follow"><meta property="og:title" content="agentic-saga — GainRatio Open Source"><meta property="og:description" content="Let an AI agent run multi-step jobs like checkout, and safely undo finished steps if one fails."><meta property="og:url" content="https://open-source.gainratio.com/agentic-saga/"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"agentic-saga","description":"Let an AI agent run multi-step jobs like checkout, and safely undo finished steps if one fails.","codeRepository":"https://github.com/gainratio/agentic-saga","programmingLanguage":"Python","url":"https://open-source.gainratio.com/agentic-saga/"}</script><style>body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:#1a1a1a;background:#f6f8fb}h1{font:600 2.4rem/1.15 Georgia,serif;color:#1f3864}h2{color:#1f3864;margin-top:2.2rem}a{color:#2e5496}.cta{display:inline-block;margin-top:1.5rem;background:#1f3864;color:white;padding:.75rem 1.1rem;border-radius:8px;text-decoration:none}</style></head><body><p><a href="/">← GainRatio open source</a></p><h1>agentic-saga</h1><p>Let an AI agent run multi-step jobs like checkout, and safely undo finished steps if one fails.</p><h2>Use it when</h2><p>You need let an AI agent run multi-step jobs like checkout, and safely undo finished steps if one fails. The source, tests, and release contracts are public and pinned.</p><h2>Source</h2><p><a href="https://github.com/gainratio/agentic-saga">github.com/gainratio/agentic-saga</a></p><a class="cta" href="https://github.com/gainratio/agentic-saga">Read the source</a></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agentic Saga — undoable multi-step jobs for AI agents | GainRatio</title>
+<meta name="description" content="A Python library that lets an AI agent choose the next step of a multi-step job while a Temporal workflow runs it and undoes finished work, newest-first.">
+<link rel="canonical" href="https://open-source.gainratio.com/agentic-saga/">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Agentic Saga — undoable multi-step jobs for AI agents">
+<meta property="og:description" content="A Python library that lets an AI agent choose the next step of a multi-step job while a Temporal workflow runs it and undoes finished work, newest-first.">
+<meta property="og:url" content="https://open-source.gainratio.com/agentic-saga/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GainRatio Open Source">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Agentic Saga","description":"A Python library that lets an AI agent choose the next step of a multi-step job while a Temporal workflow runs it and undoes finished work, newest-first.","codeRepository":"https://github.com/gainratio/agentic-saga","programmingLanguage":"Python","license":"https://opensource.org/license/mit","url":"https://open-source.gainratio.com/agentic-saga/"}</script>
+<style>
+:root{--navy:#1f3864;--ink:#1a1a1a;--muted:#4b5565;--line:#d7dfec;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:var(--ink);background:var(--paper)}
+h1{font:600 2.4rem/1.15 Georgia,serif;color:var(--navy);margin:.15rem 0 .4rem}
+h2{color:var(--navy);margin-top:2.2rem;font-size:1.45rem;line-height:1.3}
+h3{color:var(--navy);margin:1.6rem 0 .35rem;font-size:1.05rem}
+p{margin:.75rem 0}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+ul,ol{padding-left:1.3rem}
+li{margin:.4rem 0}
+code{font:.88em/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--pale);padding:.08em .3em;border-radius:4px}
+pre{background:#fff;border:1px solid var(--line);border-radius:9px;padding:1rem 1.1rem;overflow-x:auto;margin:.9rem 0}
+pre code{background:none;padding:0;font-size:.86rem;line-height:1.55}
+.crumbs{font-size:.9rem;margin:0 0 2rem}
+header{padding:0 0 1.7rem;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 .35rem}
+.promise{font-size:1.2rem;color:#283445;max-width:58ch;margin:.2rem 0 .8rem}
+.meta{font-size:.9rem;color:var(--muted);margin:.2rem 0 0}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
+.cta{display:inline-block;background:var(--navy);color:#fff;padding:.7rem 1.1rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
+.ghost{display:inline-block;border:1px solid var(--line);background:#fff;color:var(--navy);padding:.65rem 1.05rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
+section{padding-top:.2rem}
+footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (max-width:560px){body{margin:2rem auto}h1{font-size:2rem}}
+</style>
+</head>
+<body>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">← GainRatio open source</a></nav>
+<header>
+  <p class="eyebrow">Open source · Python · MIT</p>
+  <h1>Agentic Saga</h1>
+  <p class="promise">Let an AI agent run multi-step jobs it cannot leave half-done: it proposes the next step, and fixed rules undo finished work newest-first if the job fails.</p>
+  <p class="meta">0.1.0 · Python 3.12/3.13 · Linux/macOS · Not on PyPI</p>
+  <div class="actions">
+    <a class="cta" href="#quickstart">Try the demo</a>
+    <a class="ghost" href="https://github.com/gainratio/agentic-saga">View on GitHub</a>
+  </div>
+</header>
+<main>
+<section aria-labelledby="problem">
+  <h2 id="problem">The problem</h2>
+  <p>A checkout touches services that cannot share one database transaction: reserve stock, charge the card, book delivery. If delivery is refused after the charge, the card must be refunded and the stock released, in that order, without doing either twice.</p>
+  <p>Letting a model decide is worse: it should not choose when to refund or read a lost reply as “paid” or “not paid”. Agentic Saga splits the job. The agent proposes one step from a short list allowed right now; ordinary Python rules in a Temporal Workflow check that choice, run it, and record it. If the job cannot be proven done, the workflow undoes confirmed steps newest-first.</p>
+</section>
+<section aria-labelledby="what">
+  <h2 id="what">What it does</h2>
+  <ul>
+    <li><strong>Keeps the model bounded.</strong> Each turn it sees the goal, current facts, and only currently allowed steps, then proposes one; the Workflow rejects anything else. Turn, tool-call, time, and token budgets cap it.</li>
+    <li><strong>Pairs every effect with its undo.</strong> Each changing step names its reversing step, and confirmed effects are compensated in reverse order. The agent never chooses an undo or its timing.</li>
+    <li><strong>Records the run in Temporal.</strong> Confirmed work survives a crash, Activities retry, and histories replay deterministically.</li>
+    <li><strong>Asks before repeating.</strong> A lost provider reply is reconciled by the operation’s stable ID before any retry or compensation.</li>
+    <li><strong>Requires proof.</strong> A read marked <code>proof_for_success</code> must return <code>verified: true</code> before the job can finish; otherwise the job compensates. A person is asked only when the undo cannot be proven.</li>
+  </ul>
+</section>
+<section aria-labelledby="quickstart">
+  <h2 id="quickstart">Quickstart</h2>
+  <p>You need <code>uv</code>, Git, and a connection. <code>uv</code> fetches a matching Python, the dependencies, and Temporal; no account or API key is needed.</p>
+  <pre><code>git clone https://github.com/gainratio/agentic-saga.git
+cd agentic-saga
+uv run poe demo</code></pre>
+  <p>That starts a throwaway Temporal server, runs a simulated checkout, and opens the Flight Recorder. The agent is scripted, the shop simulated; no model is called.</p>
+  <p>To use it in an application, install from Git; there is no PyPI package yet:</p>
+  <pre><code>uv add "agentic-saga @ git+https://github.com/gainratio/agentic-saga"</code></pre>
+  <p>The smallest complete program, <code>examples/quickstart/trip.py</code>, books a flight and a hotel, fails the final check on purpose, and cancels both bookings. From the clone:</p>
+  <pre><code>uv run python -m examples.quickstart.trip</code></pre>
+  <pre><code>Forward steps: book_flight -&gt; book_hotel -&gt; confirm_trip
+Undo steps:    cancel_hotel -&gt; cancel_flight
+Outcome:       compensated_verified</code></pre>
+</section>
+<section aria-labelledby="example">
+  <h2 id="example">A real example</h2>
+  <p>The trip program pairs each change with its undo, then names the allowed order and proof read. Abridged from <a href="https://github.com/gainratio/agentic-saga/blob/main/examples/quickstart/trip.py"><code>trip.py</code></a>:</p>
+  <pre><code>def build_registry(forward: list[str], undo: list[str]) -&gt; ToolRegistry:
+    return ToolRegistry(
+        (
+            booking("book_flight", "cancel_flight", forward),
+            booking("book_hotel", "cancel_hotel", forward),
+            booking("cancel_flight", None, undo),
+            booking("cancel_hotel", None, undo),
+            ReadToolDefinition("confirm_trip", Trip, TripCheck, FakeTripCheck(forward)),
+        )
+    )
+
+WORKFLOW_TOOLS = (
+    WorkflowTool(name="book_flight", kind="effect", compensation_tool="cancel_flight"),
+    WorkflowTool(name="book_hotel", kind="effect", compensation_tool="cancel_hotel",
+                 prerequisites=("book_flight",)),
+    WorkflowTool(name="confirm_trip", kind="read", proof_for_success=True,
+                 prerequisites=("book_hotel",)),
+)</code></pre>
+  <p><code>booking(...)</code> wraps a provider call; <code>confirm_trip</code> is a read-only check. The undo name appears as <code>compensate_with</code> on the registry entry and <code>compensation_tool</code> on the workflow tool; if they differ, the step fails with <code>tool_contract_mismatch</code>.</p>
+  <p>Variants:</p>
+  <pre><code>uv run poe demo happy-path
+uv run poe demo lost-response
+uv run poe demo compensation-failure</code></pre>
+  <ul>
+    <li><code>happy-path</code>: every step works.</li>
+    <li><code>lost-response</code>: the card company’s reply is lost; the saga reconciles instead of charging again.</li>
+    <li><code>compensation-failure</code>: the refund cannot be confirmed, so a person must sign off; the demo plays that person.</li>
+  </ul>
+</section>
+<section aria-labelledby="limits">
+  <h2 id="limits">Limits</h2>
+  <ul>
+    <li><strong>Unreleased.</strong> 0.1.0 has no PyPI package or tagged release; install from Git. Python 3.12 or 3.13 on Linux or macOS only.</li>
+    <li><strong>Your providers must cooperate.</strong> Every side-effecting call needs a stable request ID and a lost-reply lookup. Agentic Saga cannot make a non-idempotent API safe, and the example services are simulations.</li>
+    <li><strong>You need Temporal.</strong> The demo starts a throwaway server; real use needs a local server or Temporal Cloud.</li>
+    <li><strong>It does not judge the model.</strong> Tests never call a paid model, so live step choice is not evaluated.</li>
+    <li><strong>Traces are not signed.</strong> They are checked for internal consistency and content hashes; anyone who can edit a trace file can rewrite it.</li>
+  </ul>
+  <p>Use a database transaction when every change is in one database. For a fixed sequence, Temporal alone is simpler. If the agent only reads or drafts, call tools directly; if you can write the routes by hand, plain <code>if/else</code> is enough.</p>
+</section>
+<section aria-labelledby="security">
+  <h2 id="security">Security and data handling</h2>
+  <p>Temporal keeps Workflow and Activity payloads: inputs, results, failure details, and Update arguments. The built-in converter is for public-safe data. Use opaque business identifiers, keep secrets and documents by reference, resolve credentials inside Activities, and trim provider receipts to reconciliation fields. Redaction does not erase values already in Temporal history.</p>
+  <p>Private payloads require client-side encryption with a shared Payload Codec backed by a KMS, a dedicated Namespace with least-privilege access, and application authentication for every human decision. The opt-in OpenRouter path authenticates with your <code>OPENROUTER_API_KEY</code> and sends the goal, current facts, and allowed steps; the library does not enforce provider spend. The Flight Recorder binds to <code>127.0.0.1</code>, is read-only, and is not an authenticated multi-user service. See <a href="https://github.com/gainratio/agentic-saga/blob/main/SECURITY.md">SECURITY.md</a>.</p>
+</section>
+<section aria-labelledby="faq">
+  <h2 id="faq">FAQ</h2>
+  <h3>Do I need an API key or a Temporal account to try it?</h3>
+  <p>No. The demo starts a throwaway Temporal server with a scripted agent and simulated shop; no key or account.</p>
+  <h3>Can the agent decide when to refund or undo?</h3>
+  <p>No. Undo tools are registered but never offered to the agent. The Workflow derives the order from confirmed effects and compensation pairs, newest-first.</p>
+  <h3>What happens when a provider’s reply is lost?</h3>
+  <p>The Workflow reconciles by the operation’s stable ID and asks the provider what happened before retrying or compensating. If the outcome cannot be proven, it stops for an authenticated person.</p>
+  <h3>Is it on PyPI?</h3>
+  <p>No. 0.1.0 has no package or tagged release; install from GitHub. It supports Python 3.12 and 3.13 on Linux and macOS.</p>
+  <h3>Can I use a different model?</h3>
+  <p>Yes. The default is Jev through OpenRouter; Jev direct through TypeSafe, any tool-calling model through Pydantic AI and OpenRouter, and a scripted driver also work. Tests never call a paid model.</p>
+</section>
+<section aria-labelledby="links">
+  <h2 id="links">Source and related work</h2>
+  <ul>
+    <li><a href="https://github.com/gainratio/agentic-saga">GitHub: gainratio/agentic-saga</a> — source, issues, and the <a href="https://github.com/gainratio/agentic-saga/blob/main/docs/integration.md">integration guide</a> for real service adapters.</li>
+    <li><a href="https://github.com/gainratio/agentic-saga/blob/main/docs/ARCHITECTURE.md">Architecture</a> and <a href="https://github.com/gainratio/agentic-saga/blob/main/SECURITY.md">security policy</a> cover the workflow and data boundary.</li>
+  </ul>
+  <p>Related:</p>
+  <ul>
+    <li><a href="/agentic-context-service/">agentic-context-service</a> — governed OpenSearch context and memory hub for agentic workflows.</li>
+    <li><a href="/agentic-tab-context/">agentic-tab-context</a> — let a coding assistant use the browser tab you already have open, with your existing logins.</li>
+    <li><a href="/avow/">Avow</a> — sign a JSON record into a receipt anyone can verify offline.</li>
+  </ul>
+</section>
+</main>
+<footer>
+  <p>Agentic Saga is MIT licensed. © 2026 GainRatio.</p>
+  <p><a href="https://gainratio.com/">gainratio.com</a> · <a href="https://github.com/gainratio">GitHub</a></p>
+</footer>
+</body>
+</html>

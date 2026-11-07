@@ -4,6 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "health": "node scripts/seo-health.mjs"
+    "health": "node scripts/seo-health.mjs",
+    "prebuild": "node scripts/check-pages.mjs",
+    "check:pages": "node scripts/check-pages.mjs"
   }
 }

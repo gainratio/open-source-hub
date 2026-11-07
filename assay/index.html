@@ -1,1 +1,172 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>assay — GainRatio Open Source</title><meta name="description" content="Turn measurements on different scales into one score that shows its math."><link rel="canonical" href="https://open-source.gainratio.com/assay/"><meta name="robots" content="index,follow"><meta property="og:title" content="assay — GainRatio Open Source"><meta property="og:description" content="Turn measurements on different scales into one score that shows its math."><meta property="og:url" content="https://open-source.gainratio.com/assay/"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"assay","description":"Turn measurements on different scales into one score that shows its math.","codeRepository":"https://github.com/gainratio/assay","programmingLanguage":"Python","url":"https://open-source.gainratio.com/assay/"}</script><style>body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:#1a1a1a;background:#f6f8fb}h1{font:600 2.4rem/1.15 Georgia,serif;color:#1f3864}h2{color:#1f3864;margin-top:2.2rem}a{color:#2e5496}.cta{display:inline-block;margin-top:1.5rem;background:#1f3864;color:white;padding:.75rem 1.1rem;border-radius:8px;text-decoration:none}</style></head><body><p><a href="/">← GainRatio open source</a></p><h1>assay</h1><p>Turn measurements on different scales into one score that shows its math.</p><h2>Why it exists</h2><p>Built for teams that need their data and decisions to remain verifiable. The implementation, tests, and release notes are public.</p><h2>Source</h2><p><a href="https://github.com/gainratio/assay">github.com/gainratio/assay</a></p><a class="cta" href="https://github.com/gainratio/assay">Read the source</a></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assay — explained scoring for Python and TypeScript</title>
+<meta name="description" content="Turn measurements on different scales into one explained score: every normalized value, weight, and contribution visible. Python and TypeScript, MIT.">
+<link rel="canonical" href="https://open-source.gainratio.com/assay/">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Assay — explained scoring for Python and TypeScript">
+<meta property="og:description" content="Combine measurements on different scales into one score and see every normalized value, weight, and contribution. Open-source Python and TypeScript library, MIT, prerelease.">
+<meta property="og:url" content="https://open-source.gainratio.com/assay/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GainRatio Open Source">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Assay","description":"A Python and TypeScript library that combines measurements on different scales into one score and shows every step of the math.","codeRepository":"https://github.com/gainratio/assay","programmingLanguage":["Python","TypeScript"],"license":"https://github.com/gainratio/assay/blob/main/LICENSE","url":"https://open-source.gainratio.com/assay/"}</script>
+<style>
+:root{--navy:#1f3864;--ink:#1a1a1a;--muted:#4b5565;--line:#d7dfec;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
+*{box-sizing:border-box}
+body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:var(--ink);background:var(--paper)}
+h1{font:600 2.4rem/1.15 Georgia,serif;color:var(--navy);margin:.15rem 0 .4rem}
+h2{color:var(--navy);margin-top:2.2rem;font-size:1.45rem;line-height:1.3}
+h3{color:var(--navy);margin:1.6rem 0 .35rem;font-size:1.05rem}
+p{margin:.75rem 0}
+a{color:var(--accent)}
+ul,ol{padding-left:1.3rem}
+li{margin:.4rem 0}
+code{font:.88em/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--pale);padding:.08em .3em;border-radius:4px}
+pre{background:#fff;border:1px solid var(--line);border-radius:9px;padding:1rem 1.1rem;overflow-x:auto;margin:.9rem 0}
+pre code{background:none;padding:0;font-size:.86rem;line-height:1.55}
+.crumbs{font-size:.9rem;margin:0 0 2rem}
+header{padding:0 0 1.7rem;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 .35rem}
+.promise{font-size:1.2rem;color:#283445;max-width:58ch;margin:.2rem 0 .8rem}
+.meta{font-size:.9rem;color:var(--muted);margin:.2rem 0 0}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
+.cta{display:inline-block;background:var(--navy);color:#fff;padding:.7rem 1.1rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
+.ghost{display:inline-block;border:1px solid var(--line);background:#fff;color:var(--navy);padding:.65rem 1.05rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
+section{padding-top:.2rem}
+.note{border-left:3px solid var(--navy);background:var(--pale);padding:.85rem 1rem;border-radius:0 6px 6px 0;font-size:.94rem}
+footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (max-width:560px){body{margin:2rem auto}h1{font-size:2rem}}
+</style>
+</head>
+<body>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">← GainRatio open source</a></nav>
+<header>
+  <p class="eyebrow">Python · TypeScript · MIT</p>
+  <h1>Assay</h1>
+  <p class="promise">Turn measurements on different scales into one score that shows exactly how it got there.</p>
+  <p class="meta">Prerelease <code>0.5.0.dev6</code> on PyPI and <code>0.5.0-dev.6</code> on npm · Python 3.13+ · Node 22.13+</p>
+  <div class="actions">
+    <a class="cta" href="https://github.com/gainratio/assay">View on GitHub</a>
+    <a class="ghost" href="#quickstart">Quickstart</a>
+  </div>
+</header>
+<main>
+<section aria-labelledby="problem">
+  <h2 id="problem">The problem</h2>
+  <p>Apps rank laptops, vendors, applicants, and software releases. The score usually comes from arithmetic that mixes hours, dollars, and kilograms, where lower is sometimes better. When someone asks why an item got 0.66, the explanation is buried in code, and a second implementation in another language slowly drifts from the first.</p>
+  <p>Assay moves that arithmetic into a declared request: a method, a version label for the formula, and each measurement's scale or coefficient. It validates the request, combines the measurements in declared order, and returns the score with every intermediate number. The Python and TypeScript packages follow the same contract and are checked against shared test cases.</p>
+</section>
+<section aria-labelledby="what">
+  <h2 id="what">What it does</h2>
+  <ul>
+    <li>Normalizes each measurement to 0–1 for <code>weighted_mean</code> and <code>minimum</code>, using its declared minimum, maximum, and <code>higher_is_better</code>/<code>lower_is_better</code> direction; <code>additive</code> keeps raw values.</li>
+    <li>Combines them with exactly three methods: <code>weighted_mean</code> (weights become shares of the total), <code>additive</code> (raw values times nonnegative coefficients, with explicit add/subtract operations and an optional intercept), or <code>minimum</code> (the first weakest normalized row decides).</li>
+    <li>Checks the full request before arithmetic. Unknown fields, duplicate IDs, non-finite numbers, invalid scales or intervals, and method-shape errors are refused with stable <code>assay.*</code> codes; no partial score is returned.</li>
+    <li>Returns every row's raw and normalized values, declared weight, coefficient, and contribution, plus the score, optional propagated interval, method version, and order-preserving <code>inputs_hash</code>.</li>
+    <li>Ships as <code>assay-engine</code> on PyPI (base dependency: Pydantic) and <code>@gainratio/assay</code> on npm (no runtime dependencies), with shared vectors checking that all three methods agree. Optional Python extras: <code>cli</code> adds <code>assay compose</code>/<code>measure</code>/<code>explain</code>; <code>metrics</code> adds scientific calculators.</li>
+  </ul>
+</section>
+<section aria-labelledby="quickstart">
+  <h2 id="quickstart">Quickstart</h2>
+  <p>Python 3.13 or newer. This is the exact prerelease; no stable release exists yet.</p>
+  <pre><code>pip install assay-engine==0.5.0.dev6</code></pre>
+  <p>Score a laptop on battery life (higher is better), price, and weight (lower is better). Battery and price count twice as much as weight.</p>
+  <pre><code>from assay import compose, parse_request
+
+def measure(name, value, worst, best, importance):
+    direction = "higher_is_better" if best &gt; worst else "lower_is_better"
+    scale = {"minimum": min(worst, best), "maximum": max(worst, best),
+             "direction": direction}
+    return {"id": name, "label": name, "value": value, "scale": scale,
+            "interval": None, "weight": importance}
+
+laptop = [measure("battery_hours", 10, worst=0, best=20, importance=2),
+          measure("price_usd", 900, worst=2400, best=400, importance=2),
+          measure("weight_kg", 1.4, worst=3.0, best=1.0, importance=1)]
+request = parse_request({"method": "weighted_mean",
+                         "method_version": "laptop.v1",
+                         "clamp": "reject", "components": laptop})
+result = compose(request)
+print(f"score: {result.score:.2f} out of 1")
+print(result.inputs_hash)</code></pre>
+  <p>Real output from that script:</p>
+  <pre><code>score: 0.66 out of 1
+sha256:e73545373ecea6c81c9e21d70965e29c13a777378cc3e2ad1e917e399766f2c5</code></pre>
+</section>
+<section aria-labelledby="example">
+  <h2 id="example">A real example</h2>
+  <p>The same laptop score in TypeScript returns the same number and fingerprint. Node 22.13 or newer:</p>
+  <pre><code>npm install @gainratio/assay@0.5.0-dev.6</code></pre>
+  <pre><code>import { compose, parseRequest } from "@gainratio/assay";
+
+const measure = (name, value, worst, best, importance) =&gt; ({
+  id: name, label: name, value, interval: null, weight: importance,
+  scale: {
+    minimum: Math.min(worst, best), maximum: Math.max(worst, best),
+    direction: best &gt; worst ? "higher_is_better" : "lower_is_better",
+  },
+});
+const result = compose(parseRequest({
+  method: "weighted_mean", method_version: "laptop.v1", clamp: "reject",
+  components: [
+    measure("battery_hours", 10, 0, 20, 2),
+    measure("price_usd", 900, 2400, 400, 2),
+    measure("weight_kg", 1.4, 3.0, 1.0, 1),
+  ],
+}));
+console.log(`score: ${result.score.toFixed(2)} out of 1`);
+console.log(result.inputs_hash);</code></pre>
+  <p>That prints <code>score: 0.66 out of 1</code> and the same <code>inputs_hash</code> as the Python run.</p>
+  <p>For a larger committed example, build both packages and replay the seven-component Northstar score in a checkout:</p>
+  <pre><code>bash examples/run_composite.sh</code></pre>
+  <pre><code>Northstar weighted score: 0.92
+Parity: Python and TypeScript fields and values match</code></pre>
+  <p>The script builds both packages, installs them outside the checkout, and checks every field and binary64 value against a committed oracle. The request and script are in <a href="https://github.com/gainratio/assay/tree/main/examples">examples/</a>.</p>
+</section>
+<section aria-labelledby="limits">
+  <h2 id="limits">Limits</h2>
+  <ul>
+    <li><strong>It does not decide policy.</strong> Your app chooses measurements, weights, thresholds, bands, hard gates, abstention, and pass or fail; Assay performs only the arithmetic you declared.</li>
+    <li><strong>It checks form, not truth.</strong> It checks that an input is well formed, not that it is true, complete, fresh, or fair.</li>
+    <li><strong>It does not learn.</strong> There is no machine learning; the weights are the ones you wrote.</li>
+    <li><strong>The fingerprint is not evidence.</strong> <code>inputs_hash</code> is a deterministic replay fingerprint, not authentication or tamper evidence, and anyone can compute it. Sealing evidence is the separate Avow project.</li>
+    <li><strong>It is a prerelease.</strong> The API may change before 0.5.0. Python's optional metric calculators are broader than TypeScript's, and complete optional-metric parity is not claimed.</li>
+  </ul>
+  <p>For a tiny formula nobody will ever question, a few lines of your own code is simpler; if people are doing the scoring, use a spreadsheet.</p>
+</section>
+<section aria-labelledby="security">
+  <h2 id="security">Security and data handling</h2>
+  <p>Both packages compute locally. Python's base package has no network, telemetry, subprocess, worker, cache, or file I/O; TypeScript's has no runtime dependencies, network, telemetry, storage, DOM, or worker access. Neither keeps a hidden copy.</p>
+  <p>The CLI is the only core file surface: one caller JSON file up to 1 MiB, one explicit output path, atomic replacement, and no input/output aliasing.</p>
+  <p>Results retain raw values, so saved results need the same care as their source data; you own retention, access, deletion, backup, and logging. <code>inputs_hash</code> is not tamper evidence. Report vulnerabilities through <a href="https://github.com/gainratio/assay/security/advisories/new">GitHub's private advisory flow</a>.</p>
+</section>
+<section aria-labelledby="faq">
+  <h2 id="faq">FAQ</h2>
+  <h3>Is there a stable release?</h3>
+  <p>No. The authorized prerelease pair is <code>assay-engine</code> 0.5.0.dev6 on PyPI and <code>@gainratio/assay</code> 0.5.0-dev.6 on npm. The API may change before 0.5.0; check both registries.</p>
+  <h3>Do Python and TypeScript return the same result?</h3>
+  <p>For the three composition methods, shared vectors check field and component order, JSON scalar kinds, binary64 values, and the exact <code>inputs_hash</code>. That is semantic parity, not byte-identical JSON output from each language's serializer. Complete parity for the optional calculators is not claimed.</p>
+  <h3>What does <code>inputs_hash</code> prove?</h3>
+  <p>It fingerprints the complete validated request, including method, version, order, labels, scales, values, intervals, weights, operations, intercept, and boundary policy. Use it to compare a replay with the original request. It does not authenticate the request or show that nobody changed it.</p>
+  <h3>What happens when a request is invalid?</h3>
+  <p>Assay returns no score. It refuses the request with a stable, value-free <code>assay.*</code> code such as <code>assay.out_of_range</code>; the rejected value is not echoed.</p>
+</section>
+<section aria-labelledby="links">
+  <h2 id="links">Project and related work</h2>
+  <ul>
+    <li><a href="https://github.com/gainratio/assay">GitHub repository</a> — source and issues.</li>
+    <li><a href="https://pypi.org/project/assay-engine/">assay-engine on PyPI</a> and <a href="https://www.npmjs.com/package/@gainratio/assay">@gainratio/assay on npm</a>.</li>
+    <li><a href="/avow/">Avow</a> — seal a record into a signed receipt anyone can check offline.</li>
+    <li><a href="/ci/">CI</a> — shared Dagger modules and fleet audit for the GainRatio repositories.</li>
+  </ul>
+</section>
+</main>
+<footer>
+  <p>Assay is MIT-licensed. Technical documentation: <a href="https://github.com/gainratio/assay/blob/main/docs/ARCHITECTURE.md">Architecture</a>, <a href="https://github.com/gainratio/assay/blob/main/docs/METHODS.md">Methods</a>, <a href="https://github.com/gainratio/assay/blob/main/docs/OPERATIONS.md">Operations</a>, and <a href="https://github.com/gainratio/assay/blob/main/docs/GETTING_STARTED.md">Getting started</a>.</p>
+</footer>
+</body>
+</html>

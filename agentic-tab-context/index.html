@@ -1,1 +1,175 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>agentic-tab-context — GainRatio Open Source</title><meta name="description" content="Let a coding assistant use the browser tab you already have open, with your existing logins."><link rel="canonical" href="https://open-source.gainratio.com/agentic-tab-context/"><meta name="robots" content="index,follow"><meta property="og:title" content="agentic-tab-context — GainRatio Open Source"><meta property="og:description" content="Let a coding assistant use the browser tab you already have open, with your existing logins."><meta property="og:url" content="https://open-source.gainratio.com/agentic-tab-context/"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"agentic-tab-context","description":"Let a coding assistant use the browser tab you already have open, with your existing logins.","codeRepository":"https://github.com/gainratio/agentic-tab-context","programmingLanguage":"TypeScript","url":"https://open-source.gainratio.com/agentic-tab-context/"}</script><style>body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:#1a1a1a;background:#f6f8fb}h1{font:600 2.4rem/1.15 Georgia,serif;color:#1f3864}h2{color:#1f3864;margin-top:2.2rem}a{color:#2e5496}.cta{display:inline-block;margin-top:1.5rem;background:#1f3864;color:white;padding:.75rem 1.1rem;border-radius:8px;text-decoration:none}</style></head><body><p><a href="/">← GainRatio open source</a></p><h1>agentic-tab-context</h1><p>Let a coding assistant use the browser tab you already have open, with your existing logins.</p><h2>Why it exists</h2><p>Built for teams that need their data and decisions to remain verifiable. The implementation, tests, and release notes are public.</p><h2>Source</h2><p><a href="https://github.com/gainratio/agentic-tab-context">github.com/gainratio/agentic-tab-context</a></p><a class="cta" href="https://github.com/gainratio/agentic-tab-context">Read the source</a></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agentic Tab Context — let your assistant use your open tab | GainRatio</title>
+<meta name="description" content="Connect Claude Code, Codex or Antigravity to the browser tab you already have open, with your logins. Local native messaging, MIT licensed, macOS and Linux.">
+<link rel="canonical" href="https://open-source.gainratio.com/agentic-tab-context/">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Agentic Tab Context — let your assistant use your open tab">
+<meta property="og:description" content="Connect Claude Code, Codex or Antigravity to the browser tab you already have open, with your logins.">
+<meta property="og:url" content="https://open-source.gainratio.com/agentic-tab-context/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GainRatio Open Source">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Agentic Tab Context","description":"Connects Claude Code, Codex and Antigravity to an existing browser tab through a local CLI and browser extension, so the assistant can inspect, act on, and read that tab.","codeRepository":"https://github.com/gainratio/agentic-tab-context","programmingLanguage":["TypeScript","JavaScript"],"license":"https://spdx.org/licenses/MIT.html","url":"https://open-source.gainratio.com/agentic-tab-context/"}</script>
+<style>
+:root{--navy:#1f3864;--deep:#152744;--ink:#1a1a1a;--muted:#454545;--line:#d5deeb;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{max-width:780px;margin:0 auto;padding:2.5rem 1.4rem 3rem;background:var(--paper);color:var(--ink);font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--navy)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:3.2rem;font-size:.9rem}
+.brand{color:var(--navy);font-weight:650;text-decoration:none}
+.top nav{display:flex;gap:1.1rem}
+.top nav a{color:var(--muted);text-decoration:none}
+.top nav a:hover{color:var(--navy)}
+.eyebrow{margin:0 0 .55rem;color:var(--accent);font-size:.76rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+h1{font:600 3.1rem/1.05 Georgia,"Times New Roman",serif;letter-spacing:-.02em;color:var(--navy);margin:0 0 .8rem}
+.promise{font-size:1.24rem;line-height:1.55;color:#2c2c2c;max-width:60ch;margin:0}
+.actions{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin-top:1.5rem}
+.cta{display:inline-block;background:var(--navy);color:#fff;padding:.72rem 1.05rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
+.cta:hover{background:var(--deep);color:#fff}
+h2{font:600 1.55rem/1.2 Georgia,"Times New Roman",serif;color:var(--navy);margin:2.8rem 0 .7rem;padding-top:1.8rem;border-top:1px solid var(--line)}
+h3{font:650 1rem/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--navy);margin:1.45rem 0 .2rem}
+p{margin:0 0 1rem}
+ul,ol{padding-left:1.2rem;margin:.3rem 0 1rem}
+li{margin:.45rem 0}
+li::marker{color:var(--accent)}
+pre{background:var(--deep);color:#eef2f8;border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:.8rem 0 1.1rem;font:0.84rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre code{background:none;color:inherit;padding:0;font:inherit}
+code{background:var(--pale);color:var(--navy);padding:.12em .35em;border-radius:4px;font:0.9em/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.faq h3{font-size:1.02rem}
+.faq p{margin-bottom:.4rem}
+.links{list-style:none;padding:0;margin:.4rem 0 1.2rem}
+.links li{padding:.6rem 0;border-bottom:1px solid var(--line);margin:0}
+.links li:last-child{border-bottom:0}
+.links a{font-weight:650}
+footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color:var(--muted);font-size:.84rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (max-width:600px){body{padding-top:1.6rem}h1{font-size:2.4rem}.top{margin-bottom:2.2rem}h2{padding-top:1.4rem;margin-top:2.2rem}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <a class="brand" href="/">← GainRatio open source</a>
+    <nav aria-label="Project links">
+      <a href="#quickstart">Quickstart</a>
+      <a href="https://github.com/gainratio/agentic-tab-context">GitHub ↗</a>
+    </nav>
+  </div>
+  <p class="eyebrow">TypeScript · MIT</p>
+  <h1>Agentic Tab Context</h1>
+  <p class="promise">Give Claude Code, Codex or Antigravity the tab you already have open — your page, your logins, no new browser window.</p>
+  <div class="actions">
+    <a class="cta" href="#quickstart">Install and bind a tab</a>
+  </div>
+</header>
+
+<main>
+  <section aria-labelledby="problem">
+    <h2 id="problem">The problem</h2>
+    <p>Most browser automation starts a fresh browser with no session, no login and no half-finished checkout, so the page you need is out of reach. Copying page text, screenshots and console output into chat is slow and loses what matters.</p>
+    <p>Agentic Tab Context connects your coding assistant to the browser you already use. You share a tab, the assistant runs a local CLI called <code>atc</code>, and the chat stays where it is.</p>
+  </section>
+
+  <section aria-labelledby="what-it-does">
+    <h2 id="what-it-does">What it does</h2>
+    <ul>
+      <li><strong>Binds a tab to a context.</strong> <code>atc tabs</code> lists tabs with stable IDs; <code>atc bind</code> returns a context for later commands.</li>
+      <li><strong>Reads the page as an outline.</strong> <code>atc inspect</code> returns visible headings, links, buttons, fields and dropdown options in YAML style. Password values are omitted.</li>
+      <li><strong>Acts on one exact element.</strong> Element commands take one locator, match only visible elements, and report the match count plus an effect such as <code>url_changed</code>.</li>
+      <li><strong>Shows what the page did.</strong> <code>atc console</code> and <code>atc network</code> return entries with a <code>--since</code> cursor; <code>atc screenshot</code> saves a viewport PNG, with <code>--redact</code> masking password, one-time-code and card fields.</li>
+      <li><strong>Shares tabs as a workspace.</strong> The side panel shares, unshares and locks tabs and sets the active target; <code>atc bindings</code> lists contexts and <code>atc use</code> switches. Managed windows need no share.</li>
+      <li><strong>Fits your assistant.</strong> One JSON line per command, exit 0 only when <code>ok</code> is true. The installer writes skills for Claude Code, Codex and Antigravity.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="quickstart">
+    <h2 id="quickstart">Quickstart</h2>
+    <p>You need macOS or Linux, Git, Node.js 22+ with npm, and Chrome or another Chromium browser; open it once before installing. Windows stops before writing files.</p>
+    <pre><code>git clone https://github.com/gainratio/agentic-tab-context.git
+cd agentic-tab-context
+./install.sh</code></pre>
+    <p>The installer builds the CLI, links <code>atc</code> globally, installs the skill and registers the browser bridge. Keep the clone in place; the CLI reads files inside it.</p>
+    <p>Then load the extension at <code>chrome://extensions</code>: enable <strong>Developer mode</strong> and choose <strong>Load unpacked</strong> for the <code>extension</code> folder. Run <code>atc doctor</code>; <code>extension.connected</code> should list your browser.</p>
+    <p>Share a tab from the side panel, then bind and inspect it:</p>
+    <pre><code>atc bind "localhost"
+atc inspect</code></pre>
+    <p><code>bind</code> creates the context; <code>inspect</code> reads that tab. Your assistant runs these; running them yourself confirms the connection.</p>
+  </section>
+
+  <section aria-labelledby="real-example">
+    <h2 id="real-example">A real example</h2>
+    <p>The workflow this project targets is a local checkout that fails after Pay. Bind the exact page, then read before acting:</p>
+    <pre><code>atc bind --url "http://localhost:3000/checkout"
+atc inspect
+atc click --role button --name "Pay"
+atc console --since 0
+atc network --since 0</code></pre>
+    <p><code>inspect</code> supplies the exact button name <code>click</code> needs. The click reports whether the URL or title changed; an error without navigation appears in console entries and failed requests. Both buffers clear on unwatch, close or navigation.</p>
+    <p>Then a demo signup form, typing only the values you pass and capturing a redacted screenshot.</p>
+    <pre><code>atc bind --title "Signup"
+atc type --label "Email" --value "a@b.co"
+atc select --label "Plan" --value "Pro"
+atc click --role button --name "Create account"
+atc screenshot --redact --out /tmp/signup.png</code></pre>
+    <p>If a click matches several buttons it fails with <code>AMBIGUOUS_TARGET</code>; re-inspect, narrow the locator, or add <code>--nth</code>.</p>
+  </section>
+
+  <section aria-labelledby="limits">
+    <h2 id="limits">Limits</h2>
+    <ul>
+      <li><strong>Install is from a clone.</strong> The npm package is private and no store build is published, so there is no <code>npm install -g</code> or store step; the clone must stay in place.</li>
+      <li><strong>Browser coverage is uneven.</strong> Chromium is tested automatically and Chrome 155 on macOS was tested locally. Brave, Edge and Firefox are untested; Safari is discovery only because it has no stable tab identity. Without the extension on macOS, Chrome, Brave and Edge need Apple Events and cannot take screenshots.</li>
+      <li><strong>Live screenshots are viewport-only.</strong> <code>--full-page</code> returns <code>UNSUPPORTED_ACTION</code> for a live tab.</li>
+      <li><strong>Targeting is strict.</strong> Every element action needs one visible match, iframes are unsupported, and pages under an older page agent may need a reload and rebind.</li>
+      <li><strong>Everything runs locally.</strong> The assistant must be on the same machine as the browser; there is no remote relay.</li>
+      <li><strong>Some state persists.</strong> Contexts live in <code>state.json</code> under <code>ATC_HOME</code> (default <code>~/.atc</code>) with no TTL; <code>atc upload</code> takes a path up to 8 MiB.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="security">
+    <h2 id="security">Security and data handling</h2>
+    <p>The bridge is local. The daemon listens on owner-only Unix sockets under <code>ATC_HOME</code> (mode <code>0600</code>), checks a per-install token and opens no network port. The extension uses native messaging and sends nothing to GainRatio or third parties; there is no tracking.</p>
+    <p>The extension sees the titles and addresses of open tabs and reads page content only while a tab is bound. Password values are omitted from inspection and <code>atc type</code> values are scrubbed from errors. Other page text and logs can still contain secrets; screenshots are unredacted unless <code>--redact</code> is passed. Page content is untrusted and can carry prompt-injection text, so treat it as data, not instructions; your assistant's handling follows its own terms.</p>
+    <p>Screenshots, state and profiles stay under <code>ATC_HOME</code> after extension removal; <code>atc shutdown</code> stops the service.</p>
+  </section>
+
+  <section class="faq" aria-labelledby="faq">
+    <h2 id="faq">FAQ</h2>
+    <h3>Does it use my existing logins?</h3>
+    <p>Yes. It drives the profile you already use, so you log in yourself; <code>atc open chromium</code> starts a separate managed window.</p>
+    <h3>Why does <code>atc bind</code> return <code>TAB_NOT_SHARED</code>?</h3>
+    <p>Extension tabs must be shared from the side panel before binding; <code>bind</code> never grants access. Managed tabs need no share.</p>
+    <h3>Do I need an MCP server or a cloud account?</h3>
+    <p>No. The installer writes skill files and registers the local bridge. Optional tools like Chrome DevTools MCP are separate; this project does not install them.</p>
+    <h3>Which browsers can it actually drive?</h3>
+    <p>Chrome and Chromium with the extension are the tested path; the Limits section lists the untested browsers.</p>
+    <h3>How do I remove it, and what stays behind?</h3>
+    <p>Run <code>atc shutdown</code>, unlink the package, remove the extension, and delete the native-host manifests and skill files from setup output. Keep <code>~/.atc</code> for managed logins and screenshots, or delete it to remove those too.</p>
+  </section>
+
+  <section aria-labelledby="links">
+    <h2 id="links">Source and related</h2>
+    <ul class="links">
+      <li><a href="https://github.com/gainratio/agentic-tab-context">GitHub: gainratio/agentic-tab-context</a> — source, issues, README and full command reference in <code>docs/SPEC.md</code>.</li>
+      <li>No registry or store listing: the npm package is private and a store build is a separate release, so the clone is the install path.</li>
+    </ul>
+    <p>Related hub pages:</p>
+    <ul class="links">
+      <li><a href="/agentic-saga/">agentic-saga</a> — undoable multi-step jobs for AI agents.</li>
+      <li><a href="/agentic-context-service/">agentic-context-service</a> — permissioned, cited context for AI assistants.</li>
+      <li><a href="/privacy-core/">privacy-core</a> — hide card numbers, emails and IDs from AI models, then restore them.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <span>Agentic Tab Context is MIT licensed.</span>
+  <span><a href="https://gainratio.com/">gainratio.com</a> · <a href="https://github.com/gainratio">GitHub</a></span>
+</footer>
+</body>
+</html>

@@ -1,1 +1,163 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AML-Filter — Open Source by GainRatio</title><meta name="description" content="In-browser sanctions and watchlist screening for small compliance teams."><link rel="canonical" href="https://open-source.gainratio.com/aml-filter/"><meta name="robots" content="index,follow"><meta property="og:title" content="AML-Filter — Open Source by GainRatio"><meta property="og:description" content="In-browser sanctions and watchlist screening for small compliance teams."><meta property="og:url" content="https://open-source.gainratio.com/aml-filter/"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AML-Filter","description":"In-browser sanctions and watchlist screening for small compliance teams.","url":"https://aml-filter.com","applicationCategory":"BusinessApplication","operatingSystem":"Web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script><style>body{font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:780px;margin:4rem auto;padding:0 1.4rem;color:#1a1a1a;background:#f6f8fb}h1{font:600 2.4rem/1.15 Georgia,serif;color:#1f3864}a{color:#2e5496}.cta{display:inline-block;margin-top:1.5rem;background:#1f3864;color:white;padding:.75rem 1.1rem;border-radius:8px;text-decoration:none}</style></head><body><p><a href="/">← GainRatio open source</a></p><h1>AML-Filter</h1><p>In-browser sanctions and watchlist screening for small compliance teams.</p><p>Signed watchlists, explained match scores, no name upload.</p><a class="cta" href="https://aml-filter.com">Open AML-Filter</a> · <a href="https://github.com/gainratio/aml-filter">Source</a></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AML-Filter — In-browser sanctions screening</title>
+<meta name="description" content="Open-source sanctions screening against OFAC, EU, UN and the UK asset-freeze list, verified in the browser. Explainable scores, local customer records.">
+<link rel="canonical" href="https://open-source.gainratio.com/aml-filter/">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AML-Filter — In-browser sanctions screening">
+<meta property="og:description" content="Open-source sanctions screening against OFAC, EU, UN and the UK asset-freeze list, verified in the browser. Explainable scores, local customer records.">
+<meta property="og:url" content="https://open-source.gainratio.com/aml-filter/">
+<meta property="og:site_name" content="GainRatio Open Source">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AML-Filter","description":"Free, open-source sanctions screening against the US OFAC SDN, EU, UN and UK asset-freeze list. Signed watchlists are verified in the browser, match scores are explained, and customer records stay on the device.","codeRepository":"https://github.com/gainratio/aml-filter","programmingLanguage":"TypeScript","license":"https://github.com/gainratio/aml-filter/blob/main/LICENSE","url":"https://aml-filter.com/","applicationCategory":"BusinessApplication","operatingSystem":"Web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<style>
+:root{--navy:#1f3864;--deep:#152744;--ink:#1a1a1a;--muted:#4a4a4a;--line:#d8e0ec;--pale:#eef2f8;--paper:#f6f8fb;--accent:#2e5496;--serif:Georgia,"Iowan Old Style","Times New Roman",serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font:16px/1.65 var(--sans);max-width:780px;margin:4rem auto;padding:0 1.4rem;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+header{padding-bottom:2rem;border-bottom:1px solid var(--line);margin-bottom:.4rem}
+p{margin:.85rem 0}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--navy)}
+a:focus-visible,.btn:focus-visible{outline:3px solid #7a96c4;outline-offset:2px;border-radius:3px}
+.skip{position:absolute;left:-9999px;top:auto}
+.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem .8rem;z-index:10}
+.back{font-size:.9rem;margin:0 0 2.4rem}
+.back a{text-decoration:none}
+.eyebrow{font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 .7rem}
+h1{font:600 clamp(2.15rem,5vw,2.8rem)/1.15 var(--serif);letter-spacing:-.02em;color:var(--navy);margin:0 0 .8rem}
+.promise{font-size:1.18rem;line-height:1.55;color:#2b2b2b;max-width:60ch;margin:0 0 1rem}
+.meta{font-size:.9rem;color:var(--muted);margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.5rem}
+.btn{display:inline-flex;align-items:center;border-radius:8px;padding:.65rem 1rem;font-weight:600;font-size:.94rem;text-decoration:none;border:1px solid transparent}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:var(--deep);color:#fff}
+.btn-secondary{background:#fff;color:var(--navy);border-color:var(--line)}
+.btn-secondary:hover{border-color:var(--accent);color:var(--navy)}
+main{padding-top:.4rem}
+h2{font:600 1.5rem/1.25 var(--serif);color:var(--navy);letter-spacing:-.01em;margin:2.6rem 0 .5rem}
+h3{font:600 1.02rem/1.4 var(--sans);color:var(--navy);margin:1.4rem 0 .2rem}
+ul{margin:.7rem 0;padding-left:1.35rem}
+li{margin:.45rem 0}
+code{font:.88em/1.5 var(--mono);background:var(--pale);padding:.12rem .32rem;border-radius:4px;overflow-wrap:anywhere}
+pre{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:1rem 0;line-height:1.55}
+pre code{background:none;padding:0;font-size:.84rem;white-space:pre}
+footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.2rem;font-size:.85rem;color:var(--muted)}
+@media (max-width:620px){body{margin:2rem auto}h1{font-size:2.1rem}header{padding-bottom:1.6rem}.back{margin-bottom:1.8rem}h2{margin-top:2.2rem}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <p class="back"><a href="/">← GainRatio open source</a></p>
+  <p class="eyebrow">Free and open source · TypeScript · MIT</p>
+  <h1>AML-Filter</h1>
+  <p class="promise">Screen customer names against four sanctions lists in your browser, see why each match scored, and keep the customer records on your machine.</p>
+  <p class="meta">Repo v4.0.0 · <a href="https://aml-filter.com/">aml-filter.com</a> · <a href="https://github.com/gainratio/aml-filter">GitHub</a></p>
+  <div class="actions">
+    <a class="btn btn-primary" href="https://aml-filter.com/screen">Open the screener</a>
+    <a class="btn btn-secondary" href="#quickstart">Quickstart</a>
+  </div>
+</header>
+
+<main id="main">
+<section aria-labelledby="problem">
+<h2 id="problem">The problem</h2>
+<p>Businesses that have to know their customer must check names against sanctions lists. Large firms buy a screening vendor; small ones search government sites by hand and keep notes in a spreadsheet. The vendor costs money and receives a copy of the customer list. The manual route is slow, and a name spelled a little differently is easy to miss.</p>
+<p>AML-Filter is a static web app that does the check in the browser tab. It downloads a signed copy of the public lists, matches names locally, and shows the evidence behind every result. There is no account, screening server, or upload of the names you type.</p>
+</section>
+
+<section aria-labelledby="what-it-does">
+<h2 id="what-it-does">What it does</h2>
+<ul>
+<li>Screens against the US OFAC SDN, EU consolidated, UN consolidated, and UK asset-freeze list, and names the source list on every result.</li>
+<li>Matches by meaning with an in-tab MiniLM embedding, by spelling and phonetic similarity, and by aliases. Date of birth and country are optional signals.</li>
+<li>Returns a 0–1 score with the five signal contributions (<code>name_vector</code>, <code>name_sequence</code>, <code>alias_match</code>, <code>dob_match</code>, <code>country_match</code>), a plain-language explanation, and STRONG/POSSIBLE/WEAK tiers. A person makes the call.</li>
+<li>Verifies the watchlist before screening: an Ed25519-signed pointer, SHA-256 content hashes, and a pinned same-origin key. A bad signature or hash aborts the load, whether fetched or read from cache.</li>
+<li>Adds a local KYC workflow: import customers from CSV, XLS, or XLSX, screen them on onboarding, record decisions in an append-only event trail, and re-screen when a list or customer changes.</li>
+</ul>
+</section>
+
+<section aria-labelledby="quickstart">
+<h2 id="quickstart">Quickstart</h2>
+<p>You need Node 22.13.0 exactly (see <code>frontend/.nvmrc</code>) and pnpm 11.5.0, which <code>corepack</code> provides. Install and run from <code>frontend/</code>; there is no root <code>package.json</code>.</p>
+<pre><code>git clone https://github.com/gainratio/aml-filter.git
+cd aml-filter/frontend
+corepack enable
+pnpm install
+pnpm --filter aml-filter-app dev</code></pre>
+<p>Open <code>http://localhost:5173/screen</code>. Use <code>localhost</code>, not a LAN address: the signature check needs a secure context.</p>
+<p>Minimal example: enter <code>fakovic</code>. The committed demo list returns one match, <strong>Ivan Fakovich</strong>, score <strong>0.547</strong>. That list contains eight made-up people, not real sanctions data. Use the hosted app for the four real lists.</p>
+</section>
+
+<section aria-labelledby="example">
+<h2 id="example">A real example</h2>
+<p>On the <a href="https://aml-filter.com/screen">live app</a>, screen <code>Vladimir Putin</code>. The README records the top result as <strong>Putin Vladimir Vladimirovich</strong> on the US OFAC SDN list at <strong>0.952</strong>. Open <strong>Why this score?</strong> to see the signals that drove it: the names are close in meaning and spelling, and <code>PUTIN, Vladimir</code> is a listed alias.</p>
+<p>To inspect the data the live app is running on, fetch the signed pointer and the pinned key:</p>
+<pre><code>curl -s https://aml-filter.com/bundle/origin/latest
+curl -s https://aml-filter.com/public.key | od -An -tx1</code></pre>
+<p>The pointer carries <code>version</code>, <code>sequence</code>, <code>manifest_hash</code>, and <code>signature</code>. The key bytes should match <code>frontend/app/public/public.key</code>. The app trusts that pin, not a key carried inside the bundle.</p>
+</section>
+
+<section aria-labelledby="limits">
+<h2 id="limits">Limits</h2>
+<ul>
+<li><strong>Not a compliance product or legal advice.</strong> A qualified person must confirm each possible match against the official source; a no-hit result is not a safe harbour.</li>
+<li><strong>Sanctions lists only.</strong> No politically exposed persons, news searches, or company ownership.</li>
+<li><strong>One person, one browser.</strong> There is no shared team queue and no cross-device sync. Clearing site data deletes the customers and decisions; the XLSX export covers the customer table only.</li>
+<li><strong>Online only.</strong> Verified chunks are cached for repeat visits, but there is no service worker and no offline mode.</li>
+<li><strong>Close misspellings, not wild ones.</strong> <code>Vladimir Poutine</code> still finds Putin, but as the second result. Read the whole list, not just the top line.</li>
+<li><strong>Browser coverage.</strong> Current desktop Chrome, Edge, Firefox, and Safari 17+; phones use a lower-memory mode.</li>
+</ul>
+</section>
+
+<section aria-labelledby="security">
+<h2 id="security">Security and data handling</h2>
+<ul>
+<li><strong>Pinned trust root.</strong> The Ed25519 public key is served same-origin and pinned in the build. Ed25519 verifies the signed pointer; SHA-256 verifies the content-addressed manifest and every chunk before use. Cached bytes are re-checked, and a mismatch aborts the load.</li>
+<li><strong>Local customer data.</strong> Names, dates of birth, customer records, and decisions stay on the device, in SQLite-WASM over OPFS. There is no account, server-side screening endpoint, analytics script, third-party font, or error beacon.</li>
+<li><strong>One network destination.</strong> The app fetches its own assets and the public list bundle. Downloading public sanctions data reveals nothing about who you are screening.</li>
+<li><strong>Not tamper-evidence.</strong> The review history is append-only during a customer's lifetime, enforced by SQLite triggers, but the database is a local file with no hash chain; an operator can drop the triggers. Use a centrally retained record if your process requires one.</li>
+<li><strong>Key history.</strong> <a href="https://github.com/gainratio/aml-filter/blob/main/SECURITY.md">SECURITY.md</a> records a 2026 production signing-seed exposure and rotation; do not roll production back to a build from before 2026-07-21.</li>
+</ul>
+</section>
+
+<section aria-labelledby="faq">
+<h2 id="faq">FAQ</h2>
+
+<h3>Is AML-Filter a compliance product?</h3>
+<p>No. It is open-source screening software, not legal advice or a certified compliance product. It can be one control in a process; a qualified person must still confirm matches, and your own regulatory obligations still apply.</p>
+
+<h3>Does it work offline?</h3>
+<p>No. There is no service worker, so the tab needs the network to load. The verified bundle is cached in OPFS and re-verified on each load, so repeat visits download only changed chunks.</p>
+
+<h3>Where do customer records live?</h3>
+<p>In the browser's origin-private file system, in a SQLite-WASM database. They are not uploaded and do not sync to another browser or device. Clearing site data deletes them; the spreadsheet export contains the customer table, not the match decisions.</p>
+
+<h3>How fresh are the sanctions lists?</h3>
+<p>The publisher rebuilds the lists daily. While the app is open it checks for a newer signed bundle every 30 minutes, or on demand from the Customers page. It shows the version and last update, and reports a source it could not download instead of pretending the list is current.</p>
+
+<h3>What does a match score mean?</h3>
+<p>A 0–1 similarity score, where higher means closer. It is not a pass/fail result. It shows which signals fired and tiers matches STRONG, POSSIBLE, or WEAK. Read the reasons and other results, not just the top line.</p>
+</section>
+
+<section aria-labelledby="links">
+<h2 id="links">Source and related projects</h2>
+<ul>
+<li><a href="https://github.com/gainratio/aml-filter">GitHub repository</a> — source, issues, MIT license, and security policy.</li>
+<li><a href="https://aml-filter.com/screen">Live screener</a> — the hosted app at aml-filter.com.</li>
+<li><a href="https://github.com/gainratio/aml-filter#readme">README and docs</a> — getting started, architecture, watchlist format, deploy, and recall.</li>
+</ul>
+<p>Related: <a href="/assay/">Assay</a> composes the explainable score; <a href="/avow/">Avow</a> seals each score into a signed receipt; <a href="/edgeproc-browser/">@gainratio/browser</a> is the signed-bundle runtime underneath.</p>
+</section>
+</main>
+
+<footer>
+<p>© 2026 GainRatio · MIT · <a href="https://github.com/gainratio/aml-filter">GitHub</a> · <a href="https://aml-filter.com/trust/">Trust and verification</a></p>
+</footer>
+</body>
+</html>
