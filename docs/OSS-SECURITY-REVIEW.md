@@ -13,7 +13,7 @@ Scope: all 14 public repositories under `github.com/gainratio`, the hub at `open
 | Open high/critical dependency alerts | **0** across all repos |
 | Open low dependency alerts | 1: `deepmerge` in EdgeReco’s build-only Workbox/PWA chain; no patched release |
 | CodeQL / SARIF analyses | Every repo has at least one analysis |
-| Open code-scanning alerts | EdgeReco had 2 high `js/polynomial-redos`; fix merged; one stale alert remains until the main-branch SARIF rescan completes |
+| Open code-scanning alerts | EdgeReco had 2 high `js/polynomial-redos`; fix merged. One alert is stale at the pre-fix commit until the main-branch SARIF rescan completes. |
 | Workflow default permissions | `read` and `can_approve_pull_request_reviews=false` on all 14 repos |
 | Third-party actions | Pinned to commit SHAs in all workflows that use them, including the new docs/hub workflows; `persist-credentials: false` |
 | Publish workflows | OIDC, default-branch/workflow-dispatch gated, no stored registry tokens |
@@ -58,21 +58,15 @@ Fix:
 - **Cloudflare Bot Fight Mode** is off on the GainRatio zone to preserve crawler/API access. The Cloudflare managed ruleset, WAF, proxy, TLS/HSTS, and rate protections remain the primary controls. Revisit with hostname-scoped rules rather than a global toggle.
 - **EdgeReco `deepmerge`**: one low advisory in a build-only Workbox/PWA dependency; no patched release. It is not shipped in the browser runtime.
 - **AlmaMesh Nightly E2E**: external OpenRouter test timed out on one night after passing on the same SHA the two prior nights. The job rerun is pending; this is a live-model test reliability issue, not a deterministic app failure.
-- **AML Dependabot PR**: the dependency update is valid; a pre-existing concurrent install-key test is being made deterministic before merge.
+- **AML Dependabot PR #255**: the dependency update is valid; a deterministic ordering fix for the concurrent install-key test is pushed and CI is running.
 - **ATC security residuals**: new-client approval and optional per-origin permissions remain open, as recorded in the ATC security status.
-
-## Notes on remaining failures
-
-- **AlmaMesh Nightly E2E**: the dual-voice spec timed out waiting for `reading-section` after a live OpenRouter call. The same commit passed the two prior nights, so this is an external-model test flake, not a deterministic app regression. The rerun is in progress.
-- **AML Dependabot PR**: the dependency update itself is valid; a pre-existing concurrent `InstallKeys.load` test is flaky under coverage. The test passes locally. The PR is not merged until CI is green.
-- **ATC hardening residuals**: optional per-origin host permissions and a new-client approval UI beyond the per-install token remain open in the ATC security status document.
 
 ## Verification
 
 ```text
 14/14 repos: branch protection, secret scanning, push protection, Dependabot security updates
 0 high/critical dependency alerts
-0 open code-scanning alerts after EdgeReco rescan (pending)
+EdgeReco: 1 stale code alert, rescan pending; no other open code alerts
 4/4 sites: Googlebot 200, HSTS, CSP, X-Frame-Options DENY
 EdgeReco: 307 tests passed
 Avow: clean-venv keygen/sign/verify passed; tamper exits 2
