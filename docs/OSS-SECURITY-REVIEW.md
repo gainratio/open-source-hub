@@ -15,10 +15,12 @@ Scope: all 14 public repositories under `github.com/gainratio`, the hub at `open
 | CodeQL / SARIF analyses | Every repo has at least one analysis |
 | Open code-scanning alerts | EdgeReco had 2 high `js/polynomial-redos`; fix merged; one stale alert remains until the main-branch SARIF rescan completes |
 | Workflow default permissions | `read` and `can_approve_pull_request_reviews=false` on all 14 repos |
-| Third-party actions | Pinned to commit SHAs in workflows that use them |
+| Third-party actions | Pinned to commit SHAs in all workflows that use them, including the new docs/hub workflows; `persist-credentials: false` |
 | Publish workflows | OIDC, default-branch/workflow-dispatch gated, no stored registry tokens |
 | `pull_request_target` | None found |
 | SECURITY.md and LICENSE | Present in all source repos, the hub, and the three docs repos |
+| Cloudflare Web Analytics | RUM injection disabled to preserve strict CSP and the “no analytics” docs claim |
+| Email obfuscation | Decoder is same-origin only; no third-party script |
 | Private vulnerability reporting | Enabled on all 18 repos |
 | Docs/hub branch protection | `check` required on `main` |
 
