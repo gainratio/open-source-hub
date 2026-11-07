@@ -47,6 +47,10 @@ python3 -m http.server 8765
 - The verification section describes properties the code enforces; keep it in
   sync with `edgeproc-browser` and `aml-filter` docs.
 
+## Security
+
+See [OSS security review](docs/OSS-SECURITY-REVIEW.md) for repository controls, dependency alerts, workflow permissions, site headers, and residual risks.
+
 ## SEO health check
 
 `npm run health` verifies the production portfolio end to end:
