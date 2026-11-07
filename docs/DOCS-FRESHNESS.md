@@ -27,9 +27,12 @@ Scope: all 14 canonical hub pages, the seven library GitHub homepages, and the f
 - Added a problem statement, capabilities, real quickstart, examples, limits, security/data handling where documented, FAQ, and internal links.
 - Added valid `SoftwareSourceCode` / `SoftwareApplication` JSON-LD with current versions.
 - Updated Avow’s install pin from `0.5.1` to the supported `0.5.3`.
-- Pointed seven library GitHub homepages at their canonical hub pages.
+- Pointed seven library GitHub homepages at their canonical hub pages; the three dedicated docs projects now point GitHub at their own sites.
 - Added a build gate: `npm run check:pages` fails on thin pages, missing metadata/JSON-LD/canonical, missing sitemap entries, duplicate titles/descriptions, or broken internal links.
-- Published the Avow dedicated docs site at `https://avow.gainratio.com/` with docs, examples, security, changelog, and a browser-side receipt verifier.
+- Published three dedicated docs sites:
+  - `https://avow.gainratio.com/` — docs, examples, security, changelog, and a browser-side receipt verifier.
+  - `https://privacy.gainratio.com/` — docs, examples, security, limits; no fake demo.
+  - `https://browser.gainratio.com/` — docs, examples, security, limits; no fake demo.
 
 ## Checks
 
@@ -37,8 +40,10 @@ Scope: all 14 canonical hub pages, the seven library GitHub homepages, and the f
 - `node scripts/seo-health.mjs` — all five hosts pass; hub sitemap 15/15 URLs.
 - Hub: 14/14 pages return 200 with unique titles, one H1, canonical, JSON-LD, and no mobile overflow.
 - Avow site: `node scripts/check.mjs` — 5/5 pages pass; browser verifier confirms a real receipt and rejects a tampered one.
-- GSC: hub sitemap **Success, 15 pages**; Avow sitemap submitted.
-- IndexNow: hub 15 URLs and Avow 5 URLs submitted.
+- privacy-core site: `node scripts/check.mjs` — 4/4 pages + 404 pass; strict per-page CSP.
+- browser site: `node scripts/check.mjs` — 4/4 pages + 404 pass; strict per-page CSP.
+- GSC: hub sitemap **Success, 15 pages**; Avow, privacy-core, and browser sitemaps **Success**.
+- IndexNow: hub 15, Avow 5, privacy-core 4, and browser 4 URLs submitted.
 
 ## Known source caveats
 
