@@ -59,7 +59,7 @@ Fix:
 - **AlmaMesh loopback CSP**: the production CSP intentionally allows `connect-src http://localhost:*` and `http://127.0.0.1:*` so a user can point the app at a local OpenAI-compatible model. This is a documented product capability; it is the only broad CSP allowance beyond the declared remote providers.
 - **EdgeReco `deepmerge`**: one low advisory in a build-only Workbox/PWA dependency; no patched release. It is not shipped in the browser runtime.
 - **AlmaMesh Nightly E2E**: the original run timed out on an external OpenRouter call; the rerun completed **success**.
-- **AML Dependabot PR #255**: merged after the clean Dagger run passed (19m18s), along with a deterministic ordering fix for the concurrent install-key test. Main-branch Dagger/deploy is running.
+- **AML Dependabot PR #255**: merged after the clean Dagger run passed (19m18s), along with a deterministic ordering fix for the concurrent install-key test. Main-branch Dagger passed; production deploy is running.
 - **ATC security residuals**: new-client approval and optional per-origin permissions remain open, as recorded in the ATC security status.
 
 ## Verification
