@@ -39,9 +39,10 @@ pre code{background:none;padding:0;font-size:.82rem;line-height:1.55}
 .cta.secondary:hover{border-color:var(--accent);color:var(--navy);background:#fff}
 footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.2rem;color:var(--muted);font-size:.88rem}
 @media(max-width:520px){body{padding:2rem 1.1rem 3rem}h1{font-size:2rem}pre{font-size:.82rem}}
-</style>
+.skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem .8rem;z-index:10;border-radius:6px}</style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header>
 <p class="back"><a href="/">← GainRatio open source</a></p>
 <p class="eyebrow">TypeScript library · on-device</p>
@@ -50,7 +51,7 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.2rem;color
 <p class="meta">Node 22.13+ and browsers (tested in Chromium) · MIT · v0.3.2</p>
 </header>
 
-<main>
+<main id="main">
 <p class="meta"><strong>Dedicated docs:</strong> <a href="https://privacy.gainratio.com/">privacy-core docs site</a> — install, API, examples, limits, and security.</p>
 <section>
 <h2>The problem</h2>

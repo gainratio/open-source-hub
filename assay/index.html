@@ -40,9 +40,10 @@ section{padding-top:.2rem}
 footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
 footer a{color:var(--accent)}
 @media (max-width:560px){body{margin:2rem auto}h1{font-size:2rem}}
-</style>
+.skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem .8rem;z-index:10;border-radius:6px}</style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">← GainRatio open source</a></nav>
 <header>
   <p class="eyebrow">Python · TypeScript · MIT</p>
@@ -54,7 +55,7 @@ footer a{color:var(--accent)}
     <a class="ghost" href="#quickstart">Quickstart</a>
   </div>
 </header>
-<main>
+<main id="main">
 <section aria-labelledby="problem">
   <h2 id="problem">The problem</h2>
   <p>Apps rank laptops, vendors, applicants, and software releases. The score usually comes from arithmetic that mixes hours, dollars, and kilograms, where lower is sometimes better. When someone asks why an item got 0.66, the explanation is buried in code, and a second implementation in another language slowly drifts from the first.</p>

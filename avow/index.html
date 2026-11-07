@@ -7,6 +7,7 @@
 <meta name="description" content="Avow turns a JSON record into a signed receipt that anyone can verify offline against a public key you pin. Python and TypeScript, MIT licensed.">
 <link rel="canonical" href="https://open-source.gainratio.com/avow/">
 <meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Avow — signed JSON receipts that verify offline">
 <meta property="og:description" content="Avow turns a JSON record into a signed receipt that anyone can verify offline against a public key you pin. Python and TypeScript, MIT licensed.">
 <meta property="og:url" content="https://open-source.gainratio.com/avow/">
@@ -47,9 +48,10 @@ code{background:var(--pale);color:var(--navy);padding:.12em .35em;border-radius:
 footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color:var(--muted);font-size:.84rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media (max-width:600px){body{padding-top:1.6rem}h1{font-size:2.4rem}.top{margin-bottom:2.2rem}h2{padding-top:1.4rem;margin-top:2.2rem}}
-</style>
+.skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem .8rem;z-index:10;border-radius:6px}</style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="top">
     <a class="brand" href="/">← GainRatio open source</a>
@@ -66,7 +68,7 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color
   </div>
 </header>
 
-<main>
+<main id="main">
 <p class="meta"><strong>Dedicated docs:</strong> <a href="https://avow.gainratio.com/">Avow docs site</a> — install, API, examples, limits, and security.</p>
   <section aria-labelledby="problem">
     <h2 id="problem">The problem</h2>

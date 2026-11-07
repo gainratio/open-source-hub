@@ -49,9 +49,10 @@ code{background:var(--pale);color:var(--navy);padding:.12em .35em;border-radius:
 footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color:var(--muted);font-size:.84rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media (max-width:600px){body{padding-top:1.6rem}h1{font-size:2.4rem}.top{margin-bottom:2.2rem}h2{padding-top:1.4rem;margin-top:2.2rem}}
-</style>
+.skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem .8rem;z-index:10;border-radius:6px}</style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="top">
     <a class="brand" href="/">← GainRatio open source</a>
@@ -68,7 +69,7 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color
   </div>
 </header>
 
-<main>
+<main id="main">
   <section aria-labelledby="problem">
     <h2 id="problem">The problem</h2>
     <p>Most browser automation starts a fresh browser with no session, no login and no half-finished checkout, so the page you need is out of reach. Copying page text, screenshots and console output into chat is slow and loses what matters.</p>

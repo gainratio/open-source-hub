@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — GainRatio Open Source</title>
+<meta name="description" content="That page is not here. Return to the GainRatio open-source hub for browser apps, libraries, and tools.">
+<meta name="robots" content="noindex,follow">
+<style>
+  :root {
+    --navy: #1f3864;
+    --accent: #2e5496;
+    --ink: #1a1a1a;
+    --muted: #5a5a5a;
+    --line: #d9e2f3;
+    --paper: #f6f8fb;
+    --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 16px/1.6 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  a:hover { color: var(--navy); }
+  a:focus-visible, .btn:focus-visible { outline: 3px solid #7a96c4; outline-offset: 2px; border-radius: 3px; }
+  .skip { position: absolute; left: -9999px; top: auto; }
+  .skip:focus { left: 1rem; top: 1rem; background: #fff; padding: .6rem .8rem; z-index: 10; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  header {
+    background: var(--navy);
+    color: #fff;
+    border-bottom: 3px solid var(--accent);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    color: #fff;
+    text-decoration: none;
+    font: 700 18px/1 var(--serif);
+    letter-spacing: .02em;
+  }
+  .brand span {
+    font: 400 13px/1 var(--sans);
+    color: #c5d4ee;
+    margin-left: 10px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 22px; font-size: 14px; flex-wrap: wrap; }
+  .nav-links a { color: #dbe5f6; text-decoration: none; }
+  .nav-links a:hover { color: #fff; text-decoration: underline; }
+  .hero { padding: 64px 0 72px; }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 12px;
+  }
+  h1 {
+    font: 700 clamp(28px, 4.2vw, 44px)/1.18 var(--serif);
+    color: var(--navy);
+    margin: 0 0 16px;
+  }
+  .lede {
+    font-size: 18px;
+    color: #2b2b2b;
+    max-width: 62ch;
+    margin: 0 0 24px;
+  }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block;
+    padding: 9px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--navy);
+  }
+  .btn.primary { background: var(--navy); color: #fff; }
+  .btn.primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.ghost { background: #fff; color: var(--navy); border-color: var(--line); }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+  footer {
+    margin-top: 64px;
+    padding: 28px 0 44px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .foot-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="https://gainratio.com/" aria-label="GainRatio home">
+      GainRatio <span>Open Source</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/#applications">Browser Apps</a>
+      <a href="/#libraries">Libraries</a>
+      <a href="https://github.com/gainratio" rel="noopener">GitHub</a>
+      <a href="https://gainratio.com/">gainratio.com</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">404 · Page not found</p>
+      <h1>That page is not here.</h1>
+      <p class="lede">The URL you requested does not match an application or library page on the GainRatio open-source hub.</p>
+      <div class="actions">
+        <a class="btn primary" href="/">Open Source Hub</a>
+        <a class="btn ghost" href="/#applications">Browser Apps</a>
+        <a class="btn ghost" href="/#libraries">Libraries and Tools</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <div>© 2026 GainRatio. Open-source repositories are licensed under MIT or Apache-2.0; see each repo's <code>LICENSE</code>.</div>
+    <div>
+      <a href="https://gainratio.com/">gainratio.com</a> ·
+      <a href="https://github.com/gainratio" rel="noopener">github.com/gainratio</a> ·
+      <a href="mailto:harish@gainratio.com">harish@gainratio.com</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

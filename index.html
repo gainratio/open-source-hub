@@ -6,6 +6,11 @@
 <title>Open source — GainRatio</title>
 <meta name="description" content="Local-first software and libraries that verify what they load: signed sanctions screening, on-device recommendations, and a browser runtime for provably yours data.">
 <link rel="canonical" href="https://open-source.gainratio.com/">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Open source — GainRatio">
+<meta property="og:description" content="Local-first software and libraries that verify what they load: signed sanctions screening, on-device recommendations, and a browser runtime for provably yours data.">
+<meta property="og:url" content="https://open-source.gainratio.com/">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"GainRatio","url":"https://gainratio.com/","sameAs":["https://github.com/gainratio"]},{"@type":"CollectionPage","name":"GainRatio Open Source","url":"https://open-source.gainratio.com/","hasPart":[{"@type":"SoftwareSourceCode","name":"AML-Filter","url":"https://open-source.gainratio.com/aml-filter/"},{"@type":"SoftwareSourceCode","name":"EdgeReco","url":"https://open-source.gainratio.com/edge-reco/"},{"@type":"SoftwareSourceCode","name":"AlmaMesh","url":"https://open-source.gainratio.com/almamesh/"},{"@type":"SoftwareSourceCode","name":"edgeproc-browser","url":"https://open-source.gainratio.com/edgeproc-browser/"},{"@type":"SoftwareSourceCode","name":"edge-proc","url":"https://open-source.gainratio.com/edge-proc/"},{"@type":"SoftwareSourceCode","name":"edgeproc-core","url":"https://open-source.gainratio.com/edgeproc-core/"},{"@type":"SoftwareSourceCode","name":"avow","url":"https://open-source.gainratio.com/avow/"},{"@type":"SoftwareSourceCode","name":"privacy-core","url":"https://open-source.gainratio.com/privacy-core/"},{"@type":"SoftwareSourceCode","name":"errors","url":"https://open-source.gainratio.com/errors/"},{"@type":"SoftwareSourceCode","name":"assay","url":"https://open-source.gainratio.com/assay/"},{"@type":"SoftwareSourceCode","name":"agentic-tab-context","url":"https://open-source.gainratio.com/agentic-tab-context/"},{"@type":"SoftwareSourceCode","name":"agentic-context-service","url":"https://open-source.gainratio.com/agentic-context-service/"},{"@type":"SoftwareSourceCode","name":"agentic-saga","url":"https://open-source.gainratio.com/agentic-saga/"},{"@type":"SoftwareSourceCode","name":"ci","url":"https://open-source.gainratio.com/ci/"}]}]}</script>
 <style>
 :root{
@@ -19,6 +24,8 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
 a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
 a:hover{color:var(--navy)}
+.skip{position:absolute;left:-9999px;top:auto}
+.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem .8rem;z-index:10;border-radius:6px}
 .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
 header{border-bottom:1px solid var(--line);background:rgba(246,248,251,.92);position:sticky;top:0;z-index:5;backdrop-filter:blur(8px)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:68px}
@@ -89,6 +96,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 42px;color:var(--muted);f
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are these projects open source?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every project listed here is public on GitHub under the GainRatio organization."}},{"@type":"Question","name":"Can I use them commercially?","acceptedAnswer":{"@type":"Answer","text":"Most are MIT-licensed. Check each repository's license before redistribution."}},{"@type":"Question","name":"Where do I report a security issue?","acceptedAnswer":{"@type":"Answer","text":"Use the security policy in the relevant repository; do not open a public issue for an undisclosed vulnerability."}}]}</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="wrap nav">
     <a class="brand" href="https://gainratio.com/" aria-label="GainRatio home">
@@ -104,7 +112,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 42px;color:var(--muted);f
   </div>
 </header>
 
-<main>
+<main id="main">
   <div class="hero">
     <div class="wrap hero-grid">
       <div>

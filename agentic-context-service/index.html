@@ -49,9 +49,10 @@ footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);font-
 footer a{color:var(--accent)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media (max-width:560px){body{margin:2rem auto}h1{font-size:2rem}h2{padding-top:1.4rem;margin-top:2.3rem}}
-</style>
+.skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem .8rem;z-index:10;border-radius:6px}</style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">← GainRatio open source</a></nav>
 <header>
   <p class="eyebrow">Open source · Python 3.13+ · MIT · Beta 0.1.0</p>
@@ -63,7 +64,7 @@ footer a{color:var(--accent)}
   </div>
 </header>
 
-<main>
+<main id="main">
 <section aria-labelledby="problem">
   <h2 id="problem">The problem</h2>
   <p>A company with several AI assistants usually connects each one to its databases separately. Every connection re-implements who may see what. When an assistant quotes a price or a policy, nobody can tell which record it came from or how old it was.</p>

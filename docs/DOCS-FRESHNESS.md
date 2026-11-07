@@ -37,13 +37,13 @@ Scope: all 14 canonical hub pages, the seven library GitHub homepages, and the f
 
 ## Checks
 
-- `node scripts/check-pages.mjs` — 14/14 pages pass.
-- `node scripts/seo-health.mjs` — all five hosts pass; hub sitemap 15/15 URLs.
-- Hub: 14/14 pages return 200 with unique titles, one H1, canonical, JSON-LD, and no mobile overflow.
-- Avow site: `node scripts/check.mjs` — 5/5 pages pass; browser verifier confirms a real receipt and rejects a tampered one.
+- `node scripts/check-pages.mjs` — root `index.html`, `404.html`, and 14/14 project pages pass, including `dist/` public-artifact allowlist verification.
+- `node scripts/seo-health.mjs` — all eight hosts pass (including `avow.gainratio.com`, `privacy.gainratio.com`, and `browser.gainratio.com`, plus HTTP 404 verification on unknown routes); hub sitemap 15/15 URLs.
+- Hub: 14/14 pages return 200 with unique titles, one H1, canonical, JSON-LD, skip links, and no mobile overflow; unknown routes return HTTP 404.
+- Avow site: `npm run build && npm run check` — 5/5 pages + `404.html` pass; Node WebCrypto + browser verifier confirm a real receipt and reject a tampered or malformed one.
 - Avow documented install flow, executed in a clean Python 3.15 virtualenv with `avow[cli]==0.5.3`: `keygen`, `sign`, `verify` all returned ok; a changed payload exited 2 with `avow.payload_hash_mismatch`.
-- privacy-core site: `node scripts/check.mjs` — 4/4 pages + 404 pass; strict per-page CSP.
-- browser site: `node scripts/check.mjs` — 4/4 pages + 404 pass; strict per-page CSP.
+- privacy-core site: `npm run build && npm run check` — 4/4 pages + `404.html` pass; strict per-page CSP (`default-src 'none'`) and HSTS (`includeSubDomains`).
+- browser site: `npm run build && npm run check` — 4/4 pages + `404.html` pass; strict per-page CSP (`default-src 'none'`) and HSTS (`includeSubDomains`).
 - GSC: hub sitemap **Success, 15 pages**; Avow, privacy-core, and browser sitemaps **Success**.
 - IndexNow: hub 15, Avow 5, privacy-core 4, and browser 4 URLs submitted.
 
