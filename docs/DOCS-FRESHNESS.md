@@ -41,6 +41,7 @@ Scope: all 14 canonical hub pages, the seven library GitHub homepages, and the f
 - `node scripts/seo-health.mjs` — all five hosts pass; hub sitemap 15/15 URLs.
 - Hub: 14/14 pages return 200 with unique titles, one H1, canonical, JSON-LD, and no mobile overflow.
 - Avow site: `node scripts/check.mjs` — 5/5 pages pass; browser verifier confirms a real receipt and rejects a tampered one.
+- Avow documented install flow, executed in a clean Python 3.15 virtualenv with `avow[cli]==0.5.3`: `keygen`, `sign`, `verify` all returned ok; a changed payload exited 2 with `avow.payload_hash_mismatch`.
 - privacy-core site: `node scripts/check.mjs` — 4/4 pages + 404 pass; strict per-page CSP.
 - browser site: `node scripts/check.mjs` — 4/4 pages + 404 pass; strict per-page CSP.
 - GSC: hub sitemap **Success, 15 pages**; Avow, privacy-core, and browser sitemaps **Success**.
