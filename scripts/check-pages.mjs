@@ -59,11 +59,13 @@ for (const slug of SLUGS) {
   const description = html.match(/<meta[^>]+name="description"[^>]+content="([^"]*)"/i)?.[1]?.trim() ?? "";
   const canonical = html.match(/<link[^>]+rel="canonical"[^>]+href="([^"]+)"/i)?.[1] ?? "";
   const h1s = html.match(/<h1\b/gi)?.length ?? 0;
+  const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
   const ld = jsonLd(html);
   const expected = `https://open-source.gainratio.com/${slug}/`;
 
   if (words < MIN_WORDS) issues.push(`${slug}: only ${words} visible words (min ${MIN_WORDS})`);
   if (h1s !== 1) issues.push(`${slug}: expected exactly one h1, found ${h1s}`);
+  if (ids.length !== new Set(ids).size) issues.push(`${slug}: duplicate id`);
   if (title.length < 20 || title.length > 75) issues.push(`${slug}: title length ${title.length}`);
   if (description.length < 50 || description.length > 170) issues.push(`${slug}: description length ${description.length}`);
   if (canonical !== expected) issues.push(`${slug}: canonical is ${canonical || "missing"}, expected ${expected}`);
@@ -81,6 +83,19 @@ for (const slug of SLUGS) {
   titles.set(title, slug);
   descriptions.set(description, slug);
 
+  for (const match of html.matchAll(/href="([^"]+)"/g)) {
+    const href = match[1];
+    if (href.startsWith("#") && href.length > 1 && !ids.includes(href.slice(1))) {
+      issues.push(`${slug}: missing anchor ${href}`);
+    }
+    if (href.startsWith("/") && href.includes("#")) {
+      const [targetPath, anchor] = href.split("#");
+      const target = join(ROOT, targetPath, "index.html");
+      if (existsSync(target) && !readFileSync(target, "utf8").includes(`id="${anchor}"`)) {
+        issues.push(`${slug}: missing anchor ${href}`);
+      }
+    }
+  }
   for (const href of html.matchAll(/href="(\/[^"#?]*\/?)"/g)) {
     const route = href[1];
     if (route === "/") continue;
@@ -95,4 +110,4 @@ if (issues.length > 0) {
   process.exit(1);
 }
 
-console.log(`Project page contract passed: ${SLUGS.length} pages, min ${MIN_WORDS} words, metadata, JSON-LD, sitemap, internal links.`);
+console.log(`Project page contract passed: ${SLUGS.length} pages, min ${MIN_WORDS} words, metadata, JSON-LD, sitemap, internal links, anchors.`);
