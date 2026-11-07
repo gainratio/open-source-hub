@@ -18,7 +18,9 @@ Scope: all 14 public repositories under `github.com/gainratio`, the hub at `open
 | Third-party actions | Pinned to commit SHAs in workflows that use them |
 | Publish workflows | OIDC, default-branch/workflow-dispatch gated, no stored registry tokens |
 | `pull_request_target` | None found |
-| SECURITY.md and LICENSE | Present in all source repos and the new site repos |
+| SECURITY.md and LICENSE | Present in all source repos, the hub, and the three docs repos |
+| Private vulnerability reporting | Enabled on all 18 repos |
+| Docs/hub branch protection | `check` required on `main` |
 
 ## Findings fixed
 
@@ -32,7 +34,7 @@ Fix: replaced all three regex uses with a bounded trailing-slash scan. PR `#245`
 
 The `avow`, `privacy`, and `browser` CNAMEs were initially DNS-only, bypassing WAF, bot protection, and Cloudflare’s proxy.
 
-Fix: all three are now **Proxied**. Googlebot returns 200 on all four hosts. HSTS, strict CSP, COOP, CORP, `X-Frame-Options: DENY`, and `X-Content-Type-Options: nosniff` are enforced.
+Fix: all three are now **Proxied**. Googlebot returns 200 on all four hosts. HSTS, strict CSP, COOP, CORP, `X-Frame-Options: DENY`, and `X-Content-Type-Options: nosniff` are enforced. HTTP requests redirect 301 to HTTPS.
 
 ### New repositories lacked baseline controls
 
@@ -43,6 +45,7 @@ Fix:
 - branch protection with the `check` required status
 - secret scanning + push protection
 - Dependabot security updates
+- private vulnerability reporting
 - MIT license and `SECURITY.md`
 
 ## Notes on remaining failures
