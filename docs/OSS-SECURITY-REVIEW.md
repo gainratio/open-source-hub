@@ -13,7 +13,7 @@ Scope: all 14 public repositories under `github.com/gainratio`, the hub at `open
 | Open high/critical dependency alerts | **0** across all repos |
 | Open low dependency alerts | 1: `deepmerge` in EdgeReco’s build-only Workbox/PWA chain; no patched release |
 | CodeQL / SARIF analyses | Every repo has at least one analysis |
-| Open code-scanning alerts | EdgeReco had 2 high `js/polynomial-redos`; fix merged, rescan in progress |
+| Open code-scanning alerts | EdgeReco had 2 high `js/polynomial-redos`; fix merged; one stale alert remains until the main-branch SARIF rescan completes |
 | Workflow default permissions | `read` and `can_approve_pull_request_reviews=false` on all 14 repos |
 | Third-party actions | Pinned to commit SHAs in workflows that use them |
 | Publish workflows | OIDC, default-branch/workflow-dispatch gated, no stored registry tokens |
@@ -35,6 +35,8 @@ Fix: replaced all three regex uses with a bounded trailing-slash scan. PR `#245`
 The `avow`, `privacy`, and `browser` CNAMEs were initially DNS-only, bypassing WAF, bot protection, and Cloudflare’s proxy.
 
 Fix: all three are now **Proxied**. Googlebot returns 200 on all four hosts. HSTS, strict CSP, COOP, CORP, `X-Frame-Options: DENY`, and `X-Content-Type-Options: nosniff` are enforced. HTTP requests redirect 301 to HTTPS.
+
+Cloudflare Web Analytics RUM was injecting `static.cloudflareinsights.com/beacon.min.js`; strict CSP blocked it and produced console errors. RUM is now **disabled** for the zone. Cloudflare email decoding is same-origin only; `privacy.gainratio.com` permits only `script-src 'self'`, not third-party scripts. All three docs sites now load with zero console/CSP errors.
 
 ### New repositories lacked baseline controls
 
