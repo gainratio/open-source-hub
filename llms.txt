@@ -1,0 +1,55 @@
+# GainRatio Open Source
+
+> Local-first applications, verified-data substrates, and deterministic AI governance libraries published by GainRatio (`https://github.com/gainratio`). Every repository is public, MIT-licensed, and built around fail-closed cryptographic verification and zero-egress browser execution.
+
+- Open Source Hub: https://open-source.gainratio.com/
+- Advisory & Platform Architecture: https://gainratio.com/
+- GitHub Organization: https://github.com/gainratio
+- Sitemap: https://open-source.gainratio.com/sitemap.xml
+
+## Live Browser Applications
+
+- [AML-Filter](https://aml-filter.com/): Zero-egress in-browser sanctions screening and local KYC workstation across OFAC SDN, EU Consolidated, UN Security Council, and UK OFSI watchlists using Ed25519-signed Gear-CDC SQLite bundles and ONNX MiniLM embeddings.
+  - Hub overview: https://open-source.gainratio.com/aml-filter/
+  - Trust & cryptographic verification: https://aml-filter.com/trust/
+  - Source: https://github.com/gainratio/aml-filter
+- [EdgeReco](https://edge-reco.com/): On-device ecommerce search, hybrid BM25 + vector retrieval (SQLite FTS5 + `sqlite-vector` with Reciprocal Rank Fusion), and session-aware product recommendations running entirely in the shopper's browser from a signed catalog bundle.
+  - Hub overview: https://open-source.gainratio.com/edge-reco/
+  - On-device search architecture: https://edge-reco.com/on-device-search
+  - Source: https://github.com/gainratio/edge-reco
+- [AlmaMesh](https://almamesh.com/): Local-first Vedic astrology (Jyotish) engine running Python + Skyfield + JPL DE421 ephemeris inside the browser via Pyodide with zero birth-data upload and optional bring-your-own-key AI interpretation.
+  - Free Kundli (English): https://almamesh.com/free-kundli
+  - Free Kundli (Hindi / निःशुल्क कुंडली): https://almamesh.com/hi/free-kundli/
+  - Hub overview: https://open-source.gainratio.com/almamesh/
+  - Source: https://github.com/gainratio/almamesh
+
+## Verified-Data & Governance Libraries
+
+- [@gainratio/browser (`edgeproc-browser`)](https://browser.gainratio.com/): Browser runtime for Ed25519-signed, SHA-256 content-addressed data bundles with anti-rollback sequence checks and OPFS/IndexedDB persistence.
+  - Hub overview: https://open-source.gainratio.com/edgeproc-browser/
+  - Source: https://github.com/gainratio/edgeproc-browser (npm: `@gainratio/browser`)
+- [edge-proc](https://open-source.gainratio.com/edge-proc/): Python substrate for publishing and delta-syncing Ed25519-signed, FastCDC content-addressed search bundles with offline FAISS + BM25 Reciprocal Rank Fusion.
+  - Source: https://github.com/gainratio/edge-proc (PyPI: `edge-proc`)
+- [edgeproc-core](https://open-source.gainratio.com/edgeproc-core/): Multi-tenant vector-index partitioning protocol (`GlobalPartitionStrategy`, `NamespacePartitionStrategy`, `BucketedPartitionStrategy`) and RFC 9457 Problem Details error registry.
+  - Source: https://github.com/gainratio/edgeproc-core (PyPI: `edgeproc-core`)
+- [Avow](https://avow.gainratio.com/): Offline-verifiable Ed25519 signed receipts over RFC 8785 canonical JSON (JCS) with byte-identical Python and TypeScript implementations.
+  - Hub overview: https://open-source.gainratio.com/avow/
+  - Source: https://github.com/gainratio/avow (PyPI: `avow`, npm: `@gainratio/avow`)
+- [privacy-core](https://privacy.gainratio.com/): Client-side PII redaction (11 entity types with Luhn/SSN/IBAN checksum validation), type-enforced Egress Guard before LLM API calls, and local response rehydration.
+  - Hub overview: https://open-source.gainratio.com/privacy-core/
+  - Source: https://github.com/gainratio/privacy-core (npm: `@gainratio/privacy-core`)
+- [@gainratio/errors](https://open-source.gainratio.com/errors/): Zero-dependency TypeScript/JavaScript error classification, RFC 9457 Problem Details serialization, and localized user-facing messages (`en`, `es`, `pt`, `hi`).
+  - Source: https://github.com/gainratio/errors (npm: `@gainratio/errors`)
+- [Assay (`assay-engine` / `@gainratio/assay`)](https://open-source.gainratio.com/assay/): Deterministic multi-signal scoring, normalization, ranking metrics (`nDCG`, `MAP`, `MRR`), calibration, and explainable score breakdowns in Python and TypeScript.
+  - Source: https://github.com/gainratio/assay (PyPI: `assay-engine`, npm: `@gainratio/assay`)
+
+## Agentic Systems & Supply-Chain Infrastructure
+
+- [agentic-tab-context](https://open-source.gainratio.com/agentic-tab-context/): Let coding agents inspect and interact with the browser tab a developer already has open, preserving existing authenticated sessions.
+  - Source: https://github.com/gainratio/agentic-tab-context
+- [agentic-context-service](https://open-source.gainratio.com/agentic-context-service/): Governed OpenSearch context and memory hub for enterprise agentic workflows with tenant isolation and provenance controls.
+  - Source: https://github.com/gainratio/agentic-context-service
+- [agentic-saga](https://open-source.gainratio.com/agentic-saga/): Deterministic saga coordinator for multi-step AI agent workflows with explicit compensation and safe rollback of completed steps.
+  - Source: https://github.com/gainratio/agentic-saga
+- [ci](https://open-source.gainratio.com/ci/): Shared SHA-pinned GitHub Actions reusable workflows, Dagger quality gates, OIDC trusted publishing, and fleet security audit across GainRatio repositories.
+  - Source: https://github.com/gainratio/ci
