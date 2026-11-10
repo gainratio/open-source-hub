@@ -28,6 +28,7 @@ const SLUGS = [
   "agentic-tab-context",
   "agentic-context-service",
   "agentic-saga",
+  "safe-local-agents",
   "ci",
   "aml-filter",
   "edge-reco",
@@ -41,6 +42,6 @@ for (const file of ROOT_FILES) {
 }
 for (const slug of SLUGS) {
   await mkdir(join(dist, slug), { recursive: true });
-  await cp(join(root, slug, "index.html"), join(dist, slug, "index.html"));
+  await cp(join(root, slug), join(dist, slug), { recursive: true });
 }
 console.log("built", dist);
