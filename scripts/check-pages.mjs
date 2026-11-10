@@ -77,6 +77,16 @@ function checkInternalLinks(label, html, ids) {
 }
 
 const sitemap = readFileSync(join(ROOT, "sitemap.xml"), "utf8");
+const llmsPath = join(ROOT, "llms.txt");
+if (!existsSync(llmsPath)) {
+  issues.push("llms.txt: missing");
+} else {
+  const llms = readFileSync(llmsPath, "utf8");
+  for (const slug of SLUGS) {
+    const expected = `https://open-source.gainratio.com/${slug}/`;
+    if (!llms.includes(expected)) issues.push(`llms.txt: missing ${expected}`);
+  }
+}
 const headers = readFileSync(join(ROOT, "_headers"), "utf8");
 for (const req of ["default-src 'none'", "frame-ancestors 'none'", "object-src 'none'", "max-age=31536000; includeSubDomains"]) {
   if (!headers.includes(req)) issues.push(`_headers: missing ${req}`);

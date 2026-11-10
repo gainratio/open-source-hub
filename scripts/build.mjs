@@ -12,6 +12,7 @@ const ROOT_FILES = [
   "404.html",
   "_headers",
   "robots.txt",
+  "llms.txt",
   "sitemap.xml",
   "c18e457aee12453bad18e8a03c5499a4.txt",
 ];
