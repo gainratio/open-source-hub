@@ -19,6 +19,7 @@ const SLUGS = [
   "agentic-tab-context",
   "agentic-context-service",
   "agentic-saga",
+  "safe-local-agents",
   "ci",
   "aml-filter",
   "edge-reco",
@@ -72,7 +73,9 @@ function checkInternalLinks(label, html, ids) {
   for (const href of html.matchAll(/href="(\/[^"#?]*\/?)"/g)) {
     const route = href[1];
     if (route === "/") continue;
-    if (!existsSync(join(ROOT, route, "index.html"))) issues.push(`${label}: broken internal link ${route}`);
+    if (!existsSync(join(ROOT, route, "index.html")) && !existsSync(join(ROOT, route))) {
+      issues.push(`${label}: broken internal link ${route}`);
+    }
   }
 }
 

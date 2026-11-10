@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Safe Local Agents — 30-second walkthrough of tabs, rollback &amp; context</title>
+<meta name="description" content="Watch three MIT primitives fix where coding agents break in production: consent-gated browser tabs, Temporal saga rollback, and OPA-governed context.">
+<link rel="canonical" href="https://open-source.gainratio.com/safe-local-agents/">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Safe Local Agents — 30-second live walkthrough">
+<meta property="og:description" content="Three MIT primitives for Claude Code, Codex, and local agents: shared browser tabs, deterministic Temporal rollback, and governed context with provenance.">
+<meta property="og:url" content="https://open-source.gainratio.com/safe-local-agents/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://open-source.gainratio.com/safe-local-agents/poster.png">
+<meta property="og:site_name" content="GainRatio Open Source">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Safe Local Agents Stack","description":"Three MIT-licensed primitives for safe local coding agents: Agentic Tab Context (consent-gated browser tabs), Agentic Saga (Temporal compensation), and Agentic Context Service (OPA-governed retrieval with provenance).","codeRepository":"https://github.com/gainratio","programmingLanguage":["TypeScript","Python"],"license":"https://spdx.org/licenses/MIT.html","url":"https://open-source.gainratio.com/safe-local-agents/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"Safe Local Agents — 30-Second Live Walkthrough","description":"Unedited 30-second capture of Agentic Tab Context sharing an authenticated browser tab with password masking, Agentic Saga compensating a failed multi-step order on Temporal, and Agentic Context Service enforcing HMAC and Open Policy Agent access rules before retrieval.","thumbnailUrl":"https://open-source.gainratio.com/safe-local-agents/poster.png","uploadDate":"2026-11-10","duration":"PT30S","contentUrl":"https://open-source.gainratio.com/safe-local-agents/demo.mp4"}</script>
+<style>
+:root{--navy:#1f3864;--deep:#152744;--ink:#1a1a1a;--muted:#454545;--line:#d5deeb;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{max-width:940px;margin:0 auto;padding:2.5rem 1.4rem 3rem;background:var(--paper);color:var(--ink);font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--navy)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:2.6rem;font-size:.9rem}
+.brand{color:var(--navy);font-weight:650;text-decoration:none}
+.top nav{display:flex;gap:1.1rem;flex-wrap:wrap}
+.top nav a{color:var(--muted);text-decoration:none}
+.top nav a:hover{color:var(--navy)}
+.eyebrow{margin:0 0 .55rem;color:var(--accent);font-size:.76rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+h1{font:600 2.85rem/1.08 Georgia,"Times New Roman",serif;letter-spacing:-.02em;color:var(--navy);margin:0 0 .8rem}
+.promise{font-size:1.18rem;line-height:1.55;color:#2c2c2c;max-width:68ch;margin:0 0 1.6rem}
+.player{background:#0b1220;border-radius:14px;overflow:hidden;border:1px solid #1e293b;box-shadow:0 18px 42px rgba(21,39,68,.16);margin:1.4rem 0 .7rem}
+.player video{width:100%;height:auto;display:block;aspect-ratio:16/9;background:#0b1220}
+.caption-bar{font-size:.88rem;color:var(--muted);margin:0 0 1.8rem}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.4rem 0 2rem}
+.pillar{background:#fff;border:1px solid var(--line);border-radius:11px;padding:1.15rem 1.2rem;display:flex;flex-direction:column}
+.pillar .num{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem}
+.pillar h3{margin:0 0 .45rem;font:600 1.15rem/1.25 Georgia,"Times New Roman",serif;color:var(--navy)}
+.pillar p{font-size:.93rem;color:var(--muted);margin:0 0 .9rem;line-height:1.55}
+.pillar .repo-links{margin-top:auto;font-size:.9rem;font-weight:600;display:flex;gap:.9rem;flex-wrap:wrap}
+h2{font:600 1.55rem/1.2 Georgia,"Times New Roman",serif;color:var(--navy);margin:2.6rem 0 .7rem;padding-top:1.7rem;border-top:1px solid var(--line)}
+h3{font:650 1.02rem/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--navy);margin:1.35rem 0 .25rem}
+p{margin:0 0 1rem}
+ul,ol{padding-left:1.2rem;margin:.3rem 0 1rem}
+li{margin:.45rem 0}
+li::marker{color:var(--accent)}
+pre{background:var(--deep);color:#eef2f8;border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:.8rem 0 1.1rem;font:0.84rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre code{background:none;color:inherit;padding:0;font:inherit}
+code{background:var(--pale);color:var(--navy);padding:.12em .35em;border-radius:4px;font:0.9em/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color:var(--muted);font-size:.84rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (max-width:760px){.trio{grid-template-columns:1fr}h1{font-size:2.2rem}}
+.skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem .8rem;z-index:10;border-radius:6px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <div class="top">
+    <a class="brand" href="/">← GainRatio open source</a>
+    <nav aria-label="Walkthrough links">
+      <a href="#trio">The three primitives</a>
+      <a href="#timestamps">30-second breakdown</a>
+      <a href="#quickstart">Run locally</a>
+      <a href="https://github.com/gainratio">GitHub ↗</a>
+    </nav>
+  </div>
+  <p class="eyebrow">30-Second Live Capture · MIT Licensed · Zero Cloud Lock-in</p>
+  <h1>Safe Local Agents</h1>
+  <p class="promise">Coding agents routinely hit three production walls: losing signed-in browser state in fresh headless sessions, leaving half-finished writes when step four of five fails, and reading records outside their scope without provenance. These three small MIT repositories fix each failure mode on your own machine.</p>
+</header>
+
+<main id="main">
+  <div class="player">
+    <video controls autoplay muted loop playsinline preload="metadata" poster="/safe-local-agents/poster.png" src="/safe-local-agents/demo.mp4"></video>
+  </div>
+  <p class="caption-bar">Unedited 30-second capture (1080p, silent, 1.3 MB, no cookies or third-party scripts). <a href="/safe-local-agents/demo.mp4">Direct MP4 link ↗</a></p>
+
+  <section id="trio" aria-labelledby="trio-heading">
+    <h2 id="trio-heading">Three failure modes, three narrow primitives</h2>
+    <div class="trio">
+      <article class="pillar">
+        <span class="num">0:00 – 0:10 · Browser State</span>
+        <h3>Agentic Tab Context</h3>
+        <p>Lets Claude Code, Codex, and Antigravity inspect and operate tabs you explicitly share in your existing Chrome, Brave, Edge, or Firefox session over local native messaging, with password controls masked in DOM snapshots and screenshots.</p>
+        <div class="repo-links">
+          <a href="https://github.com/gainratio/agentic-tab-context">GitHub ↗</a>
+          <a href="/agentic-tab-context/">Docs →</a>
+        </div>
+      </article>
+      <article class="pillar">
+        <span class="num">0:10 – 0:20 · Safe Rollback</span>
+        <h3>Agentic Saga</h3>
+        <p>Runs multi-step Python agent workflows on Temporal so that when a downstream step or final invariant fails, ordinary deterministic rules—never language-model guesswork—undo completed steps newest-first and escalate ambiguous refunds to a human.</p>
+        <div class="repo-links">
+          <a href="https://github.com/gainratio/agentic-saga">GitHub ↗</a>
+          <a href="/agentic-saga/">Docs →</a>
+        </div>
+      </article>
+      <article class="pillar">
+        <span class="num">0:20 – 0:30 · Governed Memory</span>
+        <h3>Agentic Context Service</h3>
+        <p>Verifies HMAC request identity and enforces Open Policy Agent access rules before searching, so each assistant sees only permitted records and receives exact database, version, and age provenance on every returned fact.</p>
+        <div class="repo-links">
+          <a href="https://github.com/gainratio/agentic-context-service">GitHub ↗</a>
+          <a href="/agentic-context-service/">Docs →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="timestamps" aria-labelledby="timestamps-heading">
+    <h2 id="timestamps-heading">What happens in each 10-second segment</h2>
+
+    <h3>Segment 1 (0:00 – 0:10): Consent-gated live browser tabs (<code>agentic-tab-context</code>)</h3>
+    <p>Conventional browser automation spawns an isolated browser profile with no SSO cookies, forcing developers either to log in again on every run or to hand raw session secrets to a script. Agentic Tab Context keeps your existing browser window in charge. Until you select a tab in the Manifest V3 Shared Tabs side panel or toolbar popup, the local daemon refuses agent bind requests with <code>TAB_NOT_SHARED</code>. Once shared, <code>atc inspect</code> reads the accessibility tree over local native messaging while automatically redacting password inputs, and <code>atc click</code> acts directly inside the authenticated tab without opening a second window.</p>
+
+    <h3>Segment 2 (0:10 – 0:20): Newest-first Temporal compensation (<code>agentic-saga</code>)</h3>
+    <p>Tool-calling loops make forward actions easy and partial-failure cleanup treacherous: you never want an LLM improvising whether a timed-out payment call succeeded or in what order to refund a card and release inventory. In the captured run, the checkout workflow reserves inventory, charges the card, and books fulfillment on a local Temporal server before the final carrier check fails. Deterministic Python rules immediately transition the workflow to <code>compensating</code>, cancel the delivery, refund the payment, release the item in strict reverse order, and record <code>compensated_verified</code> so nothing is left half-done.</p>
+
+    <h3>Segment 3 (0:20 – 0:30): Pre-retrieval access control and provenance (<code>agentic-context-service</code>)</h3>
+    <p>When multiple assistants share company knowledge through ad-hoc vector stores or prompt scratchpads, internal margin targets leak to customer-facing bots and nobody can audit which record produced an answer. In the captured run, the pricing assistant asks for the discount limit on item <code>NS-100</code>: the service checks the HMAC signature, blocks 4 of 7 unauthorized records before search, and returns the 20% rule citing <code>record NS-100, edit number 7</code>. When the customer-help assistant asks the exact same question, the internal 20% rule is filtered out before ranking so only the public 15% promotion is returned; when it tries to open pricing rules directly, Open Policy Agent refuses with <code>403 POLICY_DENIED</code>.</p>
+  </section>
+
+  <section id="quickstart" aria-labelledby="quickstart-heading">
+    <h2 id="quickstart-heading">Reproduce every segment on your own machine</h2>
+    <p>None of the three demos requires an API key, cloud account, or external network service:</p>
+<pre><code># 1. Agentic Tab Context (Node &gt;= 22, Chrome / Brave / Edge / Firefox)
+git clone https://github.com/gainratio/agentic-tab-context.git
+cd agentic-tab-context &amp;&amp; npm ci &amp;&amp; npm run build &amp;&amp; node bin/atc.js setup
+
+# 2. Agentic Saga (uv — starts a throwaway local Temporal server + live flight recorder)
+git clone https://github.com/gainratio/agentic-saga.git
+cd agentic-saga &amp;&amp; uv run poe demo
+
+# 3. Agentic Context Service (uv — starts local HMAC + OPA policy demo on 127.0.0.1)
+git clone https://github.com/gainratio/agentic-context-service.git
+cd agentic-context-service &amp;&amp; make demo</code></pre>
+    <p>Python packages are also published on PyPI (<a href="https://pypi.org/project/agentic-saga/"><code>agentic-saga</code></a> and <a href="https://pypi.org/project/agentic-context-service/"><code>agentic-context-service</code></a>), and the Chrome / Firefox Manifest V3 extension archive lives in <code>store/agentic-tab-context-0.5.0.zip</code> inside <a href="https://github.com/gainratio/agentic-tab-context"><code>gainratio/agentic-tab-context</code></a>.</p>
+  </section>
+</main>
+
+<footer>
+  <span>MIT License · <a href="/">GainRatio Open Source</a></span>
+  <span><a href="https://github.com/gainratio/agentic-tab-context">agentic-tab-context</a> · <a href="https://github.com/gainratio/agentic-saga">agentic-saga</a> · <a href="https://github.com/gainratio/agentic-context-service">agentic-context-service</a></span>
+</footer>
+</body>
+</html>

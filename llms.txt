@@ -51,5 +51,7 @@
   - Source: https://github.com/gainratio/agentic-context-service
 - [agentic-saga](https://open-source.gainratio.com/agentic-saga/): Deterministic saga coordinator for multi-step AI agent workflows with explicit compensation and safe rollback of completed steps.
   - Source: https://github.com/gainratio/agentic-saga
+- [Safe Local Agents Walkthrough](https://open-source.gainratio.com/safe-local-agents/): 30-second live capture showing `agentic-tab-context`, `agentic-saga`, and `agentic-context-service` preventing session loss, partial mutations, and unauthorized context leaks.
+  - Video: https://open-source.gainratio.com/safe-local-agents/demo.mp4
 - [ci](https://open-source.gainratio.com/ci/): Shared SHA-pinned GitHub Actions reusable workflows, Dagger quality gates, OIDC trusted publishing, and fleet security audit across GainRatio repositories.
   - Source: https://github.com/gainratio/ci
