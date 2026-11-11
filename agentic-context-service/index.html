@@ -11,8 +11,10 @@
 <meta property="og:description" content="One HTTP lookup for your company's AI assistants: each gets only the facts its job allows, with the source, version, and age of every passage. Self-hosted, MIT.">
 <meta property="og:url" content="https://open-source.gainratio.com/agentic-context-service/">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://open-source.gainratio.com/agentic-context-service/poster.png">
 <meta property="og:site_name" content="GainRatio Open Source">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Agentic Context Service","description":"An HTTP lookup service that gives each AI assistant only the facts its job allows, with the source, version, and age of every passage.","codeRepository":"https://github.com/gainratio/agentic-context-service","programmingLanguage":"Python","license":"https://spdx.org/licenses/MIT.html","url":"https://open-source.gainratio.com/agentic-context-service/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"Agentic Context Service — Governed Retrieval & Provenance Walkthrough","description":"Unedited capture of Agentic Context Service verifying HMAC request identity, blocking unauthorized records via Open Policy Agent before search, citing record versions, and refusing out-of-scope probes with 403 POLICY_DENIED.","thumbnailUrl":"https://open-source.gainratio.com/agentic-context-service/poster.png","uploadDate":"2026-11-10","duration":"PT12S","contentUrl":"https://open-source.gainratio.com/agentic-context-service/demo.mp4"}</script>
 <style>
 :root{--navy:#1f3864;--deep:#152744;--ink:#1a1a1a;--muted:#4b5565;--line:#d7dfec;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
 *{box-sizing:border-box}
@@ -47,6 +49,9 @@ pre code{background:none;padding:0;font-size:.85rem;line-height:1.55}
 .faq p{margin-bottom:.5rem}
 footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
 footer a{color:var(--accent)}
+.player{background:#0b1220;border-radius:12px;overflow:hidden;border:1px solid #1e293b;box-shadow:0 14px 34px rgba(21,39,68,.14);margin:1.6rem 0 .5rem}
+.player video{width:100%;height:auto;display:block;aspect-ratio:16/9;background:#0b1220}
+.video-note{font-size:.88rem;color:var(--muted);margin:0 0 1.4rem}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media (max-width:560px){body{margin:2rem auto}h1{font-size:2rem}h2{padding-top:1.4rem;margin-top:2.3rem}}
 .skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem .8rem;z-index:10;border-radius:6px}</style>
@@ -65,6 +70,8 @@ footer a{color:var(--accent)}
 </header>
 
 <main id="main">
+<div class="player"><video controls autoplay muted loop playsinline width="1280" height="720" preload="metadata" poster="/agentic-context-service/poster.png" src="/agentic-context-service/demo.mp4"></video></div>
+<p class="video-note">Live 12-second capture: HMAC verification, Open Policy Agent scope isolation, cited record provenance, and <code>403 POLICY_DENIED</code> enforcement. <a href="/agentic-context-service/demo.mp4">Direct MP4 ↗</a> · <a href="/safe-local-agents/">30s Safe Local Agents overview →</a></p>
 <section aria-labelledby="problem">
   <h2 id="problem">The problem</h2>
   <p>A company with several AI assistants usually connects each one to its databases separately. Every connection re-implements who may see what. When an assistant quotes a price or a policy, nobody can tell which record it came from or how old it was.</p>

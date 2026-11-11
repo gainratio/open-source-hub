@@ -11,7 +11,9 @@
 <meta property="og:title" content="privacy-core — On-device PII redaction for LLM prompts">
 <meta property="og:description" content="Redact structured identifiers on the device, approve exactly what leaves, and restore the real values in the reply.">
 <meta property="og:url" content="https://open-source.gainratio.com/privacy-core/">
+<meta property="og:image" content="https://open-source.gainratio.com/privacy-core/poster.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"@gainratio/privacy-core","description":"A TypeScript library that swaps card numbers, emails and ID numbers for typed labels on the user's device, sends approved placeholder text to an LLM, and restores the real values in the reply locally.","codeRepository":"https://github.com/gainratio/privacy-core","programmingLanguage":"TypeScript","license":"https://opensource.org/license/mit","url":"https://open-source.gainratio.com/privacy-core/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"privacy-core — On-Device Redaction & Egress Guard Walkthrough","description":"Unedited capture of @gainratio/privacy-core redacting structured identifiers on-device, requiring explicit approval with signed allow/deny receipts, restoring real values locally, and rejecting unapproved sends fail-closed.","thumbnailUrl":"https://open-source.gainratio.com/privacy-core/poster.png","uploadDate":"2026-11-10","duration":"PT16S","contentUrl":"https://open-source.gainratio.com/privacy-core/demo.mp4"}</script>
 <style>
 :root{--navy:#1f3864;--ink:#1a1a1a;--muted:#4a4a4a;--line:#bfc9da;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
 *{box-sizing:border-box}
@@ -38,6 +40,9 @@ pre code{background:none;padding:0;font-size:.82rem;line-height:1.55}
 .cta.secondary{background:#fff;color:var(--navy);border:1px solid var(--line)}
 .cta.secondary:hover{border-color:var(--accent);color:var(--navy);background:#fff}
 footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.2rem;color:var(--muted);font-size:.88rem}
+.player{background:#0b1220;border-radius:12px;overflow:hidden;border:1px solid #1e293b;box-shadow:0 14px 34px rgba(21,39,68,.14);margin:1.5rem 0 .5rem}
+.player video{width:100%;height:auto;display:block;aspect-ratio:16/9;background:#0b1220}
+.video-note{font-size:.88rem;color:var(--muted);margin:0 0 1.4rem}
 @media(max-width:520px){body{padding:2rem 1.1rem 3rem}h1{font-size:2rem}pre{font-size:.82rem}}
 .skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem .8rem;z-index:10;border-radius:6px}</style>
 </head>
@@ -52,6 +57,8 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.2rem;color
 </header>
 
 <main id="main">
+<div class="player"><video controls autoplay muted loop playsinline width="1280" height="720" preload="metadata" poster="/privacy-core/poster.png" src="/privacy-core/demo.mp4"></video></div>
+<p class="video-note">Live 16-second browser capture: on-device redaction, explicit approval with signed allow/deny receipts, local vault restoration, and fail-closed rejection of unapproved sends. <a href="/privacy-core/demo.mp4">Direct MP4 ↗</a></p>
 <p class="meta"><strong>Dedicated docs:</strong> <a href="https://privacy.gainratio.com/">privacy-core docs site</a> — install, API, examples, limits, and security.</p>
 <section>
 <h2>The problem</h2>
