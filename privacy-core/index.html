@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>privacy-core — On-device PII redaction for LLM prompts</title>
 <meta name="description" content="TypeScript library that swaps card numbers, emails and IDs for labels on-device, gates sending behind approval, then restores the real values in the AI reply.">
@@ -47,6 +48,7 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.2rem;color
 .skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem .8rem;z-index:10;border-radius:6px}</style>
 </head>
 <body>
+<!--email_off-->
 <a class="skip" href="#main">Skip to content</a>
 <header>
 <p class="back"><a href="/">← GainRatio open source</a></p>
@@ -188,5 +190,6 @@ console.log(rehydrate(reply.redactedText, vault, payload.vaultRef));</code></pre
 <footer>
 <p>privacy-core is MIT licensed. <a href="/">All GainRatio open-source projects</a>.</p>
 </footer>
+<!--/email_off-->
 </body>
 </html>
