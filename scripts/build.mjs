@@ -10,6 +10,7 @@ const dist = join(root, "dist");
 const ROOT_FILES = [
   "index.html",
   "404.html",
+  "favicon.svg",
   "_headers",
   "robots.txt",
   "llms.txt",
