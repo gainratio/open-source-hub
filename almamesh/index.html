@@ -11,7 +11,9 @@
 <meta property="og:title" content="AlmaMesh — Open-source Vedic astrology in your browser">
 <meta property="og:description" content="A sidereal kundli, nakshatras and Vimshottari dasha computed on-device by an open Python engine. No account, no chart-data server.">
 <meta property="og:url" content="https://open-source.gainratio.com/almamesh/">
+<meta property="og:image" content="https://open-source.gainratio.com/almamesh/poster.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AlmaMesh","description":"Open-source Vedic astrology app that computes sidereal kundli charts, nakshatras and Vimshottari dasha locally in the browser with a Python engine running in WebAssembly.","codeRepository":"https://github.com/gainratio/almamesh","programmingLanguage":["Python","TypeScript"],"license":"https://opensource.org/license/mit","url":"https://almamesh.com","applicationCategory":"LifestyleApplication","operatingSystem":"Any modern browser","softwareVersion":"0.4.0","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"sameAs":["https://github.com/gainratio/almamesh","https://almamesh.com"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"AlmaMesh — On-Device Vedic Astrology Walkthrough","description":"Unedited capture of AlmaMesh computing sidereal kundli charts, nakshatra padas, and Vimshottari dashas locally in the browser via Pyodide WebAssembly with no account or server upload.","thumbnailUrl":"https://open-source.gainratio.com/almamesh/poster.png","uploadDate":"2026-11-10","duration":"PT16S","contentUrl":"https://open-source.gainratio.com/almamesh/demo.mp4"}</script>
 <style>
 :root{--navy:#1f3864;--deep:#152744;--ink:#1a1a1a;--muted:#4a4a4a;--line:#d8e0ec;--pale:#eef2f8;--paper:#f6f8fb;--accent:#2e5496;--serif:Georgia,"Iowan Old Style","Times New Roman",serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 *{box-sizing:border-box}
@@ -36,6 +38,9 @@ h1{font:600 clamp(2.15rem,5vw,2.8rem)/1.15 var(--serif);letter-spacing:-.02em;co
 .btn-primary:hover{background:var(--deep);color:#fff}
 .btn-secondary{border-color:var(--line);color:var(--navy);background:#fff}
 main{padding-top:.4rem}
+.player{background:#0b1220;border-radius:12px;overflow:hidden;border:1px solid #1e293b;box-shadow:0 14px 34px rgba(21,39,68,.14);margin:1.5rem 0 .5rem}
+.player video{width:100%;height:auto;display:block;aspect-ratio:16/9;background:#0b1220}
+.video-note{font-size:.88rem;color:var(--muted);margin:0 0 1.4rem}
 h2{font:600 1.5rem/1.25 var(--serif);color:var(--navy);letter-spacing:-.01em;margin:2.6rem 0 .5rem}
 h3{font:600 1.02rem/1.4 var(--sans);color:var(--navy);margin:1.4rem 0 .2rem}
 ul{margin:.7rem 0;padding-left:1.35rem}
@@ -62,6 +67,8 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.2rem;font-
   </div>
 </header>
 <main id="main">
+<div class="player"><video controls autoplay muted loop playsinline width="1280" height="720" preload="metadata" poster="/almamesh/poster.png" src="/almamesh/demo.mp4"></video></div>
+<p class="video-note">Live 16-second browser capture: local birth entry, in-browser Pyodide sidereal compute, Vimshottari dashas, and Vedic kundli table. <a href="/almamesh/demo.mp4">Direct MP4 ↗</a></p>
 <section>
 <h2>The problem</h2>
 <p>Most astrology sites calculate on a server. You hand over a name, an exact birth time and a birthplace, then receive a chart you cannot inspect. Those details are identifying and do not change, so where it runs and what is kept matter as much as the result.</p>

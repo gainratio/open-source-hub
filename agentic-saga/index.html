@@ -11,8 +11,10 @@
 <meta property="og:description" content="A Python library that lets an AI agent choose the next step of a multi-step job while a Temporal workflow runs it and undoes finished work, newest-first.">
 <meta property="og:url" content="https://open-source.gainratio.com/agentic-saga/">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://open-source.gainratio.com/agentic-saga/poster.png">
 <meta property="og:site_name" content="GainRatio Open Source">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Agentic Saga","description":"A Python library that lets an AI agent choose the next step of a multi-step job while a Temporal workflow runs it and undoes finished work, newest-first.","codeRepository":"https://github.com/gainratio/agentic-saga","programmingLanguage":"Python","license":"https://opensource.org/license/mit","url":"https://open-source.gainratio.com/agentic-saga/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"Agentic Saga — Deterministic Temporal Rollback Walkthrough","description":"Unedited capture of Agentic Saga running a multi-step checkout on Temporal, detecting a carrier failure after payment, and compensating completed steps newest-first to reach compensated_verified.","thumbnailUrl":"https://open-source.gainratio.com/agentic-saga/poster.png","uploadDate":"2026-11-10","duration":"PT12S","contentUrl":"https://open-source.gainratio.com/agentic-saga/demo.mp4"}</script>
 <style>
 :root{--navy:#1f3864;--ink:#1a1a1a;--muted:#4b5565;--line:#d7dfec;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
 *{box-sizing:border-box}
@@ -38,6 +40,9 @@ header{padding:0 0 1.7rem;border-bottom:1px solid var(--line)}
 .cta{display:inline-block;background:var(--navy);color:#fff;padding:.7rem 1.1rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
 .ghost{display:inline-block;border:1px solid var(--line);background:#fff;color:var(--navy);padding:.65rem 1.05rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
 section{padding-top:.2rem}
+.player{background:#0b1220;border-radius:12px;overflow:hidden;border:1px solid #1e293b;box-shadow:0 14px 34px rgba(21,39,68,.14);margin:1.6rem 0 .5rem}
+.player video{width:100%;height:auto;display:block;aspect-ratio:16/9;background:#0b1220}
+.video-note{font-size:.88rem;color:var(--muted);margin:0 0 1.4rem}
 footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
 footer a{color:var(--accent)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -58,6 +63,8 @@ footer a{color:var(--accent)}
   </div>
 </header>
 <main id="main">
+<div class="player"><video controls autoplay muted loop playsinline width="1280" height="720" preload="metadata" poster="/agentic-saga/poster.png" src="/agentic-saga/demo.mp4"></video></div>
+<p class="video-note">Live 12-second Temporal capture: forward order execution, carrier failure after payment, and newest-first compensation (<code>compensated_verified</code>). <a href="/agentic-saga/demo.mp4">Direct MP4 ↗</a> · <a href="/safe-local-agents/">30s Safe Local Agents overview →</a></p>
 <section aria-labelledby="problem">
   <h2 id="problem">The problem</h2>
   <p>A checkout touches services that cannot share one database transaction: reserve stock, charge the card, book delivery. If delivery is refused after the charge, the card must be refunded and the stock released, in that order, without doing either twice.</p>

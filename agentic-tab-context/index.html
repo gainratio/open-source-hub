@@ -11,8 +11,10 @@
 <meta property="og:description" content="Connect Claude Code, Codex or Antigravity to the browser tab you already have open, with your logins.">
 <meta property="og:url" content="https://open-source.gainratio.com/agentic-tab-context/">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://open-source.gainratio.com/agentic-tab-context/poster.png">
 <meta property="og:site_name" content="GainRatio Open Source">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Agentic Tab Context","description":"Connects Claude Code, Codex and Antigravity to an existing browser tab through a local CLI and browser extension, so the assistant can inspect, act on, and read that tab.","codeRepository":"https://github.com/gainratio/agentic-tab-context","programmingLanguage":["TypeScript","JavaScript"],"license":"https://spdx.org/licenses/MIT.html","url":"https://open-source.gainratio.com/agentic-tab-context/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"Agentic Tab Context — Shared Browser Tabs Walkthrough","description":"Unedited capture of sharing an authenticated browser tab from the Manifest V3 side panel, inspecting the DOM over local native messaging with password masking, and acting in-place via atc.","thumbnailUrl":"https://open-source.gainratio.com/agentic-tab-context/poster.png","uploadDate":"2026-11-10","duration":"PT12S","contentUrl":"https://open-source.gainratio.com/agentic-tab-context/demo.mp4"}</script>
 <style>
 :root{--navy:#1f3864;--deep:#152744;--ink:#1a1a1a;--muted:#454545;--line:#d5deeb;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
 *{box-sizing:border-box}
@@ -47,6 +49,9 @@ code{background:var(--pale);color:var(--navy);padding:.12em .35em;border-radius:
 .links li:last-child{border-bottom:0}
 .links a{font-weight:650}
 footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color:var(--muted);font-size:.84rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.player{background:#0b1220;border-radius:12px;overflow:hidden;border:1px solid #1e293b;box-shadow:0 14px 34px rgba(21,39,68,.14);margin:1.6rem 0 .5rem}
+.player video{width:100%;height:auto;display:block;aspect-ratio:16/9;background:#0b1220}
+.video-note{font-size:.88rem;color:var(--muted);margin:0 0 1.4rem}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media (max-width:600px){body{padding-top:1.6rem}h1{font-size:2.4rem}.top{margin-bottom:2.2rem}h2{padding-top:1.4rem;margin-top:2.2rem}}
 .skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem .8rem;z-index:10;border-radius:6px}</style>
@@ -70,6 +75,8 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color
 </header>
 
 <main id="main">
+  <div class="player"><video controls autoplay muted loop playsinline width="1280" height="720" preload="metadata" poster="/agentic-tab-context/poster.png" src="/agentic-tab-context/demo.mp4"></video></div>
+  <p class="video-note">Live 12-second capture: consent-gated MV3 tab sharing, password-redacted DOM inspection, and in-place action via <code>atc</code>. <a href="/agentic-tab-context/demo.mp4">Direct MP4 ↗</a> · <a href="/safe-local-agents/">30s Safe Local Agents overview →</a></p>
   <section aria-labelledby="problem">
     <h2 id="problem">The problem</h2>
     <p>Most browser automation starts a fresh browser with no session, no login and no half-finished checkout, so the page you need is out of reach. Copying page text, screenshots and console output into chat is slow and loses what matters.</p>

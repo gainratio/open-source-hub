@@ -11,8 +11,10 @@
 <meta property="og:title" content="AML-Filter — In-browser sanctions screening">
 <meta property="og:description" content="Open-source sanctions screening against OFAC, EU, UN and the UK asset-freeze list, verified in the browser. Explainable scores, local customer records.">
 <meta property="og:url" content="https://open-source.gainratio.com/aml-filter/">
+<meta property="og:image" content="https://open-source.gainratio.com/aml-filter/poster.png">
 <meta property="og:site_name" content="GainRatio Open Source">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AML-Filter","description":"Free, open-source sanctions screening against the US OFAC SDN, EU, UN and UK asset-freeze list. Signed watchlists are verified in the browser, match scores are explained, and customer records stay on the device.","codeRepository":"https://github.com/gainratio/aml-filter","programmingLanguage":"TypeScript","license":"https://github.com/gainratio/aml-filter/blob/main/LICENSE","url":"https://aml-filter.com/","applicationCategory":"BusinessApplication","operatingSystem":"Web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"AML-Filter — In-Browser Sanctions Screening & KYC Walkthrough","description":"Unedited capture of AML-Filter screening against verified OFAC/EU/UN/UK watchlists in browser Web Workers, verifying Ed25519 score proofs, and onboarding local KYC customer records.","thumbnailUrl":"https://open-source.gainratio.com/aml-filter/poster.png","uploadDate":"2026-11-10","duration":"PT16S","contentUrl":"https://open-source.gainratio.com/aml-filter/demo.mp4"}</script>
 <style>
 :root{--navy:#1f3864;--deep:#152744;--ink:#1a1a1a;--muted:#4a4a4a;--line:#d8e0ec;--pale:#eef2f8;--paper:#f6f8fb;--accent:#2e5496;--serif:Georgia,"Iowan Old Style","Times New Roman",serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 *{box-sizing:border-box}
@@ -38,6 +40,9 @@ h1{font:600 clamp(2.15rem,5vw,2.8rem)/1.15 var(--serif);letter-spacing:-.02em;co
 .btn-secondary{background:#fff;color:var(--navy);border-color:var(--line)}
 .btn-secondary:hover{border-color:var(--accent);color:var(--navy)}
 main{padding-top:.4rem}
+.player{background:#0b1220;border-radius:12px;overflow:hidden;border:1px solid #1e293b;box-shadow:0 14px 34px rgba(21,39,68,.14);margin:1.5rem 0 .5rem}
+.player video{width:100%;height:auto;display:block;aspect-ratio:16/9;background:#0b1220}
+.video-note{font-size:.88rem;color:var(--muted);margin:0 0 1.4rem}
 h2{font:600 1.5rem/1.25 var(--serif);color:var(--navy);letter-spacing:-.01em;margin:2.6rem 0 .5rem}
 h3{font:600 1.02rem/1.4 var(--sans);color:var(--navy);margin:1.4rem 0 .2rem}
 ul{margin:.7rem 0;padding-left:1.35rem}
@@ -65,6 +70,8 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.2rem;font-
 </header>
 
 <main id="main">
+<div class="player"><video controls autoplay muted loop playsinline width="1280" height="720" preload="metadata" poster="/aml-filter/poster.png" src="/aml-filter/demo.mp4"></video></div>
+<p class="video-note">Live 16-second browser capture: in-tab watchlist search, Ed25519 score proof, KYC onboarding, and local Review Board. <a href="/aml-filter/demo.mp4">Direct MP4 ↗</a></p>
 <section aria-labelledby="problem">
 <h2 id="problem">The problem</h2>
 <p>Businesses that have to know their customer must check names against sanctions lists. Large firms buy a screening vendor; small ones search government sites by hand and keep notes in a spreadsheet. The vendor costs money and receives a copy of the customer list. The manual route is slow, and a name spelled a little differently is easy to miss.</p>
