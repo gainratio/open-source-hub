@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://open-source.gainratio.com/safe-local-agents/poster.png">
 <meta property="og:site_name" content="GainRatio Open Source">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Safe Local Agents Stack","description":"Three MIT-licensed primitives for safe local coding agents: Agentic Tab Context (consent-gated browser tabs), Agentic Saga (Temporal compensation), and Agentic Context Service (OPA-governed retrieval with provenance).","codeRepository":"https://github.com/gainratio","programmingLanguage":["TypeScript","Python"],"license":"https://spdx.org/licenses/MIT.html","url":"https://open-source.gainratio.com/safe-local-agents/"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"Safe Local Agents — 30-Second Live Walkthrough","description":"Unedited 30-second capture of Agentic Tab Context sharing an authenticated browser tab with password masking, Agentic Saga compensating a failed multi-step order on Temporal, and Agentic Context Service enforcing HMAC and Open Policy Agent access rules before retrieval.","thumbnailUrl":"https://open-source.gainratio.com/safe-local-agents/poster.png","uploadDate":"2026-11-10","duration":"PT30S","contentUrl":"https://open-source.gainratio.com/safe-local-agents/demo.mp4"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"Safe Local Agents — 30-Second Live Walkthrough","description":"Unedited 30-second capture of Agentic Tab Context sharing an authenticated browser tab with password masking, Agentic Saga politely declining non-order prompts and compensating a stuck customer order newest-first on Temporal, and Agentic Context Service enforcing HMAC and Open Policy Agent access rules before retrieval.","thumbnailUrl":"https://open-source.gainratio.com/safe-local-agents/poster.png","uploadDate":"2026-11-10","duration":"PT30S","contentUrl":"https://open-source.gainratio.com/safe-local-agents/demo.mp4"}</script>
 <style>
 :root{--navy:#1f3864;--deep:#152744;--ink:#1a1a1a;--muted:#454545;--line:#d5deeb;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
 *{box-sizing:border-box}
@@ -76,7 +76,7 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color
   <div class="player">
     <video controls autoplay muted loop playsinline width="1280" height="720" preload="metadata" poster="/safe-local-agents/poster.png" src="/safe-local-agents/demo.mp4"></video>
   </div>
-  <p class="caption-bar">Unedited 30-second capture (1080p, silent, 1.3 MB, no cookies or third-party scripts). <a href="/safe-local-agents/demo.mp4">Direct MP4 link ↗</a></p>
+  <p class="caption-bar">Unedited 30-second capture (1080p, silent, 1.5 MB, no cookies or third-party scripts). <a href="/safe-local-agents/demo.mp4">Direct MP4 link ↗</a></p>
 
   <section id="trio" aria-labelledby="trio-heading">
     <h2 id="trio-heading">Three failure modes, three narrow primitives</h2>
@@ -91,9 +91,9 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color
         </div>
       </article>
       <article class="pillar">
-        <span class="num">0:10 – 0:20 · Safe Rollback</span>
+        <span class="num">0:10 – 0:20 · 4-Layer Rollback</span>
         <h3>Agentic Saga</h3>
-        <p>Runs multi-step Python agent workflows on Temporal so that when a downstream step or final invariant fails, ordinary deterministic rules—never language-model guesswork—undo completed steps newest-first and escalate ambiguous refunds to a human.</p>
+        <p>Pairs LLM customer-concern triage (politely declining unrelated prompts with zero workflows started) with a Jev step chooser, Temporal state, and deterministic newest-first undo tools.</p>
         <div class="repo-links">
           <a href="https://github.com/gainratio/agentic-saga">GitHub ↗</a>
           <a href="/agentic-saga/">Docs →</a>
@@ -117,8 +117,8 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color
     <h3>Segment 1 (0:00 – 0:10): Consent-gated live browser tabs (<code>agentic-tab-context</code>)</h3>
     <p>Conventional browser automation spawns an isolated browser profile with no SSO cookies, forcing developers either to log in again on every run or to hand raw session secrets to a script. Agentic Tab Context keeps your existing browser window in charge. Until you select a tab in the Manifest V3 Shared Tabs side panel or toolbar popup, the local daemon refuses agent bind requests with <code>TAB_NOT_SHARED</code>. Once shared, <code>atc inspect</code> reads the accessibility tree over local native messaging while automatically redacting password inputs, and <code>atc click</code> acts directly inside the authenticated tab without opening a second window.</p>
 
-    <h3>Segment 2 (0:10 – 0:20): Newest-first Temporal compensation (<code>agentic-saga</code>)</h3>
-    <p>Tool-calling loops make forward actions easy and partial-failure cleanup treacherous: you never want an LLM improvising whether a timed-out payment call succeeded or in what order to refund a card and release inventory. In the captured run, the checkout workflow reserves inventory, charges the card, and books fulfillment on a local Temporal server before the final carrier check fails. Deterministic Python rules immediately transition the workflow to <code>compensating</code>, cancel the delivery, refund the payment, release the item in strict reverse order, and record <code>compensated_verified</code> so nothing is left half-done.</p>
+    <h3>Segment 2 (0:10 – 0:20): 4-layer concern triage + newest-first Temporal undo (<code>agentic-saga</code>)</h3>
+    <p>Real support loops start with messy human messages, yet you never want an LLM improvising whether a timed-out call succeeded or in what order to reverse side effects. First, <code>start_concern_saga</code> triages incoming messages—politely declining unrelated prompts like weather questions with <code>0</code> Temporal workflows started. For a valid paid-not-delivered order concern (<code>order_8841</code>), the constrained Jev / Pydantic AI step chooser holds a replacement, adds a $15 courtesy credit, and books an express courier; when the depot check discovers the original parcel was just scanned onto a delivery truck, Temporal automatically cancels the courier, removes the $15 credit, and releases the replacement newest-first (<code>compensated_verified</code>).</p>
 
     <h3>Segment 3 (0:20 – 0:30): Pre-retrieval access control and provenance (<code>agentic-context-service</code>)</h3>
     <p>When multiple assistants share company knowledge through ad-hoc vector stores or prompt scratchpads, internal margin targets leak to customer-facing bots and nobody can audit which record produced an answer. In the captured run, the pricing assistant asks for the discount limit on item <code>NS-100</code>: the service checks the HMAC signature, blocks 4 of 7 unauthorized records before search, and returns the 20% rule citing <code>record NS-100, edit number 7</code>. When the customer-help assistant asks the exact same question, the internal 20% rule is filtered out before ranking so only the public 15% promotion is returned; when it tries to open pricing rules directly, Open Policy Agent refuses with <code>403 POLICY_DENIED</code>.</p>
@@ -138,7 +138,7 @@ cd agentic-saga &amp;&amp; uv run poe demo
 # 3. Agentic Context Service (uv — starts local HMAC + OPA policy demo on 127.0.0.1)
 git clone https://github.com/gainratio/agentic-context-service.git
 cd agentic-context-service &amp;&amp; make demo</code></pre>
-    <p>Python packages are also published on PyPI (<a href="https://pypi.org/project/agentic-saga/"><code>agentic-saga</code></a> and <a href="https://pypi.org/project/agentic-context-service/"><code>agentic-context-service</code></a>), and the Chrome / Firefox Manifest V3 extension archive lives in <code>store/agentic-tab-context-0.5.0.zip</code> inside <a href="https://github.com/gainratio/agentic-tab-context"><code>gainratio/agentic-tab-context</code></a>.</p>
+    <p>Install <a href="https://github.com/gainratio/agentic-saga"><code>agentic-saga</code></a> from GitHub (<code>uv add "agentic-saga @ git+https://github.com/gainratio/agentic-saga"</code>), <a href="https://pypi.org/project/agentic-context-service/"><code>agentic-context-service</code></a> from PyPI, and find the Chrome / Firefox Manifest V3 extension archive in <code>store/agentic-tab-context-0.5.0.zip</code> inside <a href="https://github.com/gainratio/agentic-tab-context"><code>gainratio/agentic-tab-context</code></a>.</p>
   </section>
 </main>
 
