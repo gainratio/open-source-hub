@@ -49,7 +49,7 @@
   - Source: https://github.com/gainratio/agentic-tab-context
 - [agentic-context-service](https://open-source.gainratio.com/agentic-context-service/): Governed OpenSearch context and memory hub for enterprise agentic workflows with tenant isolation and provenance controls.
   - Source: https://github.com/gainratio/agentic-context-service
-- [agentic-saga](https://open-source.gainratio.com/agentic-saga/): Deterministic saga coordinator for multi-step AI agent workflows with explicit compensation and safe rollback of completed steps.
+- [agentic-saga](https://open-source.gainratio.com/agentic-saga/): 4-layer compensating-transactions framework combining LLM customer-concern triage (with polite out-of-scope refusal), a Jev constrained step chooser, Temporal workflow state, and deterministic paired undo tools.
   - Source: https://github.com/gainratio/agentic-saga
 - [Safe Local Agents Walkthrough](https://open-source.gainratio.com/safe-local-agents/): 30-second live capture showing `agentic-tab-context`, `agentic-saga`, and `agentic-context-service` preventing session loss, partial mutations, and unauthorized context leaks.
   - Video: https://open-source.gainratio.com/safe-local-agents/demo.mp4

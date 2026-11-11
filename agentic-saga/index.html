@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Agentic Saga — undoable multi-step jobs for AI agents | GainRatio</title>
-<meta name="description" content="A Python library that lets an AI agent choose the next step of a multi-step job while a Temporal workflow runs it and undoes finished work, newest-first.">
+<title>Agentic Saga — 4-layer compensating transactions for AI agents</title>
+<meta name="description" content="Combine LLM concern triage, a Jev step chooser, Temporal workflow state, and paired undo tools—with polite refusal when a prompt is not an order issue.">
 <link rel="canonical" href="https://open-source.gainratio.com/agentic-saga/">
 <meta name="robots" content="index,follow">
-<meta property="og:title" content="Agentic Saga — undoable multi-step jobs for AI agents">
-<meta property="og:description" content="A Python library that lets an AI agent choose the next step of a multi-step job while a Temporal workflow runs it and undoes finished work, newest-first.">
+<meta property="og:title" content="Agentic Saga — 4-layer compensating transactions for AI agents">
+<meta property="og:description" content="Combine LLM concern triage, a Jev step chooser, Temporal workflow state, and paired undo tools—with polite refusal when a prompt is not an order issue.">
 <meta property="og:url" content="https://open-source.gainratio.com/agentic-saga/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://open-source.gainratio.com/agentic-saga/poster.png">
 <meta property="og:site_name" content="GainRatio Open Source">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Agentic Saga","description":"A Python library that lets an AI agent choose the next step of a multi-step job while a Temporal workflow runs it and undoes finished work, newest-first.","codeRepository":"https://github.com/gainratio/agentic-saga","programmingLanguage":"Python","license":"https://opensource.org/license/mit","url":"https://open-source.gainratio.com/agentic-saga/"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"Agentic Saga — Deterministic Temporal Rollback Walkthrough","description":"Unedited capture of Agentic Saga running a multi-step checkout on Temporal, detecting a carrier failure after payment, and compensating completed steps newest-first to reach compensated_verified.","thumbnailUrl":"https://open-source.gainratio.com/agentic-saga/poster.png","uploadDate":"2026-11-10","duration":"PT12S","contentUrl":"https://open-source.gainratio.com/agentic-saga/demo.mp4"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Agentic Saga","description":"A Python library combining LLM concern intake, a Jev constrained step decision engine, Temporal durable workflow state, and deterministic paired compensating tools.","codeRepository":"https://github.com/gainratio/agentic-saga","programmingLanguage":"Python","license":"https://opensource.org/license/mit","url":"https://open-source.gainratio.com/agentic-saga/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"Agentic Saga — 4-Layer Customer Order Concern & Temporal Rollback Walkthrough","description":"Unedited 16-second capture of Agentic Saga politely declining a non-order prompt with zero workflows started, then running a paid-not-delivered customer order concern through Jev step selection and newest-first Temporal compensation.","thumbnailUrl":"https://open-source.gainratio.com/agentic-saga/poster.png","uploadDate":"2026-11-10","duration":"PT16S","contentUrl":"https://open-source.gainratio.com/agentic-saga/demo.mp4"}</script>
 <style>
 :root{--navy:#1f3864;--ink:#1a1a1a;--muted:#4b5565;--line:#d7dfec;--accent:#2e5496;--paper:#f6f8fb;--pale:#eef2f8}
 *{box-sizing:border-box}
@@ -35,7 +35,7 @@ pre code{background:none;padding:0;font-size:.86rem;line-height:1.55}
 .crumbs{font-size:.9rem;margin:0 0 2rem}
 header{padding:0 0 1.7rem;border-bottom:1px solid var(--line)}
 .eyebrow{font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 .35rem}
-.promise{font-size:1.2rem;color:#283445;max-width:58ch;margin:.2rem 0 .8rem}
+.promise{font-size:1.2rem;color:#283445;max-width:60ch;margin:.2rem 0 .8rem}
 .meta{font-size:.9rem;color:var(--muted);margin:.2rem 0 0}
 .actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
 .cta{display:inline-block;background:var(--navy);color:#fff;padding:.7rem 1.1rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
@@ -56,8 +56,8 @@ footer a{color:var(--accent)}
 <header>
   <p class="eyebrow">Open source · Python · MIT</p>
   <h1>Agentic Saga</h1>
-  <p class="promise">Let an AI agent run multi-step jobs it cannot leave half-done: it proposes the next step, and fixed rules undo finished work newest-first if the job fails.</p>
-  <p class="meta">0.1.0 · Python 3.12/3.13 · Linux/macOS · Not on PyPI</p>
+  <p class="promise">Resolve free-form customer order concerns safely: an LLM triages the message, a constrained decision engine picks one allowed step at a time, and Temporal undoes finished steps newest-first if a downstream check fails.</p>
+  <p class="meta">0.1.0 · Python 3.12/3.13 · Linux/macOS · Install from GitHub</p>
   <div class="actions">
     <a class="cta" href="#quickstart">Try the demo</a>
     <a class="ghost" href="https://github.com/gainratio/agentic-saga">View on GitHub</a>
@@ -65,40 +65,42 @@ footer a{color:var(--accent)}
 </header>
 <main id="main">
 <div class="player"><video controls autoplay muted loop playsinline width="1280" height="720" preload="metadata" poster="/agentic-saga/poster.png" src="/agentic-saga/demo.mp4"></video></div>
-<p class="video-note">Live 12-second Temporal capture: forward order execution, carrier failure after payment, and newest-first compensation (<code>compensated_verified</code>). <a href="/agentic-saga/demo.mp4">Direct MP4 ↗</a> · <a href="/safe-local-agents/">30s Safe Local Agents overview →</a></p>
+<p class="video-note">Live 16-second capture: polite out-of-scope refusal (<code>0</code> workflows started), forward resolution for stuck <code>order_8841</code>, depot scan discovery, and newest-first compensation (<code>compensated_verified</code>). <a href="/agentic-saga/demo.mp4">Direct MP4 ↗</a> · <a href="/safe-local-agents/">30s Safe Local Agents overview →</a></p>
 <section aria-labelledby="problem">
-  <h2 id="problem">The problem</h2>
-  <p>A checkout touches services that cannot share one database transaction: reserve stock, charge the card, book delivery. If delivery is refused after the charge, the card must be refunded and the stock released, in that order, without doing either twice.</p>
-  <p>Letting a model decide is worse: it should not choose when to refund or read a lost reply as “paid” or “not paid”. Agentic Saga splits the job. The agent proposes one step from a short list allowed right now; ordinary Python rules in a Temporal Workflow check that choice, run it, and record it. If the job cannot be proven done, the workflow undoes confirmed steps newest-first.</p>
+  <h2 id="problem">Why four layers</h2>
+  <p>Imagine a customer writes in: <em>“I paid $79 four days ago for order_8841 and still haven’t received it — please rush a replacement or refund me.”</em> Resolving that touches inventory, billing credits, and an express courier before the depot confirms whether the original parcel was stopped. If the depot reports that the original parcel was just scanned onto a delivery truck, every new action has to be undone in strict reverse order so you do not ship twice or give away free credit.</p>
+  <p>Pure fixed workflows cannot read messy human complaints or decline off-topic chat, while unconstrained tool-calling agents should never improvise refund order or guess whether a timed-out request succeeded. Agentic Saga gives each layer the one job it is actually good at.</p>
 </section>
 <section aria-labelledby="what">
-  <h2 id="what">What it does</h2>
-  <ul>
-    <li><strong>Keeps the model bounded.</strong> Each turn it sees the goal, current facts, and only currently allowed steps, then proposes one; the Workflow rejects anything else. Turn, tool-call, time, and token budgets cap it.</li>
-    <li><strong>Pairs every effect with its undo.</strong> Each changing step names its reversing step, and confirmed effects are compensated in reverse order. The agent never chooses an undo or its timing.</li>
-    <li><strong>Records the run in Temporal.</strong> Confirmed work survives a crash, Activities retry, and histories replay deterministically.</li>
-    <li><strong>Asks before repeating.</strong> A lost provider reply is reconciled by the operation’s stable ID before any retry or compensation.</li>
-    <li><strong>Requires proof.</strong> A read marked <code>proof_for_success</code> must return <code>verified: true</code> before the job can finish; otherwise the job compensates. A person is asked only when the undo cannot be proven.</li>
-  </ul>
+  <h2 id="what">The 4-layer compensating architecture</h2>
+  <ol>
+    <li><strong>Agent / LLM Concern Intake (<code>start_concern_saga</code>).</strong> Reads a free-form user prompt via a structured Pydantic AI classifier or local triage driver. If the message is not an order processing issue (for example, <em>“What is the weather in Seattle this weekend?”</em>), it politely replies that it is not an order processing issue and stops immediately with <code>0</code> workflows started and <code>0</code> tool calls.</li>
+    <li><strong>Constrained Step Decision Engine (<code>Jev</code> / <code>PydanticAI</code>).</strong> Inside the <code>agentic_saga.decide</code> Activity, sees only the steps whose prerequisites are satisfied right now and proposes one forward step at a time. Undo tools are never offered to the model.</li>
+    <li><strong>Durable Workflow State (<code>Temporal</code>).</strong> Enforces turn, tool, time, and token budgets, reconciles lost provider replies by stable operation ID before retrying, verifies <code>proof_for_success</code> reads, runs newest-first compensation automatically when a check fails, and pauses in <code>HUMAN_REQUIRED</code> when an undo reply itself is uncertain.</li>
+    <li><strong>Deterministic Paired Tools (<code>ToolRegistry</code>).</strong> Every side-effecting tool has frozen Pydantic input/output schemas, a deterministic idempotency key, a <code>reconcile()</code> lookup, and an explicit <code>compensate_with</code> reverse tool checked against the workflow definition before execution.</li>
+  </ol>
 </section>
 <section aria-labelledby="quickstart">
   <h2 id="quickstart">Quickstart</h2>
-  <p>You need <code>uv</code>, Git, and a connection. <code>uv</code> fetches a matching Python, the dependencies, and Temporal; no account or API key is needed.</p>
+  <p>You need <code>uv</code> and Git. <code>uv</code> fetches a matching Python, dependencies, and a local Temporal test server; no account or API key is required.</p>
   <pre><code>git clone https://github.com/gainratio/agentic-saga.git
 cd agentic-saga
 uv run poe demo</code></pre>
-  <p>That starts a throwaway Temporal server, runs a simulated checkout, and opens the Flight Recorder. The agent is scripted, the shop simulated; no model is called.</p>
-  <p>To use it in an application, install from Git; there is no PyPI package yet:</p>
+  <p>That runs the customer concern for <code>order_8841</code> on a throwaway local Temporal server and opens the live Flight Recorder: replacement held, $15 courtesy credit added, express courier booked, depot check discovers the original parcel on the truck, and all three steps are reversed newest-first (<code>compensated_verified</code>).</p>
+  <p>Try an unrelated prompt to see Layer 1 politely decline before starting Temporal:</p>
+  <pre><code>uv run poe demo not-an-order
+uv run poe demo --prompt "Can you write me a haiku about rain?"</code></pre>
+  <p>Other order-concern and classic checkout scenarios:</p>
+  <pre><code>uv run poe demo happy-path
+uv run poe demo lost-response
+uv run poe demo compensation-failure
+uv run poe demo-checkout</code></pre>
+  <p>To depend on the library in Python (install from Git; there is no PyPI package yet):</p>
   <pre><code>uv add "agentic-saga @ git+https://github.com/gainratio/agentic-saga"</code></pre>
-  <p>The smallest complete program, <code>examples/quickstart/trip.py</code>, books a flight and a hotel, fails the final check on purpose, and cancels both bookings. From the clone:</p>
-  <pre><code>uv run python -m examples.quickstart.trip</code></pre>
-  <pre><code>Forward steps: book_flight -&gt; book_hotel -&gt; confirm_trip
-Undo steps:    cancel_hotel -&gt; cancel_flight
-Outcome:       compensated_verified</code></pre>
 </section>
 <section aria-labelledby="example">
-  <h2 id="example">A real example</h2>
-  <p>The trip program pairs each change with its undo, then names the allowed order and proof read. Abridged from <a href="https://github.com/gainratio/agentic-saga/blob/main/examples/quickstart/trip.py"><code>trip.py</code></a>:</p>
+  <h2 id="example">A minimal paired-tool contract</h2>
+  <p>The smallest self-contained program, <a href="https://github.com/gainratio/agentic-saga/blob/main/examples/quickstart/trip.py"><code>examples/quickstart/trip.py</code></a>, pairs each forward action with its undo and requires a final proof read:</p>
   <pre><code>def build_registry(forward: list[str], undo: list[str]) -&gt; ToolRegistry:
     return ToolRegistry(
         (
@@ -117,57 +119,45 @@ WORKFLOW_TOOLS = (
     WorkflowTool(name="confirm_trip", kind="read", proof_for_success=True,
                  prerequisites=("book_hotel",)),
 )</code></pre>
-  <p><code>booking(...)</code> wraps a provider call; <code>confirm_trip</code> is a read-only check. The undo name appears as <code>compensate_with</code> on the registry entry and <code>compensation_tool</code> on the workflow tool; if they differ, the step fails with <code>tool_contract_mismatch</code>.</p>
-  <p>Variants:</p>
-  <pre><code>uv run poe demo happy-path
-uv run poe demo lost-response
-uv run poe demo compensation-failure</code></pre>
-  <ul>
-    <li><code>happy-path</code>: every step works.</li>
-    <li><code>lost-response</code>: the card company’s reply is lost; the saga reconciles instead of charging again.</li>
-    <li><code>compensation-failure</code>: the refund cannot be confirmed, so a person must sign off; the demo plays that person.</li>
-  </ul>
+  <p>The undo name appears on both the registry entry (<code>compensate_with</code>) and the workflow tool (<code>compensation_tool</code>); if they disagree, execution fails closed with <code>tool_contract_mismatch</code> before calling the provider.</p>
 </section>
 <section aria-labelledby="limits">
   <h2 id="limits">Limits</h2>
   <ul>
-    <li><strong>Unreleased.</strong> 0.1.0 has no PyPI package or tagged release; install from Git. Python 3.12 or 3.13 on Linux or macOS only.</li>
-    <li><strong>Your providers must cooperate.</strong> Every side-effecting call needs a stable request ID and a lost-reply lookup. Agentic Saga cannot make a non-idempotent API safe, and the example services are simulations.</li>
-    <li><strong>You need Temporal.</strong> The demo starts a throwaway server; real use needs a local server or Temporal Cloud.</li>
-    <li><strong>It does not judge the model.</strong> Tests never call a paid model, so live step choice is not evaluated.</li>
-    <li><strong>Traces are not signed.</strong> They are checked for internal consistency and content hashes; anyone who can edit a trace file can rewrite it.</li>
+    <li><strong>Install from Git.</strong> 0.1.0 is tagged on GitHub without a PyPI package yet; supports Python 3.12 and 3.13 on Linux and macOS.</li>
+    <li><strong>Your providers must cooperate.</strong> Every side-effecting call needs a stable request ID and a lost-reply lookup. Agentic Saga cannot make a non-idempotent API safe, and the bundled order-concern and checkout services are simulations.</li>
+    <li><strong>You need Temporal.</strong> The demo starts a throwaway local server; production deployments run against a Temporal cluster or Temporal Cloud.</li>
+    <li><strong>Offline tests do not score live model quality.</strong> CI verifies deterministic safety invariants without calling paid endpoints; optional live OpenRouter evaluation suites run separately.</li>
+    <li><strong>Traces are integrity-checked, not cryptographically signed.</strong> Content hashes catch accidental drift, not deliberate edits by someone with write access to trace files.</li>
   </ul>
-  <p>Use a database transaction when every change is in one database. For a fixed sequence, Temporal alone is simpler. If the agent only reads or drafts, call tools directly; if you can write the routes by hand, plain <code>if/else</code> is enough.</p>
+  <p>Use a single database transaction when every write lives in one database. Use plain Temporal when both intake and step order are completely fixed. Use Agentic Saga when free-form user concerns and flexible step choice must coexist with strict compensating transactions.</p>
 </section>
 <section aria-labelledby="security">
   <h2 id="security">Security and data handling</h2>
-  <p>Temporal keeps Workflow and Activity payloads: inputs, results, failure details, and Update arguments. The built-in converter is for public-safe data. Use opaque business identifiers, keep secrets and documents by reference, resolve credentials inside Activities, and trim provider receipts to reconciliation fields. Redaction does not erase values already in Temporal history.</p>
-  <p>Private payloads require client-side encryption with a shared Payload Codec backed by a KMS, a dedicated Namespace with least-privilege access, and application authentication for every human decision. The opt-in OpenRouter path authenticates with your <code>OPENROUTER_API_KEY</code> and sends the goal, current facts, and allowed steps; the library does not enforce provider spend. The Flight Recorder binds to <code>127.0.0.1</code>, is read-only, and is not an authenticated multi-user service. See <a href="https://github.com/gainratio/agentic-saga/blob/main/SECURITY.md">SECURITY.md</a>.</p>
+  <p>Temporal records Workflow and Activity inputs, results, failure details, and Update arguments. Keep payloads to opaque business identifiers (such as <code>order_8841</code>), resolve credentials inside Activities, and trim provider receipts to reconciliation fields. Redaction helpers scrub common secret keys before persistence, while private customer payloads in production should use a KMS-backed Temporal Payload Codec, a dedicated Namespace, and authenticated operator sign-off for <code>HUMAN_REQUIRED</code> updates. See <a href="https://github.com/gainratio/agentic-saga/blob/main/SECURITY.md">SECURITY.md</a>.</p>
 </section>
 <section aria-labelledby="faq">
   <h2 id="faq">FAQ</h2>
+  <h3>What happens if a user sends a prompt unrelated to orders?</h3>
+  <p><code>start_concern_saga</code> returns a polite <code>DeclinedConcern</code> reply explaining that the message is not an order processing issue. Zero Temporal workflows are started and zero tools are invoked.</p>
   <h3>Do I need an API key or a Temporal account to try it?</h3>
-  <p>No. The demo starts a throwaway Temporal server with a scripted agent and simulated shop; no key or account.</p>
-  <h3>Can the agent decide when to refund or undo?</h3>
-  <p>No. Undo tools are registered but never offered to the agent. The Workflow derives the order from confirmed effects and compensation pairs, newest-first.</p>
+  <p>No. <code>uv run poe demo</code> starts a throwaway local Temporal server with local triage and simulated order tools; you can plug in Pydantic AI or Jev via OpenRouter when ready.</p>
+  <h3>Can the agent decide when or how to undo?</h3>
+  <p>No. Compensation tools are never exposed as candidate choices to the step chooser. Temporal derives the exact newest-first undo sequence from confirmed forward effects.</p>
   <h3>What happens when a provider’s reply is lost?</h3>
-  <p>The Workflow reconciles by the operation’s stable ID and asks the provider what happened before retrying or compensating. If the outcome cannot be proven, it stops for an authenticated person.</p>
-  <h3>Is it on PyPI?</h3>
-  <p>No. 0.1.0 has no package or tagged release; install from GitHub. It supports Python 3.12 and 3.13 on Linux and macOS.</p>
-  <h3>Can I use a different model?</h3>
-  <p>Yes. The default is Jev through OpenRouter; Jev direct through TypeSafe, any tool-calling model through Pydantic AI and OpenRouter, and a scripted driver also work. Tests never call a paid model.</p>
+  <p>The Workflow calls <code>reconcile()</code> with the operation’s stable ID before retrying or compensating. If a compensation reply itself remains unknown, the Workflow pauses in <code>HUMAN_REQUIRED</code> for an authenticated support lead.</p>
 </section>
 <section aria-labelledby="links">
   <h2 id="links">Source and related work</h2>
   <ul>
-    <li><a href="https://github.com/gainratio/agentic-saga">GitHub: gainratio/agentic-saga</a> — source, issues, and the <a href="https://github.com/gainratio/agentic-saga/blob/main/docs/integration.md">integration guide</a> for real service adapters.</li>
+    <li><a href="https://github.com/gainratio/agentic-saga">GitHub: gainratio/agentic-saga</a> — source, <a href="https://github.com/gainratio/agentic-saga/tree/main/examples/order_concern">4-layer order concern example</a>, and <a href="https://github.com/gainratio/agentic-saga/blob/main/docs/integration.md">service adapter guide</a>.</li>
     <li><a href="https://github.com/gainratio/agentic-saga/blob/main/docs/ARCHITECTURE.md">Architecture</a> and <a href="https://github.com/gainratio/agentic-saga/blob/main/SECURITY.md">security policy</a> cover the workflow and data boundary.</li>
   </ul>
   <p>Related:</p>
   <ul>
-    <li><a href="/agentic-context-service/">agentic-context-service</a> — governed OpenSearch context and memory hub for agentic workflows.</li>
+    <li><a href="/safe-local-agents/">Safe Local Agents</a> — 30-second live walkthrough combining shared browser tabs, 4-layer saga rollback, and governed context.</li>
     <li><a href="/agentic-tab-context/">agentic-tab-context</a> — let a coding assistant use the browser tab you already have open, with your existing logins.</li>
-    <li><a href="/avow/">Avow</a> — sign a JSON record into a receipt anyone can verify offline.</li>
+    <li><a href="/agentic-context-service/">agentic-context-service</a> — governed OpenSearch context and memory hub for agentic workflows.</li>
   </ul>
 </section>
 </main>
