@@ -11,6 +11,7 @@ const ROOT_FILES = [
   "index.html",
   "404.html",
   "favicon.svg",
+  "og-image.png",
   "_headers",
   "robots.txt",
   "llms.txt",
