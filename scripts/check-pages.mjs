@@ -104,9 +104,10 @@ if (!rootHtml.includes('rel="canonical" href="https://open-source.gainratio.com/
 if (!rootHtml.includes('name="robots"') || !rootHtml.includes("index,follow")) {
   issues.push("index.html: missing index,follow robots");
 }
-for (const og of ["og:type", "og:title", "og:description", "og:url"]) {
+for (const og of ["og:type", "og:title", "og:description", "og:url", "og:image"]) {
   if (!rootHtml.includes(`property="${og}"`)) issues.push(`index.html: missing ${og}`);
 }
+if (!existsSync(join(ROOT, "og-image.png"))) issues.push("og-image.png: missing");
 if (jsonLdBlocks(rootHtml).some((b) => b === null)) issues.push("index.html: invalid JSON-LD");
 
 const notFoundPath = join(ROOT, "404.html");

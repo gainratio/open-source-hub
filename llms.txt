@@ -1,6 +1,6 @@
 # GainRatio Open Source
 
-> Local-first applications, verified-data substrates, and deterministic AI governance libraries published by GainRatio (`https://github.com/gainratio`). Every repository is public, MIT-licensed, and built around fail-closed cryptographic verification and zero-egress browser execution.
+> Local-first applications, verified-data substrates, and deterministic AI governance libraries published by GainRatio (`https://github.com/gainratio`). Every repository is public, MIT-licensed, built around fail-closed cryptographic verification and zero-egress execution, and authored 100% independently on personal infrastructure with zero employer or client strategy, ideas, code, or confidential data.
 
 - Open Source Hub: https://open-source.gainratio.com/
 - Advisory & Platform Architecture: https://gainratio.com/
