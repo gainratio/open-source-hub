@@ -13,7 +13,7 @@
   - Hub overview: https://open-source.gainratio.com/aml-filter/
   - Trust & cryptographic verification: https://aml-filter.com/trust/
   - Source: https://github.com/gainratio/aml-filter
-- [EdgeReco](https://edge-reco.com/): On-device ecommerce search, hybrid BM25 + 2-bit `TurboQuant` vector retrieval (SQLite FTS5 + `sqlite-vector` with Reciprocal Rank Fusion), and session-aware product recommendations scaling up to 1,000,000 products via sharded `IVF-TurboQuant` SQLite bundles (with a 100,000-product live demo storefront) running entirely in the shopper's browser.
+- [EdgeReco](https://edge-reco.com/): On-device ecommerce search, hybrid BM25 + 2-bit `TurboQuant` vector retrieval (SQLite FTS5 + `sqlite-vector` with Reciprocal Rank Fusion), and session-aware product recommendations serving 1,000,000 products in the live storefront via 64 sharded `IVF-TurboQuant` SQLite bundles (79.0 MB signed bundle across 3,331 chunks, 42.9 KB two-chunk delta updates, scored by Assay at 94.2% Precision@10, 48.8% Recall@24, 0.61 F1@24, and 0.94 nDCG@10) running entirely in the shopper's browser.
   - Hub overview: https://open-source.gainratio.com/edge-reco/
   - On-device search architecture: https://edge-reco.com/on-device-search
   - Source: https://github.com/gainratio/edge-reco
