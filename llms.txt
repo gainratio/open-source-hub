@@ -13,7 +13,7 @@
   - Hub overview: https://open-source.gainratio.com/aml-filter/
   - Trust & cryptographic verification: https://aml-filter.com/trust/
   - Source: https://github.com/gainratio/aml-filter
-- [EdgeReco](https://edge-reco.com/): On-device ecommerce search, hybrid BM25 + vector retrieval (SQLite FTS5 + `sqlite-vector` with Reciprocal Rank Fusion), and session-aware product recommendations running entirely in the shopper's browser from a signed catalog bundle.
+- [EdgeReco](https://edge-reco.com/): On-device ecommerce search, hybrid BM25 + 2-bit `TurboQuant` vector retrieval (SQLite FTS5 + `sqlite-vector` with Reciprocal Rank Fusion), and session-aware product recommendations scaling up to 1,000,000 products via sharded `IVF-TurboQuant` SQLite bundles (with a 100,000-product live demo storefront) running entirely in the shopper's browser.
   - Hub overview: https://open-source.gainratio.com/edge-reco/
   - On-device search architecture: https://edge-reco.com/on-device-search
   - Source: https://github.com/gainratio/edge-reco
@@ -28,7 +28,7 @@
 - [@gainratio/browser (`edgeproc-browser`)](https://browser.gainratio.com/): Browser runtime for Ed25519-signed, SHA-256 content-addressed data bundles with anti-rollback sequence checks and OPFS/IndexedDB persistence.
   - Hub overview: https://open-source.gainratio.com/edgeproc-browser/
   - Source: https://github.com/gainratio/edgeproc-browser (npm: `@gainratio/browser`)
-- [edge-proc](https://open-source.gainratio.com/edge-proc/): Python substrate for publishing and delta-syncing Ed25519-signed, FastCDC content-addressed search bundles with offline FAISS + BM25 Reciprocal Rank Fusion.
+- [edge-proc](https://open-source.gainratio.com/edge-proc/): Python substrate for publishing and delta-syncing Ed25519-signed, FastCDC content-addressed search bundles (plus prebuilt `zstd --patch-from` static binary delta patches) with offline FAISS + BM25 Reciprocal Rank Fusion.
   - Source: https://github.com/gainratio/edge-proc (PyPI: `edge-proc`)
 - [edgeproc-core](https://open-source.gainratio.com/edgeproc-core/): Multi-tenant vector-index partitioning protocol (`GlobalPartitionStrategy`, `NamespacePartitionStrategy`, `BucketedPartitionStrategy`) and RFC 9457 Problem Details error registry.
   - Source: https://github.com/gainratio/edgeproc-core (PyPI: `edgeproc-core`)
