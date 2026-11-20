@@ -45,8 +45,9 @@
 
 ## Agentic Systems & Supply-Chain Infrastructure
 
-- [agentic-tab-context](https://open-source.gainratio.com/agentic-tab-context/): Let coding agents inspect and interact with the browser tab a developer already has open, preserving existing authenticated sessions.
+- [agentic-tab-context](https://open-source.gainratio.com/agentic-tab-context/): Let coding agents inspect and interact with the browser tab a developer already has open, preserving existing authenticated sessions (zero-CLI daemon auto-start, popup keep-alive switch, password masking).
   - Source: https://github.com/gainratio/agentic-tab-context
+  - Chrome Web Store: https://chromewebstore.google.com/detail/agentic-tab-context/bdjnjipgnacnpgomkcbabgabejmjkllb
 - [agentic-context-service](https://open-source.gainratio.com/agentic-context-service/): Governed OpenSearch context and memory hub for enterprise agentic workflows with tenant isolation and provenance controls.
   - Source: https://github.com/gainratio/agentic-context-service
 - [agentic-saga](https://open-source.gainratio.com/agentic-saga/): 4-layer compensating-transactions framework combining LLM customer-concern triage (with polite out-of-scope refusal), a Jev constrained step chooser, Temporal workflow state, and deterministic paired undo tools.

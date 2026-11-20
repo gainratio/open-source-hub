@@ -72,7 +72,8 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color
   <h1>Agentic Tab Context</h1>
   <p class="promise">Give Claude Code, Codex or Antigravity the tab you already have open — your page, your logins, no new browser window.</p>
   <div class="actions">
-    <a class="cta" href="#quickstart">Install and bind a tab</a>
+    <a class="cta" href="https://chromewebstore.google.com/detail/agentic-tab-context/bdjnjipgnacnpgomkcbabgabejmjkllb">Install from Chrome Web Store ↗</a>
+    <a href="#quickstart">CLI &amp; bridge quickstart →</a>
   </div>
 </header>
 
@@ -104,7 +105,7 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color
 cd agentic-tab-context
 ./install.sh</code></pre>
     <p>The installer builds the CLI, links <code>atc</code> globally, installs the skill and registers the browser bridge. Keep the clone in place; the CLI reads files inside it.</p>
-    <p>Then load the extension at <code>chrome://extensions</code>: enable <strong>Developer mode</strong> and choose <strong>Load unpacked</strong> for the <code>extension</code> folder. Run <code>atc doctor</code>; <code>extension.connected</code> should list your browser.</p>
+    <p>Install the <a href="https://chromewebstore.google.com/detail/agentic-tab-context/bdjnjipgnacnpgomkcbabgabejmjkllb">Chrome Web Store extension</a> (or load the <code>extension</code> folder unpacked at <code>chrome://extensions</code> in Developer mode). Clicking the extension automatically starts the local <code>atc</code> daemon; run <code>atc status</code> anytime to verify <code>extension.connected</code>.</p>
     <p>Share a tab from the side panel, then bind and inspect it:</p>
     <pre><code>atc bind "localhost"
 atc inspect</code></pre>
