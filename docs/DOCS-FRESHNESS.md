@@ -13,7 +13,7 @@ Scope: all 14 canonical hub pages, the seven library GitHub homepages, and the f
 | `@gainratio/privacy-core` | 0.3.2 | `privacy-core/package.json`, npm | `/privacy-core/` |
 | `@gainratio/errors` | 0.4.0 | `errors/package.json`, npm | `/errors/` |
 | `assay-engine` / `@gainratio/assay` | 0.5.0.dev6 / 0.5.0-dev.6 | `assay/pyproject.toml`, `assay/ts/package.json`, PyPI, npm | `/assay/` |
-| `agentic-tab-context` | 0.5.0 | repository package metadata | `/agentic-tab-context/` |
+| `agentic-tab-context` | 0.5.1 | repository package metadata + Chrome Web Store (`bdjnjipgnacnpgomkcbabgabejmjkllb`) | `/agentic-tab-context/` |
 | `agentic-context-service` | 0.1.0 | `pyproject.toml` | `/agentic-context-service/` |
 | `agentic-saga` | 0.1.0 | `src/agentic_saga/_version.py` | `/agentic-saga/` |
 | `ci` | commit-pinned modules | repository README / Dagger modules | `/ci/` |
