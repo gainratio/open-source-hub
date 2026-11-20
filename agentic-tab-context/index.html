@@ -100,11 +100,10 @@ footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.1rem;color
 
   <section aria-labelledby="quickstart">
     <h2 id="quickstart">Quickstart</h2>
-    <p>You need macOS or Linux, Git, Node.js 22+ with npm, and Chrome or another Chromium browser; open it once before installing. Windows stops before writing files.</p>
-    <pre><code>git clone https://github.com/gainratio/agentic-tab-context.git
-cd agentic-tab-context
-./install.sh</code></pre>
-    <p>The installer builds the CLI, links <code>atc</code> globally, installs the skill and registers the browser bridge. Keep the clone in place; the CLI reads files inside it.</p>
+    <p>You need macOS or Linux, Node.js 22+ with npm, and Chrome or another Chromium browser; open it once before installing. Windows stops before writing files.</p>
+    <pre><code>npm install -g agentic-tab-context
+atc setup</code></pre>
+    <p><code>atc setup</code> installs the skill for Claude Code, Codex, and Antigravity and registers the browser native-messaging bridge for both the Chrome Web Store extension and local unpacked builds. (Prefer installing from source? Clone <code>gainratio/agentic-tab-context</code> and run <code>./install.sh</code>.)</p>
     <p>Install the <a href="https://chromewebstore.google.com/detail/agentic-tab-context/bdjnjipgnacnpgomkcbabgabejmjkllb">Chrome Web Store extension</a> (or load the <code>extension</code> folder unpacked at <code>chrome://extensions</code> in Developer mode). Clicking the extension automatically starts the local <code>atc</code> daemon; run <code>atc status</code> anytime to verify <code>extension.connected</code>.</p>
     <p>Share a tab from the side panel, then bind and inspect it:</p>
     <pre><code>atc bind "localhost"

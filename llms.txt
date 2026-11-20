@@ -47,6 +47,7 @@
 
 - [agentic-tab-context](https://open-source.gainratio.com/agentic-tab-context/): Let coding agents inspect and interact with the browser tab a developer already has open, preserving existing authenticated sessions (zero-CLI daemon auto-start, popup keep-alive switch, password masking).
   - Source: https://github.com/gainratio/agentic-tab-context
+  - npm: https://www.npmjs.com/package/agentic-tab-context
   - Chrome Web Store: https://chromewebstore.google.com/detail/agentic-tab-context/bdjnjipgnacnpgomkcbabgabejmjkllb
 - [agentic-context-service](https://open-source.gainratio.com/agentic-context-service/): Governed OpenSearch context and memory hub for enterprise agentic workflows with tenant isolation and provenance controls.
   - Source: https://github.com/gainratio/agentic-context-service
